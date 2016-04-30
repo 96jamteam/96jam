@@ -1,3 +1,4 @@
+
 #pragma once
 
 #include<SFML/Graphics.hpp>
@@ -92,3 +93,4 @@ struct Volume {
 struct SceneUpdate {
 	SceneUpdate(){}
 };
+

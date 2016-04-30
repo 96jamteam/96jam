@@ -6,7 +6,7 @@
 #include "component_container.h"
 #include "window_system.h"
 #include "sound_system.h"
-
+#include "scene_system.h"
 #include "pugi_wrapper.h"
 #include "ResourceManagerWrapper.hpp"
 
