@@ -25,7 +25,7 @@ PointLight::PointLight(sf::Texture texture, Game* game)
         sf::Shader pointLightShader;
         if(!pointLightShader.loadFromFile("shaders//pointLight.vertex", "shaders//pointLight.fragment"))
         {
-            std::cout<<"Nie uda³o sie zaladowac shaderow typu point light";
+            std::cout<<"Nie udaï¿½o sie zaladowac shaderow typu point light";
         }
         pointLightShader.setParameter("texture", texture);
     }
@@ -34,11 +34,11 @@ PointLight::PointLight(sf::Texture texture, Game* game)
 Spotlight::drawUsingShader(sf::Texture texture, sf::Shader shader)
 {
     sf::Shader::bind(&shader);
-    game->window.draw(game->views->gameTexture, &shader);
+    //game->window.draw(game->views->gameTexture, &shader);
 }
 
 PointLight::drawUsingShader(sf::Texture texture, sf::Shader shader)
 {
     sf::Shader::bind(&shader);
-    game->window.draw(game->views->gameTexture, &shader);
+//    game->window.draw(game->views->gameTexture, &shader);
 }
