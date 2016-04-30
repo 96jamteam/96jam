@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <deque>
 
 class Views {
 public:
@@ -11,7 +12,9 @@ public:
 	int WINDOW_HEIGHT;
 
 	sf::View gameView;
-	sf::View guiView;	
+	sf::View guiView;
+    sf::RenderTexture gameTexture;
+    sf::RenderTexture guiTexture;
 
 	inline void addTarget(const sf::Vector2f& vec) {
 		targets.push_back(vec);
@@ -38,6 +41,11 @@ public:
 		}
 		gameView.setCenter(sf::Vector2f(min.x + (max.x - min.x) / 2.f, min.y + (max.y - min.y) / 2.f));
 	}
+    
+    void declareTextures(int w, int h){
+        gameTexture.create(w, h);
+        guiTexture.create(w, h);
+    }
 
 	sf::View getLetterboxView(sf::View view, const int& windowWidth, const int& windowHeight) {
 		float windowRatio = windowWidth / (float)windowHeight;
