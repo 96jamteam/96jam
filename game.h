@@ -5,6 +5,7 @@
 #include "engine.h"
 #include "component_container.h"
 #include "window_system.h"
+#include "scene_system.h"
 #include "pugi_wrapper.h"
 
 class Game
@@ -14,6 +15,7 @@ public:
     void run()
     {
         engine.add(std::shared_ptr<System>(new WindowSystem(window)));
+        engine.add(std::shared_ptr<System>(new SceneSystem(container)));
         engine.run();
     }
 
