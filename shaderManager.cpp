@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <iostream>
-Spotlight::Spotlight()
+Spotlight::Spotlight(sf::Texture texture)
 {
     sf::RenderTexture renderTexture;
     if (sf::Shader::isAvailable())
@@ -13,11 +13,11 @@ Spotlight::Spotlight()
         {
             std::cout<<"Nie udalo sie zaladowac shaderow typu spotlight";
         }
-        spotShader.setParameter("texture", sf::Shader::CurrentTexture);
+        spotShader.setParameter("texture", texture);
     }
 }
 
-PointLight::PointLight()
+PointLight::PointLight(sf::Texture texture)
 {
     sf::RenderTexture renderTexture;
     if(sf::Shader::isAvailable())

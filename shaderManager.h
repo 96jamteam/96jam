@@ -1,9 +1,13 @@
 #pragma once
+#include <SFML/Graphics/Shader.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <iostream>
 
 class Spotlight
 {
 public:
-    Spotlight();
+    Spotlight(sf::Texture texture);
     ~Spotlight();
 };
 
@@ -11,6 +15,6 @@ public:
 class PointLight
 {
 public:
-    PointLight();
+    PointLight(sf::Texture texture);
     ~PointLight();
 };
