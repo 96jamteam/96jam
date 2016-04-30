@@ -41,10 +41,8 @@ private:
 
 
                 window->clear();
-                //gamesp = sf::Sprite(views->gameTexture.getTexture());
-                //window->draw(gamesp);
-                Shader shader(window, views);
-                shader.createDefaultShader();
+                gamesp = sf::Sprite(views->gameTexture.getTexture());
+                window->draw(gamesp);
                 guisp = sf::Sprite(views->guiTexture.getTexture());
                 window->draw(guisp);
                 window->display();

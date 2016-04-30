@@ -1,4 +1,4 @@
-#include "shaderManager.h"
+/*#include "shaderManager.h"
 #include <SFML/Graphics/Shader.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
@@ -46,4 +46,4 @@ void Shader::drawScreenUsingShader(sf::Shader shader)
                 std::cout<<"Nie udalo sie zaladowac shaderow typu default";
             }
     }
- }
+ } */

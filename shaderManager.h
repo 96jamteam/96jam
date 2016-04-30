@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include <SFML/Graphics/Shader.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
@@ -16,3 +16,4 @@ public:
     sf::Shader createDefaultShader();
     Shader(sf::RenderWindow* _window, Views* _views) : window(_window), views(_views){}
 };
+*/

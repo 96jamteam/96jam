@@ -28,7 +28,7 @@ void Game::run()
     engine.add(std::shared_ptr<System>(new PhysicsSystem(world,container)));
     engine.add(std::shared_ptr<System>(new PlayerSystem(&window, &container, this, &views)));
     engine.add(std::shared_ptr<System>(new SoundSystem()));
-    engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
+//    engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
 
     KeyboardManager keyboardmanager;
     keyboardmanager.load("controls.txt");

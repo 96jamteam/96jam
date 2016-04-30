@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include<iostream>
 #include<SFML/Graphics.hpp>
@@ -21,7 +21,7 @@ private:
 public:
     DebugDrawSystem(b2World* w, sf::RenderWindow* t, Views* _views) : world(w),target(t),views(_views){
         world->SetDebugDraw(this);
-        SetFlags(b2Draw::e_shapeBit /*| b2Draw::e_shapeBit*/);
+        SetFlags(b2Draw::e_shapeBit /*| b2Draw::e_shapeBit*//*);
 	}
 
 	virtual ~DebugDrawSystem() {
@@ -63,4 +63,4 @@ private:
 
 	/// Draw a transform. Choose your own length scale.
 	void DrawTransform(const b2Transform& xf);
-};
+}; */
