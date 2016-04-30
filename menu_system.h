@@ -24,7 +24,7 @@ public:
         components = cc->getComponentStorage<Menu>();
         if (components == nullptr)
             components = cc->addComponentStorage<Menu>();
-        
+
         mChannel.add<MousePos>(*this);
         mChannel.add<MouseButtonEvent>(*this);
         mChannel.add<MenuEvent>(*this);
@@ -36,11 +36,12 @@ public:
 	}
 
 	void handle(const MousePos& mpos){
+
 		mousePos.x = mpos.x;
 		mousePos.y = mpos.y;
 
 		for (int j = 0; j < components->size(); j++) {
-			
+
 			if((*components)[j].active)
 				for (int i = 0; i< ((*components)[j]).screens.at(((*components)[j]).actualScreen).guiSystem.size(); i++)
 					(*components)[j].screens.at((*components)[j].actualScreen).guiSystem[i].highlight((*components)[j].screens.at((*components)[j].actualScreen).guiSystem[i].getEntry(mousePos));
@@ -59,7 +60,7 @@ public:
 					if (pressed){
 						for (int i = 0; i<  (*components)[j] .screens.at((*components)[j] .actualScreen).guiSystem.size(); i++){
 							std::string msg = (*components)[j] .screens.at((*components)[j] .actualScreen).guiSystem[i].activate(mousePos);
-								
+
 							//aktywuj akcjê
 							if ((*components)[j] .screens.at((*components)[j] .actualScreen).actions.find(msg) != (*components)[j] .screens.at((*components)[j] .actualScreen).actions.end())
 								(*components)[j] .screens.at((*components)[j] .actualScreen).actions.at(msg)();
@@ -84,11 +85,11 @@ public:
 					break;
 				case MenuEvent::show:
 					(*components)[j].active = 1;
-					break;				
+					break;
 				default:
 					break;
 				}
-				
+
 		}
 	}
 
@@ -100,9 +101,9 @@ public:
 	}
 
 	virtual void update() {
-		
+
 	}
 
-	
+
 };
 

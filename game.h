@@ -2,6 +2,7 @@
 #define GAME_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
+
 #include "engine.h"
 #include "component_container.h"
 #include "window_system.h"
@@ -25,6 +26,9 @@ public:
     Game();
 
     void run();
+    void createMenus();
+    void loadAssets(const std::string& path);
+    void createWindowAndStuff();
 
     sf::RenderWindow window;
     Engine engine;
@@ -37,6 +41,7 @@ public:
 	AnimationManager Animations;
     Views views;
     std::shared_ptr<WorldLoader> worldLoader;
+    EventChannel mChannel;
 };
 
 #endif // GAME_H
