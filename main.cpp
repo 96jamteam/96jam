@@ -3,12 +3,24 @@
 #include <iostream>
 #include <SFML/Audio.hpp>
 #include "engine.h"
+#include "pugi_wrapper.h"
 
 Engine engine;
 
 class Syss : public System{
+    
+    std::string s;
+    
+    public:
+    Syss(){
+        XML xml;
+        xml.load("word.xml");
+        std::cout << xml.get<std::string>("words.word:str");
+        this->s = xml.get<std::string>("word:str");
+    }
+    
     virtual void update(){
-        std::cout<<"gowno\n";
+        std::cout<<this->s<<std::endl;
     }
 };
 
