@@ -2,6 +2,7 @@
 
 #include "test_system.hpp"
 #include "keyboardManager.h"
+#include "structures_for_broadcast.h"
 
 Game::Game()
 {
@@ -15,8 +16,14 @@ Game::Game()
 void Game::run()
 {
     engine.add(std::shared_ptr<System>(new WindowSystem(window)));
+    engine.add(std::shared_ptr<System>(new SceneSystem(container)));
     engine.add(std::shared_ptr<System>(new TestSystem(window, this)));
     KeyboardManager keyboardmanager;
     keyboardmanager.load("controls.txt");
+    engine.add(std::shared_ptr<System>(new SoundSystem()));
+    EventChannel chan;
+    chan.broadcast(PlaySound("electro.wav"));
+    chan.broadcast(AddMusic("footsteps.ogg"));
+    chan.broadcast(StartMusic());
     engine.run();
 }
