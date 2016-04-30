@@ -3,26 +3,16 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <iostream>
-#include "game.h"
-class Spotlight
+#include "views.h"
+class Shader
 {
 private:
-    Game* game;
+    sf::RenderWindow* window;
+    Views* views;
 public:
-    Spotlight(sf::Texture texture, Game* game);
-    ~Spotlight();
-
-    drawUsingShader(sf::Texture texture, sf::Shader shader);
-};
-
-
-class PointLight
-{
-private:
-    Game* game;
-public:
-    PointLight(sf::Texture texture, Game* game);
-    ~PointLight();
-
-     drawUsingShader(sf::Texture texture, sf::Shader shader);
+    void spotlight(sf::Texture texture);
+    void pointLight(sf::Texture texture);
+    void drawScreenUsingShader(sf::Shader shader);
+    sf::Shader createDefaultShader();
+    Shader(sf::RenderWindow* _window, Views* _views) : window(_window), views(_views){}
 };

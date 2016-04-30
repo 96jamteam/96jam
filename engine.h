@@ -6,7 +6,7 @@
 #include "views.h"
 #include"eventchannel.h"
 #include "views.h"
-
+#include "shaderManager.h"
 class Engine
 {
 private:
@@ -38,11 +38,13 @@ private:
                 for(auto sys: systems){
                     sys->update();
                 }
-                
-                
+
+
                 window->clear();
-                gamesp = sf::Sprite(views->gameTexture.getTexture());
-                window->draw(gamesp);
+                //gamesp = sf::Sprite(views->gameTexture.getTexture());
+                //window->draw(gamesp);
+                Shader shader(window, views);
+                shader.createDefaultShader();
                 guisp = sf::Sprite(views->guiTexture.getTexture());
                 window->draw(guisp);
                 window->display();

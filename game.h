@@ -14,6 +14,7 @@
 #include "views.h"
 
 class TestSystem;
+class Shader;
 
 class Game
 {
@@ -29,9 +30,9 @@ public:
 
     Manager<sf::Texture, 100> Textures;
     Manager<GuiStyle, 100> Stylesheets;
-    
+
     Views views;
-    
+
 };
 
 #endif // GAME_H

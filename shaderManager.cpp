@@ -3,9 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <iostream>
-Spotlight::Spotlight(sf::Texture texture, Game* game)
+void Shader::spotlight(sf::Texture texture)
 {
-    this->game = game;
     if (sf::Shader::isAvailable())
     {
         sf::Shader spotShader;
@@ -17,28 +16,34 @@ Spotlight::Spotlight(sf::Texture texture, Game* game)
     }
 }
 
-PointLight::PointLight(sf::Texture texture, Game* game)
+void Shader::pointLight(sf::Texture texture)
 {
-    this->game = game;
     if(sf::Shader::isAvailable())
     {
         sf::Shader pointLightShader;
         if(!pointLightShader.loadFromFile("shaders//pointLight.vertex", "shaders//pointLight.fragment"))
         {
-            std::cout<<"Nie uda³o sie zaladowac shaderow typu point light";
+            std::cout<<"Nie udalo sie zaladowac shaderow typu point light";
         }
         pointLightShader.setParameter("texture", texture);
     }
 }
 
-Spotlight::drawUsingShader(sf::Texture texture, sf::Shader shader)
+void Shader::drawScreenUsingShader(sf::Shader shader)
 {
     sf::Shader::bind(&shader);
-    game->window.draw(game->views->gameTexture, &shader);
+    sf::Sprite sp;
+    sp.setTexture(views->gameTexture.getTexture());
+    window->draw(sp, &shader);
 }
-
-PointLight::drawUsingShader(sf::Texture texture, sf::Shader shader)
-{
-    sf::Shader::bind(&shader);
-    game->window.draw(game->views->gameTexture, &shader);
-}
+ sf::Shader Shader::createDefaultShader()
+ {
+     if(sf::Shader::isAvailable())
+    {
+        sf::Shader shader;
+        if (!shader.loadFromFile("shaders//default.vertex", "shaders//default.fragment"))
+            {
+                std::cout<<"Nie udalo sie zaladowac shaderow typu default";
+            }
+    }
+ }
