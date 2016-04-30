@@ -3,11 +3,14 @@
 
 #include<list>
 #include"system.h"
+#include"eventchannel.h"
 
 class Engine
 {
     public:
+        struct StopEvent {};
         Engine(){
+            channel.add<StopEvent>(*this);
             running=0;
         }
         virtual ~Engine(){
@@ -18,9 +21,7 @@ class Engine
         bool isRunning(){
             return running;
         }
-        void stop(){
-            running = false;
-        }
+
         void run(){
             running=true;
             while(running)
@@ -28,9 +29,18 @@ class Engine
                 sys->update();
             }
         }
+
+        void handle(const StopEvent&){
+            stop();
+        }
+
     private:
+        void stop(){
+            running=false;
+        }
         bool running;
         std::list<std::shared_ptr<System>>systems;
+        EventChannel channel;
 };
 
 #endif // ENGINE_H

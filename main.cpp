@@ -9,6 +9,8 @@ Engine engine;
 class Syss : public System{
     virtual void update(){
         std::cout<<"gowno\n";
+        EventChannel chan;
+        chan.broadcast(Engine::StopEvent());
     }
 };
 
