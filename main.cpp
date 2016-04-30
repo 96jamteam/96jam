@@ -21,6 +21,8 @@ class Syss : public System{
     
     virtual void update(){
         std::cout<<this->s<<std::endl;
+        EventChannel chan;
+        chan.broadcast(Engine::StopEvent());
     }
 };
 
