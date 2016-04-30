@@ -12,8 +12,11 @@
 #include "ResourceManagerWrapper.hpp"
 #include "gui.h"
 #include "views.h"
+#include "AnimationManager.h"
+#include "world_loader.h"
 
 class TestSystem;
+class PlayerSystem;
 class Shader;
 
 class Game
@@ -28,11 +31,12 @@ public:
     ComponentContainer container;
     b2World* world;
 
-    Manager<sf::Texture, 100> Textures;
-    Manager<GuiStyle, 100> Stylesheets;
-
+    Manager<sf::Font, stuff::MAX_FONTS> fonts;
+	Manager<GuiStyle, stuff::MAX_STYLESHEETS> Stylesheets;
+	Manager<sf::Texture, stuff::MAX_TEXTURES> Textures;
+	AnimationManager Animations;
     Views views;
-
+    std::shared_ptr<WorldLoader> worldLoader;
 };
 
 #endif // GAME_H

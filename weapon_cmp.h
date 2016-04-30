@@ -15,11 +15,11 @@ public:
 ///WEAPON
 #include <Box2D/Box2D.h>
 #include <SFML/Graphics.hpp>
-//#include "AnimatedSprite.hpp"
+#include "AnimatedSprite.hpp"
 
 struct AnimOrSprite {
 	bool graphicsType;
-	//AnimatedSprite animation;
+	AnimatedSprite animation;
 	sf::Sprite sprite;
 };
 
