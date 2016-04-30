@@ -1,0 +1,5 @@
+<style>
+<border col="25:255:255:0" highlightCol="233:0:230:0" size="5"></border>
+<body col="20:255:255:0" highlightCol="233:0:230:255"></body>
+<text col="255:255:255:255" highlightCol="0:0:0:255" font="font"></text>
+</style>

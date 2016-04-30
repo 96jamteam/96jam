@@ -17,7 +17,6 @@ namespace sf { class Sound; class Music; }
 
 class SoundSystem : public System {
 private:
-    EventChannel mChannel;
 public:
     SoundSystem(): System(){
         musicVolume=100;
