@@ -109,11 +109,9 @@ public:
 		//wszystko jest dobrze, nic nie mow
 		//P(guiIndex<<" "<< order.size())
 		//P(mName << " gameView: " << &views::gameView);
-		//target->setView(views->gameView);
+		target->setView(views->gameView);
 		//target->clear(sf::Color::Red);
-		P("guiIndex: "<<guiIndex);
         for (int i = 0; i < guiIndex; i++) {
-            P("order[i].type: "<<order[i].type);
             if (order[i].type == 0){
                 if ((*anims)[order[i].comp].active){
                     (*target).draw((*anims)[order[i].comp].sprites[order[i].spr]);
@@ -131,8 +129,8 @@ public:
                 }
             }
         }
-		//target->setView(views->guiView);
-		/*for (int i = guiIndex; i < order.size(); i++) {
+		target->setView(views->guiView);
+		for (int i = guiIndex; i < order.size(); i++) {
 			if (order[i].type == 0) {
 				if ((*anims)[order[i].comp].active)
 					target->draw((*anims)[order[i].comp].sprites[order[i].spr]);
@@ -148,7 +146,7 @@ public:
 					}
 				}
 			}
-		}*/
+		}
     }
 
 	void handle(const BulletTime& btime){

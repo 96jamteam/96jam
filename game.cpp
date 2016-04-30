@@ -48,7 +48,7 @@ void Game::run()
 
     views.gameView = views.guiView = views.getLetterboxView(views.guiView, views.WINDOW_WIDTH, views.WINDOW_HEIGHT);
 
-    int sceneID = 0;
+    int sceneID = SceneManager::addScene("game", SceneManager::State::active);
 
     int entity = container.getUniqueID();
 
@@ -73,6 +73,7 @@ void Game::run()
     container.getComponent<SpriteC>(entity)->z.push_back(1);
 
     chan.broadcast(SpriteAdded());
+    chan.broadcast(SceneUpdate());
 
 
     engine.run();

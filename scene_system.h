@@ -12,7 +12,6 @@ class SceneSystem : public System {
 private:
 	ComponentContainer* cc;
 	componentContainer::container<Scene>* components;
-	EventChannel mChannel;
 public:
 	SceneSystem(ComponentContainer& _cc) : cc(&_cc) {
 		mChannel.add<SceneUpdate>(*this);
@@ -38,7 +37,7 @@ public:
 			}
 
 		}
-		//channel.broadcast(SpriteAdded());
+		mChannel.broadcast(SpriteAdded());
 
 	}
 
@@ -51,8 +50,8 @@ public:
 				change = true;
 			}
 		}
-		//if (change)
-			//channel.broadcast(SpriteAdded());
+		if (change)
+			mChannel.broadcast(SpriteAdded());
 	}
 };
 
