@@ -1,9 +1,11 @@
 #ifndef GUI_HPP
 #define GUI_HPP
 
+#include <string>
 #include <SFML/Graphics.hpp>
 #include "stuff.h"
 #include "pugi_wrapper.h"
+#include <stdlib.h>
 
 class GuiStyle
 {
@@ -38,40 +40,42 @@ public:
     bool loadFromFile(const std::string &name) {
 		XML xml;
 		xml.load(name);
-        
+
         std::vector<std::string> bodycolstr = stuff::split(xml.get<std::string>("style.body:col"), ':');
         bodyCol = vectorToColor(bodycolstr);
-        
+
         std::vector<std::string> highbodycolstr = stuff::split(xml.get<std::string>("style.body:highlightCol"), ':');
         bodyHighlightCol = vectorToColor(highbodycolstr);
-        
+
         std::vector<std::string> bordercolstr = stuff::split(xml.get<std::string>("style.border:col"), ':');
         borderCol = vectorToColor(bordercolstr);
-        
+
         std::vector<std::string> highbordercolstr = stuff::split(xml.get<std::string>("style.border:highlightCol"), ':');
         borderHighlightCol = vectorToColor(highbordercolstr);
 		borderSize = xml.get<int>("style.border:size");
-        
+
         std::vector<std::string> textcolstr = stuff::split(xml.get<std::string>("style.text:col"), ':');
         textCol = vectorToColor(textcolstr);
         std::vector<std::string> hightextcolstr = stuff::split(xml.get<std::string>("style.text:highlightCol"), ':');
         textHighlightCol = vectorToColor(hightextcolstr);
 		fontName = xml.get<std::string>("style.text:font");
-        
+
         return 1;
     }
-    
+
     sf::Color vectorToColor(std::vector<std::string> vec){
         sf::Color col;
+        std::string::size_type sz;
         if(vec.size() == 3){
-            col = sf::Color(stoi(vec.at(0)), stoi(vec.at(1)), stoi(vec.at(2)));
+
+            col = sf::Color(stuff::s2i(vec.at(0)), stuff::s2i(vec.at(1)), stuff::s2i(vec.at(2)));
         }else if(vec.size() == 4){
-            col = sf::Color(stoi(vec.at(0)), stoi(vec.at(1)), stoi(vec.at(2)), stoi(vec.at(3)));
+            col = sf::Color(stuff::s2i(vec.at(0)), stuff::s2i(vec.at(1)), stuff::s2i(vec.at(2)), stuff::s2i(vec.at(3)));
         }
         return col;
     }
-    
-    
+
+
 };
 
 class GuiEntry

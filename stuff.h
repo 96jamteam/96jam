@@ -7,6 +7,7 @@
 #include <cmath>
 #include <sstream>
 #include <vector>
+#include <cstddef>
 
 # define P(x) std::cout<<x<<std::endl ;
 
@@ -23,6 +24,13 @@ namespace stuff
 	static const float PI = 3.141592653589793;
 
 	static const float normalTimestep = 1.f / 60.f;
+
+
+
+static int s2i(const std::string& str)
+{
+    return  std::atoi(str.c_str());
+}
 
 	static float random(const float& LO, const float& HI) {
 		return LO + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (HI - LO)));

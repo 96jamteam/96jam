@@ -19,7 +19,7 @@ struct z_struct{
 };
 
 class ZSystem : public System {
-    
+
     sf::RenderTarget* target;
 	Views* views;
 
@@ -30,43 +30,43 @@ class ZSystem : public System {
 	componentContainer::container<Menu>* menus;
 
     std::deque<z_struct> order;
-    
+
     sf::Clock clock;
 	float factor = 1.f;
 	int guiIndex = 0;
 
 	Transform* transform;
 
-public:    
+public:
     ZSystem(sf::RenderTarget* t, ComponentContainer* cmpContainer, Views* _views) :
      target(t), cc(cmpContainer), views(_views)
     {
         anims = cc->getComponentStorage<AnimatedSpriteC>();
         if (anims == nullptr)
             anims = cc->addComponentStorage<AnimatedSpriteC>();
-        
+
         sprites = cc->getComponentStorage<SpriteC>();
         if (sprites == nullptr)
             sprites = cc->addComponentStorage<SpriteC>();
-        
+
         menus = cc->getComponentStorage<Menu>();
         if (menus == nullptr)
             menus = cc->addComponentStorage<Menu>();
-        
+
         mChannel.add<SpriteAdded>(*this);
         mChannel.add<BulletTime>(*this);
-        
+
         handle(SpriteAdded());
     }
-    
+
     virtual ~ZSystem()
     {
-        
+
     }
-    
-    
+
+
     virtual void update() {
-        sf::Time dt = sf::Time(sf::seconds(clock.restart().asSeconds() * factor));        
+        sf::Time dt = sf::Time(sf::seconds(clock.restart().asSeconds() * factor));
 
         for (int j = 0; j < sprites->size(); j++){
 			if (!(*sprites)[j].active)
@@ -92,7 +92,7 @@ public:
                 }
             }
         }
-        
+
         for (int j = 0; j < menus->size(); j++){
             if ((*menus)[j].active)
                 for (int i = 0; i < (*menus)[j].screens.at((*menus)[j].actualScreen).guiSystem.size(); i++) {
@@ -102,34 +102,37 @@ public:
                         (*menus)[j].screens.at((*menus)[j].actualScreen).guiSystem[i].show();
                     }
                 }
-            
+
         }
 
 
 		//wszystko jest dobrze, nic nie mow
 		//P(guiIndex<<" "<< order.size())
 		//P(mName << " gameView: " << &views::gameView);
-		target->setView(views->gameView);
+		//target->setView(views->gameView);
 		//target->clear(sf::Color::Red);
+		P("guiIndex: "<<guiIndex);
         for (int i = 0; i < guiIndex; i++) {
+            P("order[i].type: "<<order[i].type);
             if (order[i].type == 0){
-                P("WHAT");
                 if ((*anims)[order[i].comp].active){
-                    //target->draw((*anims)[order[i].comp].sprites[order[i].spr]);
+                    (*target).draw((*anims)[order[i].comp].sprites[order[i].spr]);
                 }
             }else if(order[i].type == 1){
                 if ((*sprites)[order[i].comp].active){
-                    target->draw((*sprites)[order[i].comp].sprites[order[i].spr]);}
+                    (*target).draw((*sprites)[order[i].comp].sprites[order[i].spr]);
+                }
             }else if(order[i].type == 2){
-                if ((*menus)[order[i].comp].active){
+                if ((*menus)[order[i].comp].active)
+                {
                     for (int j = 0; j < (*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem.size(); j++) {
                         (*target).draw((*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem[j], sf::RenderStates());
                     }
                 }
             }
         }
-		target->setView(views->guiView);
-		for (int i = guiIndex; i < order.size(); i++) {
+		//target->setView(views->guiView);
+		/*for (int i = guiIndex; i < order.size(); i++) {
 			if (order[i].type == 0) {
 				if ((*anims)[order[i].comp].active)
 					target->draw((*anims)[order[i].comp].sprites[order[i].spr]);
@@ -145,11 +148,11 @@ public:
 					}
 				}
 			}
-		}
+		}*/
     }
 
 	void handle(const BulletTime& btime){
-		factor = btime.factor;		
+		factor = btime.factor;
 	}
 
     void handle(const SpriteAdded& s){
@@ -159,17 +162,17 @@ public:
 			for (int i = 0; i < (*sprites)[j].sprites.size(); i++) {
 				order.push_back(z_struct(j, i, 1));
 			}
-				
+
         for (int j = 0; j < anims->size(); j++)
 			for (int i = 0; i < (*anims)[j].sprites.size(); i++) {
 				order.push_back(z_struct(j, i, 0));
 			}
-                
+
 		for (int j = 0; j < menus->size(); j++) {
 			order.push_back(z_struct(j, 0, 2));
 		}
-            
-        
+
+
         std::sort(order.begin(), order.end(),
                   [this](const z_struct& i,const z_struct& j) -> bool {
                       if (i.type == 0){
@@ -195,23 +198,23 @@ public:
                               return (*menus)[i.comp].z < (*menus)[j.comp].z;
                       }
                   });
-       
+
 		//takie cos do views
 		for (int i = 0; i < order.size(); i++) {
 			if (order[i].type == 0) {
 				if ((*anims)[order[i].comp].z[order[i].spr] < 1000)
 					guiIndex = i+1;
-			}				
+			}
 			else if (order[i].type == 1) {
 				if ((*sprites)[order[i].comp].z[order[i].spr] < 1000)
 					guiIndex = i+1;
-			}				
+			}
 			else if (order[i].type == 2) {
 				if ((*menus)[order[i].comp].z < 1000) {
 					guiIndex = i+1;
 				}
 			}
-				
+
 		}
     }
 };
