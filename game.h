@@ -9,6 +9,8 @@
 #include "scene_system.h"
 #include "pugi_wrapper.h"
 #include "ResourceManagerWrapper.hpp"
+#include "gui.h"
+#include "views.h"
 
 class TestSystem;
 
@@ -24,6 +26,10 @@ public:
     ComponentContainer container;
     
     Manager<sf::Texture, 100> Textures;
+    Manager<GuiStyle, 100> Stylesheets;
+    
+    Views views;
+    
 };
 
 #endif // GAME_H

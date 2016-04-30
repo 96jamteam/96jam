@@ -7,7 +7,6 @@
 class WindowSystem : public System{
     sf::RenderWindow* win;
     sf::Event event;
-    EventChannel chan;
 public:
     WindowSystem(sf::RenderWindow& _win):System(){
         win=&_win;
@@ -21,7 +20,7 @@ public:
         {
             if (event.type == sf::Event::Closed){
                 win->close();
-                chan.broadcast(Engine::StopEvent());
+                mChannel.broadcast(Engine::StopEvent());
             }
         }
     }

@@ -12,10 +12,10 @@ class SceneSystem : public System {
 private:
 	ComponentContainer* cc;
 	componentContainer::container<Scene>* components;
-	EventChannel channel;
+	EventChannel mChannel;
 public:
 	SceneSystem(ComponentContainer& _cc) : cc(&_cc) {
-		channel.add<SceneUpdate>(*this);
+		mChannel.add<SceneUpdate>(*this);
 		components = cc->getComponentStorage<Scene>();
 		if (components == nullptr) {
 			components = cc->addComponentStorage<Scene>();
