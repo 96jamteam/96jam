@@ -1,6 +1,7 @@
 #include "game.h"
 
 #include "test_system.hpp"
+#include "keyboardManager.h"
 
 Game::Game()
 {
@@ -15,5 +16,7 @@ void Game::run()
 {
     engine.add(std::shared_ptr<System>(new WindowSystem(window)));
     engine.add(std::shared_ptr<System>(new TestSystem(window, this)));
+    KeyboardManager keyboardmanager;
+    keyboardmanager.load("controls.txt");
     engine.run();
 }
