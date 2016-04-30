@@ -1,8 +1,9 @@
-
 #pragma once
 
 #include<SFML/Graphics.hpp>
 #include<string>
+
+#include"weapon_cmp.h"
 
 struct MousePos {
 	MousePos(const float& _x, const float& _y) : x(_x), y(_y) { sf::Keyboard::Key k = sf::Keyboard::Key::A; }
@@ -92,5 +93,13 @@ struct Volume {
 
 struct SceneUpdate {
 	SceneUpdate(){}
+};
+
+struct ShootBullet {
+	ShootBullet(Weapon* _weapon, const float& _x, const float& _y, const sf::Vector2f& _norm_vec, const int& _sceneID) : sceneID(_sceneID), weapon(_weapon), x(_x), y(_y), norm_vec(_norm_vec) {}
+	Weapon* weapon;
+	float x, y;
+	int sceneID;
+	sf::Vector2f norm_vec;
 };
 

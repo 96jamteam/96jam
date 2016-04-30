@@ -6,10 +6,12 @@
 #include "menu_system.h"
 #include "z_system.h"
 #include "contact_name_cmp.h"
+#include "player_system.h"
 #include "debug_draw_system.h"
 
 Game::Game()
 {
+    worldLoader = std::make_shared<WorldLoader>( this );
     window.create(sf::VideoMode(800, 600,32), "7th96hJ",sf::Style::Default);
     sf::ContextSettings settings = window.getSettings();
     std::cout << "OpenGl: "<<settings.majorVersion << "." << settings.minorVersion << std::endl;
@@ -22,12 +24,13 @@ void Game::run()
     b2Vec2 Gravity(0.f, 9.81f);
 	world = new b2World(Gravity);
 
-    engine.add(std::shared_ptr<System>(new WindowSystem(window)));
+    engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));
     engine.add(std::shared_ptr<System>(new TestSystem(window, this)));
     engine.add(std::shared_ptr<System>(new MenuSystem(&window, &container)));
     engine.add(std::shared_ptr<System>(new ZSystem(&window, &container, &views)));
     engine.add(std::shared_ptr<System>(new PhysicsSystem(world,container)));
+    engine.add(std::shared_ptr<System>(new PlayerSystem(&window, &container, this, &views)));
     engine.add(std::shared_ptr<System>(new SoundSystem()));
     engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
 
