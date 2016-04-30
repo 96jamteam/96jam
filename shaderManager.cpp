@@ -3,9 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <iostream>
-Spotlight::Spotlight(sf::Texture texture)
+Spotlight::Spotlight(sf::Texture texture, Game* game)
 {
-    sf::RenderTexture renderTexture;
+    this->game = game;
     if (sf::Shader::isAvailable())
     {
         sf::Shader spotShader;
@@ -17,9 +17,9 @@ Spotlight::Spotlight(sf::Texture texture)
     }
 }
 
-PointLight::PointLight(sf::Texture texture)
+PointLight::PointLight(sf::Texture texture, Game* game)
 {
-    sf::RenderTexture renderTexture;
+    this->game = game;
     if(sf::Shader::isAvailable())
     {
         sf::Shader pointLightShader;
@@ -27,6 +27,18 @@ PointLight::PointLight(sf::Texture texture)
         {
             std::cout<<"Nie uda³o sie zaladowac shaderow typu point light";
         }
+        pointLightShader.setParameter("texture", texture);
     }
 }
 
+Spotlight::drawUsingShader(sf::Texture texture, sf::Shader shader)
+{
+    sf::Shader::bind(&shader);
+    game->window.draw(game->views->gameTexture, &shader);
+}
+
+PointLight::drawUsingShader(sf::Texture texture, sf::Shader shader)
+{
+    sf::Shader::bind(&shader);
+    game->window.draw(game->views->gameTexture, &shader);
+}
