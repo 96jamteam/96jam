@@ -10,6 +10,8 @@ class WindowSystem : public System{
 public:
     WindowSystem(sf::RenderWindow& _win):System(){
         win=&_win;
+        
+        
     }
 
     void update(){
