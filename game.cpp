@@ -1,6 +1,7 @@
 #include "game.h"
 
 #include "test_system.hpp"
+#include "structures_for_broadcast.h"
 
 Game::Game()
 {
@@ -15,5 +16,10 @@ void Game::run()
 {
     engine.add(std::shared_ptr<System>(new WindowSystem(window)));
     engine.add(std::shared_ptr<System>(new TestSystem(window, this)));
+    engine.add(std::shared_ptr<System>(new SoundSystem()));
+    
+    EventChannel chan;
+    chan.broadcast(AddMusic("footsteps.ogg"));
+    chan.broadcast(StartMusic());
     engine.run();
 }
