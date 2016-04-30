@@ -15,9 +15,13 @@ Game::Game()
 
 void Game::run()
 {
+    b2Vec2 Gravity(0.f, 9.81f);
+	world = new b2World(Gravity,true);
+
     engine.add(std::shared_ptr<System>(new WindowSystem(window)));
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));
     engine.add(std::shared_ptr<System>(new TestSystem(window, this)));
+    engine.add(std::shared_ptr<System>(new PhysicsSystem(world,container)));
     KeyboardManager keyboardmanager;
     keyboardmanager.load("controls.txt");
     engine.add(std::shared_ptr<System>(new SoundSystem()));

@@ -20,8 +20,8 @@ private:
     EventChannel mChannel;
 public:
     SoundSystem(): System(){
-        musicVolume=100;
-        soundVolume=100;
+        musicVolume=0;
+        soundVolume=0;
         mChannel.add<SetListener>(*this);
         mChannel.add<PlaySound>(*this);
         mChannel.add<AddMusic>(*this);
