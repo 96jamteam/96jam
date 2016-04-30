@@ -15,10 +15,11 @@ Game::Game()
 void Game::run()
 {
     engine.add(std::shared_ptr<System>(new WindowSystem(window)));
+    engine.add(std::shared_ptr<System>(new SceneSystem(container)));
     engine.add(std::shared_ptr<System>(new TestSystem(window, this)));
     engine.add(std::shared_ptr<System>(new SoundSystem()));
-    
     EventChannel chan;
+    chan.broadcast(PlaySound("electro.wav"));
     chan.broadcast(AddMusic("footsteps.ogg"));
     chan.broadcast(StartMusic());
     engine.run();

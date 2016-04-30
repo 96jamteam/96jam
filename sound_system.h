@@ -19,7 +19,9 @@ class SoundSystem : public System {
 private:
     EventChannel mChannel;
 public:
-    SoundSystem(){
+    SoundSystem(): System(){
+        musicVolume=100;
+        soundVolume=100;
         mChannel.add<SetListener>(*this);
         mChannel.add<PlaySound>(*this);
         mChannel.add<AddMusic>(*this);
@@ -34,14 +36,14 @@ public:
 			delete *it;
 		for (auto it = mMusic.begin(); it != mMusic.end(); mMusic.erase(it++))
 			delete it->second;
-        
+
 	}
 
 
 	virtual void update() {
 		if (!mCurrentSong.empty() && mMusic[mCurrentSong]->getStatus() == sf::Music::Stopped)
 			startMusic();
-			
+
 
 		mUpdated += clock.restart().asSeconds();
 
@@ -140,7 +142,7 @@ private:
 				if (it == mMusic.end())
 					return;
 			} while (it->first == mCurrentSong);
-		}		
+		}
 
 		mCurrentSong = it->first;
 		it->second->play();
