@@ -23,6 +23,7 @@ class PlayerSystem : public System {
 	Transform* transform;
 	WeaponC* weapon;
     sf::Clock clock;
+    KeyboardManager km;
 public:
 
 
@@ -32,6 +33,7 @@ public:
         if (players == nullptr)
             players = cc->addComponentStorage<Player>();
         mChannel.add<PhysicsUpdate>(*this);
+        km.load("controls.txt");
     }
 
     virtual ~PlayerSystem()
@@ -74,8 +76,8 @@ public:
 					normalized = stuff::norm_vec(sf::Vector2f(right-left,down-up));
 					if (!normalized.x && !normalized.y)
 						normalized = stuff::norm_vec(sf::Vector2f(0,1));
-				}*/
-				mChannel.broadcast(ShootBullet(&weapon->weapons[weapon->active_weapon], transform->x, transform->y, normalized, cc->getComponent<Scene>((*players)[i].entityID)->sceneID ));
+				}
+				mChannel.broadcast(ShootBullet(&weapon->weapons[weapon->active_weapon], transform->x, transform->y, normalized, cc->getComponent<Scene>((*players)[i].entityID)->sceneID ));*/
 			}
 		}
     }
@@ -89,17 +91,18 @@ public:
 
 			float pnm100 = 100 * ((*players)[i].number);
 
-			//float xb = InputManager::action(pnm100 + InputManager::actionKeys::m_right) - InputManager::action(pnm100 + InputManager::actionKeys::m_left);
-			//float yb = InputManager::action(pnm100 + InputManager::actionKeys::m_down) - InputManager::action(pnm100 + InputManager::actionKeys::m_up);
+            //P(km.isDown("right"));
+            float xb = km.isDown("right") - km.isDown("left");
+			float yb = km.isDown("down") - km.isDown("up");
 
 			physics = cc->getComponent<Physics>((*players)[i].entityID);
 			if (physics != nullptr) {
 
-				//if (xb > 0.1 || xb < -0.1 || yb > 0.1 || yb < -0.1) {
-				//	xb *= e.timestep;
-				//	yb *= e.timestep;
-				//	physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter(), true);
-				//}
+				if (xb > 0.1 || xb < -0.1 || yb > 0.1 || yb < -0.1) {
+					xb *= e.timestep;
+					yb *= e.timestep;
+					physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter(), true);
+				}
 				game->views.addTarget(sf::Vector2f(physics->body->GetPosition().x*stuff::SCALE, physics->body->GetPosition().y*stuff::SCALE));
 
 			}

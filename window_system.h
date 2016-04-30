@@ -6,6 +6,7 @@
 #include"views.h"
 #include"structures_for_broadcast.h"
 #include"scene_manager.h"
+#include "stuff.h"
 
 class WindowSystem : public System{
     sf::RenderWindow* win;
@@ -31,6 +32,7 @@ public:
 			}
 			else if (event.type == sf::Event::KeyPressed){
 				mChannel.broadcast(KeyEvent(event.key.code,true));
+                P(event.key.code);
 			}
 			else if (event.type == sf::Event::KeyReleased) {
 				mChannel.broadcast(KeyEvent(event.key.code, false));

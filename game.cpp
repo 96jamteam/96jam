@@ -30,9 +30,6 @@ void Game::run()
     engine.add(std::shared_ptr<System>(new SoundSystem()));
 //    engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
 
-    KeyboardManager keyboardmanager;
-    keyboardmanager.load("controls.txt");
-
     EventChannel chan;
     chan.broadcast(PlaySound("electro.wav"));
     chan.broadcast(AddMusic("footsteps.ogg"));
