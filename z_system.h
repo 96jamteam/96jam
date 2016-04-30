@@ -28,6 +28,8 @@ class ZSystem : public System {
 	componentContainer::container<AnimatedSpriteC>* anims;
 	componentContainer::container<SpriteC>* sprites;
 	componentContainer::container<Menu>* menus;
+    
+    sf::RectangleShape rect;
 
     std::deque<z_struct> order;
 
@@ -55,6 +57,9 @@ public:
 
         mChannel.add<SpriteAdded>(*this);
         mChannel.add<BulletTime>(*this);
+        
+        rect = sf::RectangleShape(sf::Vector2f(20, 20));
+        rect.setFillColor(sf::Color(0, 0,0, 0));
 
         handle(SpriteAdded());
     }
@@ -104,49 +109,59 @@ public:
                 }
 
         }
-
+        
+        
+        views->gameTexture.clear(sf::Color(0, 0, 0,255));
+        views->guiTexture.clear(sf::Color(0, 0, 0, 0));
+        
+        
+        views->gameTexture.draw(rect);
 
 		//wszystko jest dobrze, nic nie mow
 		//P(guiIndex<<" "<< order.size())
 		//P(mName << " gameView: " << &views::gameView);
-		target->setView(views->gameView);
+        views->gameTexture.setView(views->gameView);
 		//target->clear(sf::Color::Red);
         for (int i = 0; i < guiIndex; i++) {
             if (order[i].type == 0){
                 if ((*anims)[order[i].comp].active){
-                    (*target).draw((*anims)[order[i].comp].sprites[order[i].spr]);
+                    (views->gameTexture).draw((*anims)[order[i].comp].sprites[order[i].spr]);
                 }
             }else if(order[i].type == 1){
                 if ((*sprites)[order[i].comp].active){
-                    (*target).draw((*sprites)[order[i].comp].sprites[order[i].spr]);
+                    (views->gameTexture).draw((*sprites)[order[i].comp].sprites[order[i].spr]);
                 }
             }else if(order[i].type == 2){
                 if ((*menus)[order[i].comp].active)
                 {
                     for (int j = 0; j < (*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem.size(); j++) {
-                        (*target).draw((*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem[j], sf::RenderStates());
+                        (views->gameTexture).draw((*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem[j], sf::RenderStates());
                     }
                 }
             }
         }
-		target->setView(views->guiView);
+        views->guiTexture.draw(rect);
+        views->guiTexture.setView(views->guiView);
 		for (int i = guiIndex; i < order.size(); i++) {
 			if (order[i].type == 0) {
 				if ((*anims)[order[i].comp].active)
-					target->draw((*anims)[order[i].comp].sprites[order[i].spr]);
+					views->guiTexture.draw((*anims)[order[i].comp].sprites[order[i].spr]);
 			}
 			else if (order[i].type == 1) {
 				if ((*sprites)[order[i].comp].active)
-					target->draw((*sprites)[order[i].comp].sprites[order[i].spr]);
+					views->guiTexture.draw((*sprites)[order[i].comp].sprites[order[i].spr]);
 			}
 			else if (order[i].type == 2) {
 				if ((*menus)[order[i].comp].active) {
 					for (int j = 0; j < (*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem.size(); j++) {
-						(*target).draw((*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem[j], sf::RenderStates());
+						views->guiTexture.draw((*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem[j], sf::RenderStates());
 					}
 				}
 			}
 		}
+        
+        views->gameTexture.display();
+        views->guiTexture.display();
     }
 
 	void handle(const BulletTime& btime){

@@ -21,7 +21,7 @@ Game::Game()
 void Game::run()
 {
     b2Vec2 Gravity(0.f, 9.81f);
-	world = new b2World(Gravity,true);
+	world = new b2World(Gravity);
 
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));
@@ -50,6 +50,8 @@ void Game::run()
     views.guiView.setCenter(views.guiView.getSize().x / 2.0, views.guiView.getSize().y / 2.0);
 
     views.gameView = views.guiView = views.getLetterboxView(views.guiView, views.WINDOW_WIDTH, views.WINDOW_HEIGHT);
+    views.declareTextures(views.VIEW_WIDTH, views.VIEW_HEIGHT);
+    engine.setVariables(&views, &window);
 
     int sceneID = SceneManager::addScene("game", SceneManager::State::active);
 

@@ -18,8 +18,6 @@ public:
     }
 
     void update(){
-        win->display();
-        win->clear();
         while (win->pollEvent(event))
         {
             if (event.type == sf::Event::Closed){
