@@ -5,21 +5,24 @@
 #include "engine.h"
 #include "component_container.h"
 #include "window_system.h"
+
 #include "pugi_wrapper.h"
+#include "ResourceManagerWrapper.hpp"
+
+class TestSystem;
 
 class Game
 {
 public:
     Game();
-    void run()
-    {
-        engine.add(std::shared_ptr<System>(new WindowSystem(window)));
-        engine.run();
-    }
+    
+    void run();
 
     sf::RenderWindow window;
     Engine engine;
     ComponentContainer container;
+    
+    Manager<sf::Texture, 100> Textures;
 };
 
 #endif // GAME_H
