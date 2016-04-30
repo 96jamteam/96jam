@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <view width="1280" height="720"></view>
+  <window width="800" height="600" ></window>
+  <volume sound="30" music="60" ></volume>  
+</config>

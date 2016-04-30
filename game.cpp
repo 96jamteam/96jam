@@ -11,17 +11,12 @@
 Game::Game()
 {
     worldLoader = std::make_shared<WorldLoader>( this );
-    window.create(sf::VideoMode(800, 600,32), "7th96hJ",sf::Style::Default);
-    sf::ContextSettings settings = window.getSettings();
-    std::cout << "OpenGl: "<<settings.majorVersion << "." << settings.minorVersion << std::endl;
-    Textures.addTranslation("gawron", "gawron.jpg");
-    Textures.Get("gawron");
 }
 
 void Game::run()
 {
     b2Vec2 Gravity(0.f, 9.81f);
-	world = new b2World(Gravity);
+	world = new b2World(Gravity,1);
 
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));
@@ -40,46 +35,119 @@ void Game::run()
     chan.broadcast(AddMusic("footsteps.ogg"));
     chan.broadcast(StartMusic());
 
-    Stylesheets.addTranslation("what", "style.xml");
-    Stylesheets.Get("what");
-
-    views.VIEW_WIDTH = 800;
-    views.VIEW_HEIGHT = 600;
-
-    views.guiView.setSize(views.VIEW_WIDTH, views.VIEW_HEIGHT);
-    views.guiView.setCenter(views.guiView.getSize().x / 2.0, views.guiView.getSize().y / 2.0);
-
-    views.gameView = views.guiView = views.getLetterboxView(views.guiView, views.WINDOW_WIDTH, views.WINDOW_HEIGHT);
-    views.declareTextures(views.VIEW_WIDTH, views.VIEW_HEIGHT);
-    engine.setVariables(&views, &window);
-
-    int sceneID = SceneManager::addScene("game", SceneManager::State::active);
-
-    int entity = container.getUniqueID();
-
-    container.createComponent<Scene>(entity);
-    container.getComponent<Scene>(entity)->sceneID = sceneID;
-    container.createComponent<ContactName>(entity);
-    container.getComponent<ContactName>(entity)->name = "sprites";
-    container.createComponent<SpriteC>(entity);
-    container.createComponent<Transform>(entity);
-    container.getComponent<Transform>(entity)->x = 0;
-    container.getComponent<Transform>(entity)->y = 0;
-    container.getComponent<Transform>(entity)->angle = 0;
-
-    sf::Sprite sp;
-    sp.setTexture(*Textures.Get("gawron"));
-    container.getComponent<SpriteC>(entity)->sprites.push_back(sp);
-    container.getComponent<SpriteC>(entity)->z.push_back(0);
-    sf::Sprite sp2;
-    sp2.setTexture(*Textures.Get("gawron"));
-    sp2.setPosition(100, 0);
-    container.getComponent<SpriteC>(entity)->sprites.push_back(sp2);
-    container.getComponent<SpriteC>(entity)->z.push_back(1);
-
+    createWindowAndStuff();
+    loadAssets("assets.xml");
+    createMenus();
     chan.broadcast(SpriteAdded());
     chan.broadcast(SceneUpdate());
 
 
+
     engine.run();
 }
+
+ void Game::loadAssets(const std::string& path){
+        XML xml;
+        xml.load(path);
+        for(auto& asset_xml : xml.iter("assets")){
+            if (asset_xml->getName() == "font"){
+                fonts.addTranslation(asset_xml->get<std::string>(":name"), asset_xml->get<std::string>(":path"));
+				fonts.Get(asset_xml->get<std::string>(":name"));
+            }else if(asset_xml->getName() == "stylesheet"){
+				Stylesheets.addTranslation(asset_xml->get<std::string>(":name"), asset_xml->get<std::string>(":path"));
+				Stylesheets.Get(asset_xml->get<std::string>(":name"));
+            }else if(asset_xml->getName() == "texture"){
+				Textures.addTranslation(asset_xml->get<std::string>(":name"), asset_xml->get<std::string>(":path"));
+				Textures.Get(asset_xml->get<std::string>(":name"));
+            }else if(asset_xml->getName() == "animation"){
+                Animations.addFromPath(asset_xml->get<std::string>(":path"), Textures);
+            }else if (asset_xml->getName() == "music") {
+				mChannel.broadcast(AddMusic(asset_xml->get<std::string>(":path")));
+			}
+        }
+
+
+    }
+
+void Game::createMenus() {
+
+		int sceneID = SceneManager::addScene("menu", SceneManager::State::active);
+		GuiStyle* gui;
+		gui = Stylesheets.Get("text");
+		gui->font = fonts.Get(gui->fontName);
+
+		int ID = container.getUniqueID();
+		container.createComponent<Transform>(ID);
+
+		container.createComponent<Menu>(ID);
+
+		container.createComponent<Scene>(ID);
+
+		container.getComponent<Scene>(ID)->sceneID = sceneID;
+
+		container.getComponent<Transform>(ID)->x = 100;
+		container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
+		int xsize = 300;
+		container.getComponent<Menu>(ID)->name = "main";
+		container.getComponent<Menu>(ID)->z = 10000;
+
+		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
+		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "options");
+		MenuFactory::get().addGui(*
+                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1.5), sf::Vector2f(xsize, 64), 4, false, *gui,
+		{ std::make_pair("Start", "start"), std::make_pair("Options", "options_msg"), std::make_pair("Quit", "quit_msg") });
+		MenuFactory::get().addGui(*
+                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
+		{ std::make_pair("Back", "back_msg") });
+		MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "options_msg", "options");
+		MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "options", "back_msg", "main");
+		MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "start", "options");
+
+		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "quit_msg",
+			[this]() {
+			mChannel.broadcast(PlaySound("click.wav"));
+			mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
+			mChannel.broadcast(Engine::StopEvent()); });
+
+		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "start",
+			[this]() {
+			mChannel.broadcast(PlaySound("electro.wav"));
+
+			SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
+			mChannel.broadcast(LoadWorld("normal", SceneManager::addScene("game", SceneManager::State::active)));
+		});
+
+		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "options_msg",
+			[this]() {
+			mChannel.broadcast(PlaySound("click.wav")); });
+
+		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "back_msg",
+			[this]() {
+			mChannel.broadcast(PlaySound("click.wav")); });
+
+		MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
+
+	}
+
+	void Game::createWindowAndStuff() {
+		XML xml;
+		xml.load("config.xml");
+
+		views.WINDOW_WIDTH = xml.get<int>("config.window:width");
+		views.WINDOW_HEIGHT = xml.get<int>("config.window:height");
+
+		window.create(sf::VideoMode(views.WINDOW_WIDTH, views.WINDOW_HEIGHT), "7th96hJ");
+		sf::ContextSettings settings = window.getSettings();
+        std::cout << "OpenGl: "<<settings.majorVersion << "." << settings.minorVersion << std::endl;
+
+		views.VIEW_WIDTH = xml.get<int>("config.view:width");
+		views.VIEW_HEIGHT = xml.get<int>("config.view:height");
+
+		views.guiView.setSize(views.VIEW_WIDTH, views.VIEW_HEIGHT);
+		views.guiView.setCenter(views.guiView.getSize().x / 2.0, views.guiView.getSize().y / 2.0);
+
+		views.gameView = views.guiView = views.getLetterboxView(views.guiView, views.WINDOW_WIDTH, views.WINDOW_HEIGHT);
+		mChannel.broadcast(Volume(xml.get<float>("config.volume:music"), xml.get<float>("config.volume:sound")));
+        views.declareTextures(views.VIEW_WIDTH, views.VIEW_HEIGHT);
+        engine.setVariables(&views, &window);
+	}
