@@ -19,11 +19,13 @@ Game::Game() : contactlistener(ContactListener(&container))
 void Game::run()
 {
     b2Vec2 Gravity(0.f, 0.f);
+
     #ifdef __APPLE__
 	world = new b2World(Gravity);
     #else
     world = new b2World(Gravity, 1);
     #endif
+
     world->SetContactListener(&contactlistener);
 
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
@@ -37,7 +39,9 @@ void Game::run()
     engine.add(std::shared_ptr<System>(new ZSystem(&window, &container, &views)));
     engine.add(std::shared_ptr<System>(new SoundSystem()));
 
-//    engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
+    //#ifdef __APPLE__
+        engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
+    //#endif
 
     EventChannel chan;
 
