@@ -21,27 +21,13 @@ class BulletSystem : public System {
 	sf::Clock clock;
 	float factor = 1.f;
 public:
-	BulletSystem(ComponentContainer* _cc, b2World* _world) :
-		System("BulletSystem"), cc(_cc), world(_world) {
-		int id = BitsetBuilder::getOrderID("BulletSystem");
-		BitsetBuilder::addAllResources("BulletSystem");
-		enableUpdater(id, ChiefInfo::Container<int>(), BitsetBuilder::getResources("BulletSystem"), Task::SINGLETHREADED_REPEATING);
+	BulletSystem(ComponentContainer* _cc, b2World* _world) : cc(_cc), world(_world) {
 		bullets = cc->getComponentStorage<Bullet>();
 		if (bullets == nullptr)
 			bullets = cc->addComponentStorage<Bullet>();
+        mChannel.add<BulletTime>(*this);
 	}
 
-	virtual ~BulletSystem()
-	{
-
-	}
-
-	virtual bool init() {
-		mChannel.broadcast(SystemInitializing(this));
-		mChannel.add<BulletTime>(*this);
-
-		return true;
-	}
 
 	virtual void update() {
 		float dt = clock.restart().asSeconds() * factor;

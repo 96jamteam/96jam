@@ -1,4 +1,4 @@
-/*#pragma once
+#pragma once
 #include<iostream>
 #include<SFML/Graphics.hpp>
 #include <algorithm>
@@ -26,27 +26,16 @@ class WeaponSystem : public System {
 	sf::Clock clock;
 	float factor = 1.f;
 public:
-	WeaponSystem(ComponentContainer* _cc, b2World* _world) :
-		System("WeaponSystem"), cc(_cc), world(_world){
-		int id = BitsetBuilder::getOrderID("WeaponSystem");
-		BitsetBuilder::addResource("WeaponSystem","WeaponC");
-		enableUpdater(id, ChiefInfo::Container<int>(), BitsetBuilder::getResources("WeaponSystem"), Task::BACKGROUND_SYNC_REPEATING);
+	WeaponSystem(ComponentContainer* _cc, b2World* _world) : cc(_cc), world(_world){
+
 		weapons = cc->getComponentStorage<WeaponC>();
 		if (weapons == nullptr)
 			weapons = cc->addComponentStorage<WeaponC>();
-	}
-
-	virtual ~WeaponSystem()
-	{
-
-	}
-
-	virtual bool init() {
-		mChannel.broadcast(SystemInitializing(this));
-		mChannel.add<BulletTime>(*this);
+			mChannel.add<BulletTime>(*this);
 		mChannel.add<ShootBullet>(*this);
-		return true;
 	}
+
+
 
 	virtual void update() {
 		float dt = clock.restart().asSeconds() * factor;
@@ -126,4 +115,4 @@ public:
 		p.y = ynew + cy;
 		return p;
 	}
-};*/
+};

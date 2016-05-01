@@ -50,9 +50,9 @@ public:
 			transform = cc->getComponent<Transform>((*players)[i].entityID);
 
 			if (transform != nullptr) {
-				//if (InputManager::action( 100 * ((*players)[i].number) + InputManager::actionKeys::shoot ) ){
-				//	shoot(i);
-				//}
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) ){
+					shoot(i);
+				}
 
 			}
 		}
@@ -65,19 +65,8 @@ public:
 			if (weapon->active_weapon >= 0) {
 				sf::Vector2i pixelPos = sf::Mouse::getPosition(*window);
 				sf::Vector2f worldPos = window->mapPixelToCoords(pixelPos, views->gameView);
-				sf::Vector2f normalized;
-				/*if (InputManager::action(100 * ((*players)[i].number) + InputManager::actionKeys::mouseUse))
-					normalized = stuff::norm_vec(sf::Vector2f(worldPos.x - transform->x, worldPos.y - transform->y));
-				else {
-					float right = InputManager::action(100 * ((*players)[i].number) + InputManager::actionKeys::c_right);
-					float left = InputManager::action(100 * ((*players)[i].number) + InputManager::actionKeys::c_left);
-					float up = InputManager::action(100 * ((*players)[i].number) + InputManager::actionKeys::c_up);
-					float down = InputManager::action(100 * ((*players)[i].number) + InputManager::actionKeys::c_down);
-					normalized = stuff::norm_vec(sf::Vector2f(right-left,down-up));
-					if (!normalized.x && !normalized.y)
-						normalized = stuff::norm_vec(sf::Vector2f(0,1));
-				}
-				mChannel.broadcast(ShootBullet(&weapon->weapons[weapon->active_weapon], transform->x, transform->y, normalized, cc->getComponent<Scene>((*players)[i].entityID)->sceneID ));*/
+				sf::Vector2f normalized = stuff::norm_vec(sf::Vector2f(worldPos.x - transform->x, worldPos.y - transform->y));
+				mChannel.broadcast(ShootBullet(&weapon->weapons[weapon->active_weapon], transform->x, transform->y, normalized, cc->getComponent<Scene>((*players)[i].entityID)->sceneID ));
 			}
 		}
     }
@@ -96,13 +85,13 @@ public:
 			float yb = km.isDown("down") - km.isDown("up");
 
 			physics = cc->getComponent<Physics>((*players)[i].entityID);
-            
+
 			if (physics != nullptr) {
 
 				if (xb > 0.1 || xb < -0.1 || yb > 0.1 || yb < -0.1) {
 					xb *= e.timestep;
 					yb *= e.timestep;
-					physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter(), true);
+					physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter());
 				}
 				game->views.addTarget(sf::Vector2f(physics->body->GetPosition().x*stuff::SCALE, physics->body->GetPosition().y*stuff::SCALE));
 

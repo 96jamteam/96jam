@@ -34,7 +34,7 @@ public:
 			}
 			else if (event.type == sf::Event::KeyPressed){
 				mChannel.broadcast(KeyEvent(event.key.code,true));
-                P(event.key.code);
+                //P(event.key.code);
 			}
 			else if (event.type == sf::Event::KeyReleased) {
 				mChannel.broadcast(KeyEvent(event.key.code, false));

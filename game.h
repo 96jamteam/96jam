@@ -9,6 +9,7 @@
 #include "sound_system.h"
 #include "scene_system.h"
 #include "physics_system.h"
+#include "weapon_system.h"
 #include "pugi_wrapper.h"
 #include "ResourceManagerWrapper.hpp"
 #include "gui.h"
