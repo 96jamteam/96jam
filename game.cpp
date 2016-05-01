@@ -19,7 +19,11 @@ Game::Game() : contactlistener(ContactListener(&container))
 void Game::run()
 {
     b2Vec2 Gravity(0.f, 0.f);
-	world = new b2World(Gravity,1);
+    #ifdef __APPLE__
+	world = new b2World(Gravity);
+    #else
+    world = new b2World(Gravity, 1);
+    #endif
     world->SetContactListener(&contactlistener);
 
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));

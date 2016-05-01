@@ -91,7 +91,13 @@ public:
 				if (xb > 0.1 || xb < -0.1 || yb > 0.1 || yb < -0.1) {
 					xb *= e.timestep;
 					yb *= e.timestep;
-					physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter());
+                    
+                    
+                    #ifdef __APPLE__
+					physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter(), 1);
+                    #else
+                    physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter());
+                    #endif
 				}
 				game->views.addTarget(sf::Vector2f(physics->body->GetPosition().x*stuff::SCALE, physics->body->GetPosition().y*stuff::SCALE));
 
