@@ -19,7 +19,7 @@ Game::Game() : contactlistener(ContactListener(&container))
 void Game::run()
 {
     b2Vec2 Gravity(0.f, 0.f);
-	world = new b2World(Gravity);
+	world = new b2World(Gravity,1);
     world->SetContactListener(&contactlistener);
 
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
@@ -40,6 +40,7 @@ void Game::run()
     createWindowAndStuff();
     loadAssets("assets.xml");
     createMenus();
+
     chan.broadcast(SpriteAdded());
     chan.broadcast(SceneUpdate());
 

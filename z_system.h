@@ -28,8 +28,10 @@ class ZSystem : public System {
 	componentContainer::container<AnimatedSpriteC>* anims;
 	componentContainer::container<SpriteC>* sprites;
 	componentContainer::container<Menu>* menus;
-    
+
     sf::RectangleShape rect;
+    sf::Texture spotlight;
+    sf::Sprite sprite;
 
     std::deque<z_struct> order;
 
@@ -57,9 +59,14 @@ public:
 
         mChannel.add<SpriteAdded>(*this);
         mChannel.add<BulletTime>(*this);
-        
-        rect = sf::RectangleShape(sf::Vector2f(20, 20));
-        rect.setFillColor(sf::Color(0, 0,0, 0));
+
+        spotlight.loadFromFile("spotlight.png");
+
+        rect = sf::RectangleShape(sf::Vector2f(views->VIEW_WIDTH, views->VIEW_HEIGHT));
+        rect.setTexture(&spotlight);
+        rect.setPosition(0,0);
+        sprite.setTexture(spotlight);
+        sprite.setOrigin(spotlight.getSize().x/2.f,spotlight.getSize().y/2.f);
 
         handle(SpriteAdded());
     }
@@ -109,9 +116,9 @@ public:
                 }
 
         }
-        
-        
-        
+
+
+
 
 		//wszystko jest dobrze, nic nie mow
 		//P(guiIndex<<" "<< order.size())
@@ -136,7 +143,10 @@ public:
                 }
             }
         }
+        sprite.setPosition(views->gameView.getCenter());
+        target->draw(sprite);
         target->setView(views->guiView);
+
 		for (int i = guiIndex; i < order.size(); i++) {
 			if (order[i].type == 0) {
 				if ((*anims)[order[i].comp].active)
@@ -155,7 +165,7 @@ public:
 				}
 			}
 		}
-        
+
         views->gameTexture.display();
         views->guiTexture.display();
     }
