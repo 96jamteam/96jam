@@ -8,7 +8,8 @@
 #include"component.h"
 
 class CallbackCmp : public Component{
-    std::map<std::string,std::function>callbacks;
+public:
+    std::map<std::string,std::function<void()>>callbacks;
 };
 
 #endif // CALLBACK_CMP_H_INCLUDED

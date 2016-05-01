@@ -4,6 +4,8 @@
 #include "weapon_cmp.h"
 #include "contact_name_cmp.h"
 #include "sprite_cmp.h"
+#include "contact_name_cmp.h"
+#include "callback_cmp.h"
 #include "animatedsprite_cmp.h"
 
 bool WorldLoader::loadFromFile(const std::string& path)
@@ -104,6 +106,16 @@ void WorldLoader::loadTransform(XML & xml, const int & entity)
 
 void WorldLoader::loadPlayer(XML& xml, const int & entity)
 {
+	game->container.createComponent<ContactName>(entity);
+    game->container.getComponent<ContactName>(entity)->name = "player";
+
+    game->container.createComponent<CallbackCmp>(entity);
+    game->container.getComponent<CallbackCmp>(entity)->callbacks["bullet_begin"]=([](){
+            EventChannel chan;
+            P("cyka");
+            chan.broadcast(Engine::StopEvent());
+            });
+
 	game->container.createComponent<Player>(entity);
 	game->container.getComponent<Player>(entity)->speed = xml.get<float>(":speed");
 	game->container.getComponent<Player>(entity)->number = numOfPlayers++;
@@ -231,7 +243,7 @@ void WorldLoader::loadBody(XML& xml, const int & entity)
 
     //entity id do user data, bo contact_listener
     game->container.getComponent<Physics>(entity)->body->SetUserData( (void*) game->container.getComponent<Physics>(entity)->entityID);
-    
+
 	//ladowanie fixtures i shapes
 	for (auto& tmp_xml : xml.iter("")) {
 		b2FixtureDef fix_def;
