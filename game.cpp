@@ -10,7 +10,7 @@
 #include "player_system.h"
 #include "debug_draw_system.h"
 
-Game::Game()
+Game::Game() : contactlistener(ContactListener(&container))
 {
     worldLoader = std::make_shared<WorldLoader>( this );
 }
@@ -19,6 +19,7 @@ void Game::run()
 {
     b2Vec2 Gravity(0.f, 0.f);
 	world = new b2World(Gravity);
+    world->SetContactListener(&contactlistener);
 
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));

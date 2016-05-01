@@ -231,7 +231,7 @@ void WorldLoader::loadBody(XML& xml, const int & entity)
 
     //entity id do user data, bo contact_listener
     game->container.getComponent<Physics>(entity)->body->SetUserData( (void*) game->container.getComponent<Physics>(entity)->entityID);
-
+    
 	//ladowanie fixtures i shapes
 	for (auto& tmp_xml : xml.iter("")) {
 		b2FixtureDef fix_def;

@@ -30,7 +30,7 @@ public:
 			return;
 		sf::Vector2f min(targets[0].x, targets[0].y);
 		sf::Vector2f max(targets[0].x, targets[0].y);
-        P(targets.size());
+        
 		for (int f = 1; f < targets.size(); f++) {
 			if (targets[f].x < min.x)
 				min.x = targets[f].x;

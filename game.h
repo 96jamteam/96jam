@@ -15,6 +15,7 @@
 #include "views.h"
 #include "AnimationManager.h"
 #include "world_loader.h"
+#include "contact_listener.h"
 
 class TestSystem;
 class PlayerSystem;
@@ -42,6 +43,7 @@ public:
     Views views;
     std::shared_ptr<WorldLoader> worldLoader;
     EventChannel mChannel;
+    ContactListener contactlistener;
 };
 
 #endif // GAME_H
