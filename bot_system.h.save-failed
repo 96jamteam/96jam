@@ -85,13 +85,14 @@ public:
         {
             float seeX, seeY;
 
+
             if((*bots)[i].heSees != 2147483647)
             {
             getTrans((*bots)[i].heSees, seeX, seeY);
 
             if(chceckVis(b2Vec2(seeX/stuff::SCALE,seeY/stuff::SCALE), b2Vec2(b_x/stuff::SCALE,b_y/stuff::SCALE),world,true))
             {
-                (*bots)[i].isLooking = 1;
+                  (*bots)[i].isLooking=1;
                 (*bots)[i].target.x = seeX;
                 (*bots)[i].target.y = seeY;
             }
@@ -123,26 +124,19 @@ public:
 
         sf::Vector2f vel;
 
-
-
             vel = sf::Vector2f((*bots)[i].target.x-b_x,(*bots)[i].target.y-b_y);
             stuff::norm_vec(vel);
 
-            if((*bots)[i].target.x == -69.6969696969f)
-            {
-                (*bots)[i].freeWalkingAngle += float(rand()%100-50)/100.f* 1.f;
-                //(*bots)[i].freeWalkingAngle += 1.0f;
-                vel = sf::Vector2f((float)sin((*bots)[i].freeWalkingAngle), (float)cos((*bots)[i].freeWalkingAngle));
-                stuff::norm_vec(vel);
 
-                vel.x *= 40;
-                vel.y *= 40;
-            }
 
             float xb = vel.x * (*bots)[i].speed;
             float yb = vel.y * (*bots)[i].speed;
 
-
+            if((*bots)[i].target.x == -23.f)
+            {
+                xb = 0;
+                yb = 0;
+            }
 
             physics = cc->getComponent<Physics>((*bots)[i].entityID);
 

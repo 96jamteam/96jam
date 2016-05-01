@@ -69,13 +69,26 @@
   <entity name="bot">
       <transform x="1000" y="200" angle="0"></transform>
       
-      <bot speed="5000"></bot>
+      <bot speed="5"></bot>
       
       <sprites>
           <sprite texture="square2" z="100" origin_x="40" origin_y="40"></sprite>
       </sprites>
       <body type="dynamic" angularDamping="100" linearDamping="6" bullet="0" fixedRotation="1">
-          <fixture density="201" friction="1" restitution="0" isSensor="0" filter="0" shape="box" height="80" width="80" relative_pos_x="0" relative_pos_y="0"></fixture>
+          <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" height="80" width="80" relative_pos_x="0" relative_pos_y="0"></fixture>
+      </body>
+  </entity>
+  
+  <entity name="bot">
+      <transform x="1000" y="500" angle="0"></transform>
+      
+      <bot speed="5"></bot>
+      
+      <sprites>
+          <sprite texture="square2" z="100" origin_x="40" origin_y="40"></sprite>
+      </sprites>
+      <body type="dynamic" angularDamping="100" linearDamping="6" bullet="0" fixedRotation="1">
+          <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" height="80" width="80" relative_pos_x="0" relative_pos_y="0"></fixture>
       </body>
   </entity>
 

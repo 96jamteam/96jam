@@ -39,10 +39,10 @@ createWindowAndStuff();
     engine.add(std::shared_ptr<System>(new PhysicsSystem(world,container)));
     engine.add(std::shared_ptr<System>(new ZSystem(&window, &container, &views)));
     engine.add(std::shared_ptr<System>(new SoundSystem()));
-    engine.add(std::shared_ptr<System>(new BotSystem(&container)));
+    engine.add(std::shared_ptr<System>(new BotSystem(&container,world)));
 
         engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
-    
+
 
     EventChannel chan;
 
