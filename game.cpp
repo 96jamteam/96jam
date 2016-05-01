@@ -42,7 +42,7 @@ createWindowAndStuff();
     engine.add(std::shared_ptr<System>(new BotSystem(&container)));
 
     //#ifdef __APPLE__
-        engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
+        //engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
     //#endif
 
     EventChannel chan;
