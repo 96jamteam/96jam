@@ -10,6 +10,7 @@
 #include "player_system.h"
 #include "debug_draw_system.h"
 #include "bullet_system.h"
+#include "bot_system.h"
 
 Game::Game() : contactlistener(ContactListener(&container))
 {
@@ -38,6 +39,7 @@ createWindowAndStuff();
     engine.add(std::shared_ptr<System>(new PhysicsSystem(world,container)));
     engine.add(std::shared_ptr<System>(new ZSystem(&window, &container, &views)));
     engine.add(std::shared_ptr<System>(new SoundSystem()));
+    engine.add(std::shared_ptr<System>(new BotSystem(&container)));
 
     //#ifdef __APPLE__
         engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));

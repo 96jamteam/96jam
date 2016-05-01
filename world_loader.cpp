@@ -7,6 +7,7 @@
 #include "contact_name_cmp.h"
 #include "callback_cmp.h"
 #include "animatedsprite_cmp.h"
+#include "bot_cmp.h"
 
 bool WorldLoader::loadFromFile(const std::string& path)
 {
@@ -43,6 +44,9 @@ bool WorldLoader::loadFromFile(const std::string& path)
 			if (cmp_xml->getName() == "weapons") {
 				loadWeapons(*cmp_xml, entity);
 			}
+            if (cmp_xml->getName() == "bot") {
+                loadBot(*cmp_xml, entity);
+            }
         }
     }
 	mChannel.broadcast(SceneUpdate());
@@ -119,6 +123,15 @@ void WorldLoader::loadPlayer(XML& xml, const int & entity)
 	game->container.createComponent<Player>(entity);
 	game->container.getComponent<Player>(entity)->speed = xml.get<float>(":speed");
 	game->container.getComponent<Player>(entity)->number = numOfPlayers++;
+}
+
+void WorldLoader::loadBot(XML& xml, const int & entity)
+{
+    game->container.createComponent<ContactName>(entity);
+    game->container.getComponent<ContactName>(entity)->name = "bot";
+    
+    game->container.createComponent<Bot>(entity);
+    game->container.getComponent<Bot>(entity)->speed = xml.get<float>(":speed");
 }
 
 void WorldLoader::loadWeapons(XML& xml, const int & entity) {

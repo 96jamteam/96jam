@@ -37,6 +37,9 @@ public:
 			}
 			else if (event.type == sf::Event::KeyReleased) {
 				mChannel.broadcast(KeyEvent(event.key.code, false));
+                if(event.key.code == sf::Keyboard::Escape){
+                    mChannel.broadcast(Engine::StopEvent());
+                }
 			}
 			else if (event.type == sf::Event::MouseButtonPressed) {
 				mChannel.broadcast(MouseButtonEvent(event.mouseButton.button, true));

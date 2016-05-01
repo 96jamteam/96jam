@@ -23,7 +23,8 @@ public:
 	void loadTransform(XML&, const int &);
     void loadBody(XML&, const int &);
     void loadPlayer(XML&, const int &);
-	void loadWeapons(XML&, const int &);
+    void loadWeapons(XML&, const int &);
+    void loadBot(XML&, const int &);
 
 	WorldLoader(Game* _game):game(_game){ mChannel.add<LoadWorld>(*this); }
 
