@@ -109,3 +109,8 @@ struct ShootBullet {
 	sf::Vector2f norm_vec;
 };
 
+
+struct DeleteThisShit {
+	DeleteThisShit(int id) : entityid(id){}
+	int entityid;
+};

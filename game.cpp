@@ -12,6 +12,7 @@
 #include "bullet_system.h"
 #include "bot_system.h"
 #include "particle_system.h"
+#include "remove_system.h"
 
 Game::Game() : contactlistener(ContactListener(&container))
 {
@@ -44,6 +45,7 @@ createWindowAndStuff();
     engine.add(std::shared_ptr<System>(new ParticleSystem(&container)));
 
         engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
+    engine.add(std::shared_ptr<System>(new RemoveSystem(&container)));
 
 
     EventChannel chan;

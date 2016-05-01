@@ -49,6 +49,7 @@ public:
 			IDtable[storage[index].entityID] = index;
 		}
 
+        storage[storage.size()-1].destroy();
 		storage.pop_back();
 		IDtable.erase(entityID);
 	}

@@ -37,11 +37,12 @@ public:
 					(*bullets)[i].lifetime -= dt;
 				}
 				else {
-					b2Body* body = cc->getComponent<Physics>((*bullets)[i].entityID)->body;
+					/*b2Body* body = cc->getComponent<Physics>((*bullets)[i].entityID)->body;
 					if (body != nullptr)
 						body->GetWorld()->DestroyBody(body);
-					cc->deleteComponents((*bullets)[i].entityID);
+					cc->deleteComponents((*bullets)[i].entityID);*/
 					mChannel.broadcast(SpriteAdded());
+					mChannel.broadcast(DeleteThisShit((*bullets)[i].entityID));
 				}
 			}
 

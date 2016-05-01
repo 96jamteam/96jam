@@ -6,6 +6,7 @@ public:
 	unsigned entityID;
 	bool active = true;
 	virtual ~Component(){}
+	virtual void destroy(){}
 };
 
 #endif // COMPONENT_H_INCLUDED
