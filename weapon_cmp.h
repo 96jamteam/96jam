@@ -1,8 +1,6 @@
 #pragma once
 #include"component.h"
 
-#include "weapons.h"
-
 class Weapon;
 
 class WeaponC : public Component
