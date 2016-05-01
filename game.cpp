@@ -25,7 +25,7 @@ void Game::run()
     world = new b2World(Gravity, 1);
     #endif
     world->SetContactListener(&contactlistener);
-
+createWindowAndStuff();
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));
     engine.add(std::shared_ptr<System>(new TestSystem(window, this)));
@@ -41,7 +41,7 @@ void Game::run()
 
     EventChannel chan;
 
-    createWindowAndStuff();
+
     loadAssets("assets.xml");
     createMenus();
 
