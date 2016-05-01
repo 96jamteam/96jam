@@ -6,7 +6,7 @@
 #include "menu_system.h"
 #include "z_system.h"
 #include "contact_name_cmp.h"
-#include "shaderManager.h"
+
 #include "player_system.h"
 #include "debug_draw_system.h"
 #include "bullet_system.h"
@@ -19,7 +19,7 @@ Game::Game()
 void Game::run()
 {
     b2Vec2 Gravity(0.f, 0.f);
-	world = new b2World(Gravity,1);
+	world = new b2World(Gravity, true);
 
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));
