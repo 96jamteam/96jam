@@ -111,50 +111,46 @@ public:
         }
         
         
-        views->gameTexture.clear(sf::Color(0, 0, 0,255));
-        views->guiTexture.clear(sf::Color(0, 0, 0, 0));
         
-        
-        views->gameTexture.draw(rect);
 
 		//wszystko jest dobrze, nic nie mow
 		//P(guiIndex<<" "<< order.size())
 		//P(mName << " gameView: " << &views::gameView);
-        views->gameTexture.setView(views->gameView);
+        target->setView(views->gameView);
 		//target->clear(sf::Color::Red);
         for (int i = 0; i < guiIndex; i++) {
             if (order[i].type == 0){
                 if ((*anims)[order[i].comp].active){
-                    (views->gameTexture).draw((*anims)[order[i].comp].sprites[order[i].spr]);
+                    target->draw((*anims)[order[i].comp].sprites[order[i].spr]);
                 }
             }else if(order[i].type == 1){
                 if ((*sprites)[order[i].comp].active){
-                    (views->gameTexture).draw((*sprites)[order[i].comp].sprites[order[i].spr]);
+                    target->draw((*sprites)[order[i].comp].sprites[order[i].spr]);
                 }
             }else if(order[i].type == 2){
                 if ((*menus)[order[i].comp].active)
                 {
                     for (int j = 0; j < (*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem.size(); j++) {
-                        (views->gameTexture).draw((*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem[j], sf::RenderStates());
+                        target->draw((*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem[j], sf::RenderStates());
                     }
                 }
             }
         }
-        views->guiTexture.draw(rect);
-        views->guiTexture.setView(views->guiView);
+        target->setView(views->guiView);
 		for (int i = guiIndex; i < order.size(); i++) {
 			if (order[i].type == 0) {
 				if ((*anims)[order[i].comp].active)
-					views->guiTexture.draw((*anims)[order[i].comp].sprites[order[i].spr]);
+					target->draw((*anims)[order[i].comp].sprites[order[i].spr]);
 			}
 			else if (order[i].type == 1) {
-				if ((*sprites)[order[i].comp].active)
-					views->guiTexture.draw((*sprites)[order[i].comp].sprites[order[i].spr]);
+                if ((*sprites)[order[i].comp].active){
+					target->draw((*sprites)[order[i].comp].sprites[order[i].spr]);
+                }
 			}
 			else if (order[i].type == 2) {
 				if ((*menus)[order[i].comp].active) {
 					for (int j = 0; j < (*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem.size(); j++) {
-						views->guiTexture.draw((*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem[j], sf::RenderStates());
+						target->draw((*menus)[order[i].comp].screens.at((*menus)[order[i].comp].actualScreen).guiSystem[j], sf::RenderStates());
 					}
 				}
 			}

@@ -96,6 +96,7 @@ public:
 			float yb = km.isDown("down") - km.isDown("up");
 
 			physics = cc->getComponent<Physics>((*players)[i].entityID);
+            
 			if (physics != nullptr) {
 
 				if (xb > 0.1 || xb < -0.1 || yb > 0.1 || yb < -0.1) {

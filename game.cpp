@@ -17,8 +17,8 @@ Game::Game()
 
 void Game::run()
 {
-    b2Vec2 Gravity(0.f, 9.81f);
-	world = new b2World(Gravity,1);
+    b2Vec2 Gravity(0.f, 0.f);
+	world = new b2World(Gravity);
 
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));

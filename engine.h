@@ -38,14 +38,15 @@ private:
                 for(auto sys: systems){
                     sys->update();
                 }
+                
 
 
-                window->clear();
+                /*window->clear();
                 gamesp = sf::Sprite(views->gameTexture.getTexture());
                 window->draw(gamesp);
                 guisp = sf::Sprite(views->guiTexture.getTexture());
                 window->draw(guisp);
-                window->display();
+                window->display();*/
             }
         }
 
