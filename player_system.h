@@ -84,7 +84,8 @@ public:
             float xb = km.isDown("right") - km.isDown("left");
 			float yb = km.isDown("down") - km.isDown("up");
 
-			physics = cc->getComponent<Physics>((*players)[i].entityID);
+            physics = cc->getComponent<Physics>((*players)[i].entityID);
+            transform = cc->getComponent<Transform>((*players)[i].entityID);
 
 			if (physics != nullptr) {
 
@@ -92,6 +93,7 @@ public:
 					xb *= e.timestep;
 					yb *= e.timestep;
                     
+                    mChannel.broadcast(new AddParticle(transform->x, transform->y));
                     
                     #ifdef __APPLE__
 					physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter(), 1);
