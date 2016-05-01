@@ -6,9 +6,10 @@
 #include "menu_system.h"
 #include "z_system.h"
 #include "contact_name_cmp.h"
-#include "shaderManager.h"
+
 #include "player_system.h"
 #include "debug_draw_system.h"
+#include "bullet_system.h"
 
 Game::Game() : contactlistener(ContactListener(&container))
 {
@@ -25,24 +26,22 @@ void Game::run()
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));
     engine.add(std::shared_ptr<System>(new TestSystem(window, this)));
     engine.add(std::shared_ptr<System>(new MenuSystem(&window, &container)));
-    engine.add(std::shared_ptr<System>(new ZSystem(&window, &container, &views)));
-    engine.add(std::shared_ptr<System>(new PhysicsSystem(world,container)));
     engine.add(std::shared_ptr<System>(new PlayerSystem(&window, &container, this, &views)));
+     engine.add(std::shared_ptr<System>(new WeaponSystem(&container,world)));
+    engine.add(std::shared_ptr<System>(new BulletSystem(&container,world)));
+    engine.add(std::shared_ptr<System>(new PhysicsSystem(world,container)));
+    engine.add(std::shared_ptr<System>(new ZSystem(&window, &container, &views)));
     engine.add(std::shared_ptr<System>(new SoundSystem()));
+
 //    engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
 
     EventChannel chan;
-    chan.broadcast(PlaySound("electro.wav"));
-    chan.broadcast(AddMusic("footsteps.ogg"));
-    chan.broadcast(StartMusic());
 
     createWindowAndStuff();
     loadAssets("assets.xml");
     createMenus();
     chan.broadcast(SpriteAdded());
     chan.broadcast(SceneUpdate());
-
-
 
     engine.run();
 }
