@@ -27,54 +27,7 @@ namespace stuff
 	static const float normalTimestep = 1.f / 60.f;
 
 
-bool chceckVis(const b2Vec2& pos1, const b2Vec2& pos2, b2World* world, bool dynamic, bool threeWay=0)
-{
-    bool hit(0);
-    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
-        for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
-        {
-            if(b->GetType()==b2_dynamicBody && !dynamic)
-                break;
-            b2RayCastOutput output;
-            b2RayCastInput input;
-            input.p1=pos1;
-            input.p2 =pos2;
-            input.maxFraction = 1;
 
-            if ( f->RayCast( &output, input ) )
-            {
-                hit=true;
-            }
-            if(threeWay)
-            {
-                float wide=25.f;
-                double ang1=atan2(pos2.y -pos1.y, pos2.x-pos1.x);
-                b2Vec2 one,two;
-                one=b2Vec2(pos1.x + (wide/SCALE)*cos(ang1-degtorad(90)), pos1.y + (wide/SCALE)*sin(ang1-degtorad(90)));
-                two=b2Vec2(pos2.x + (wide/SCALE)*cos(ang1-degtorad(90)), pos2.y + (wide/SCALE)*sin(ang1-degtorad(90)));
-                input.p1=one;
-                input.p2 =two;
-                input.maxFraction = 1;
-
-                if ( f->RayCast( &output, input ) )
-                {
-                    hit=true;
-                }
-
-                one=b2Vec2(pos1.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos1.y + (wide/SCALE)*sin(ang1+degtorad(90)));
-                two=b2Vec2(pos2.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos2.y + (wide/SCALE)*sin(ang1+degtorad(90)));
-                input.p1=one;
-                input.p2 =two;
-                input.maxFraction = 1;
-
-                if ( f->RayCast( &output, input ) )
-                {
-                    hit=true;
-                }
-            }
-        }
-    return hit;
-}
 
 
     static int s2i(const std::string& str)
@@ -239,6 +192,55 @@ bool chceckVis(const b2Vec2& pos1, const b2Vec2& pos2, b2World* world, bool dyna
 		split(s, delim, elems);
 		return elems;
 	}
+
+	static bool chceckVis(const b2Vec2& pos1, const b2Vec2& pos2, b2World* world, bool dynamic, bool threeWay=0)
+{
+    bool hit(0);
+    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+        for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
+        {
+            if(b->GetType()==b2_dynamicBody && !dynamic)
+                break;
+            b2RayCastOutput output;
+            b2RayCastInput input;
+            input.p1=pos1;
+            input.p2 =pos2;
+            input.maxFraction = 1;
+
+            if ( f->RayCast( &output, input ) )
+            {
+                hit=true;
+            }
+            if(threeWay)
+            {
+                float wide=25.f;
+                double ang1=atan2(pos2.y -pos1.y, pos2.x-pos1.x);
+                b2Vec2 one,two;
+                one=b2Vec2(pos1.x + (wide/SCALE)*cos(ang1-degtorad(90)), pos1.y + (wide/SCALE)*sin(ang1-degtorad(90)));
+                two=b2Vec2(pos2.x + (wide/SCALE)*cos(ang1-degtorad(90)), pos2.y + (wide/SCALE)*sin(ang1-degtorad(90)));
+                input.p1=one;
+                input.p2 =two;
+                input.maxFraction = 1;
+
+                if ( f->RayCast( &output, input ) )
+                {
+                    hit=true;
+                }
+
+                one=b2Vec2(pos1.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos1.y + (wide/SCALE)*sin(ang1+degtorad(90)));
+                two=b2Vec2(pos2.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos2.y + (wide/SCALE)*sin(ang1+degtorad(90)));
+                input.p1=one;
+                input.p2 =two;
+                input.maxFraction = 1;
+
+                if ( f->RayCast( &output, input ) )
+                {
+                    hit=true;
+                }
+            }
+        }
+    return hit;
+}
 }
 
 
