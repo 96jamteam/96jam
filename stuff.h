@@ -193,7 +193,7 @@ namespace stuff
 		return elems;
 	}
 
-	static bool chceckVis(const b2Vec2& pos1, const b2Vec2& pos2, b2World* world, bool dynamic, bool threeWay=0)
+	/*static bool chceckVis(const b2Vec2& pos1, const b2Vec2& pos2, b2World* world, bool dynamic, bool threeWay=0)
 {
     bool hit(0);
     for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
@@ -240,7 +240,7 @@ namespace stuff
             }
         }
     return hit;
-}
+}*/
 }
 
 
