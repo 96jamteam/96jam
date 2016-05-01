@@ -8,9 +8,12 @@
 #include "callback_cmp.h"
 #include "animatedsprite_cmp.h"
 #include "bot_cmp.h"
+#include "puzzle_cmp.h"
+#include<sstream>
 
 bool WorldLoader::loadFromFile(const std::string& path)
 {
+    P(path<<" "<<sceneID);
 	numOfPlayers = 0;
     XML xml;
     xml.load(path);
@@ -47,6 +50,12 @@ bool WorldLoader::loadFromFile(const std::string& path)
             if (cmp_xml->getName() == "bot") {
                 loadBot(*cmp_xml, entity);
             }
+            if (cmp_xml->getName() == "contact_name") {
+                loadContactName(*cmp_xml, entity);
+            }
+            if (cmp_xml->getName() == "puzzle") {
+                loadPuzzle(*cmp_xml, entity);
+            }
         }
     }
 	mChannel.broadcast(SceneUpdate());
@@ -56,7 +65,37 @@ bool WorldLoader::loadFromFile(const std::string& path)
 void WorldLoader::handle(const LoadWorld & LWE)
 {
 	sceneID = LWE.id;
-	loadFromFile("world.xml");
+
+	loadFromFile(readSave("levels\\save.xml",LWE.type));
+}
+
+std::string WorldLoader::readSave(const std::string& file, const std::string& type){
+    XML xml;
+    xml.load(file);
+    int level = xml.get<int>("save:level");
+    if(type=="next")
+        level++;
+
+    std::stringstream ss;
+    ss << level;
+    return std::string("levels\\")+ss.str()+std::string(".xml");
+}
+
+void WorldLoader::loadContactName(XML& xml, const int & entity){
+    game->container.createComponent<ContactName>(entity);
+    game->container.getComponent<ContactName>(entity)->name = xml.get<std::string>(":name");
+}
+
+void WorldLoader::loadPuzzle(XML&xml, const int &entity){
+    game->container.createComponent<Puzzle>(entity);
+    game->container.getComponent<Puzzle>(entity)->name = xml.get<std::string>(":name");
+    game->container.getComponent<Puzzle>(entity)->done = 0;
+
+    game->container.createComponent<CallbackCmp>(entity);
+    game->container.getComponent<CallbackCmp>(entity)->callbacks[xml.get<std::string>(":activator")]=([this,entity](){
+           game->container.getComponent<Puzzle>(entity)->done=1;
+           P("leeel");
+            });
 }
 
 void WorldLoader::loadSprite(XML& xml, const int & entity)
@@ -114,10 +153,10 @@ void WorldLoader::loadPlayer(XML& xml, const int & entity)
     game->container.getComponent<ContactName>(entity)->name = "player";
 
     game->container.createComponent<CallbackCmp>(entity);
-    game->container.getComponent<CallbackCmp>(entity)->callbacks["bullet_begin"]=([](){
-            EventChannel chan;
+    game->container.getComponent<CallbackCmp>(entity)->callbacks["pudlo_begin"]=([](){
+           // EventChannel chan;
             P("cyka");
-            chan.broadcast(Engine::StopEvent());
+            //chan.broadcast(Engine::StopEvent());
             });
 
 	game->container.createComponent<Player>(entity);
@@ -129,7 +168,7 @@ void WorldLoader::loadBot(XML& xml, const int & entity)
 {
     game->container.createComponent<ContactName>(entity);
     game->container.getComponent<ContactName>(entity)->name = "bot";
-    
+
     game->container.createComponent<Bot>(entity);
     game->container.getComponent<Bot>(entity)->speed = xml.get<float>(":speed");
 }

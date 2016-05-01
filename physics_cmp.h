@@ -9,4 +9,8 @@ class Physics : public Component
 public:
 	//std::shared_ptr<b2Body> body;
 	b2Body *body = nullptr;
+	virtual void destroy(){
+        if(body!=nullptr)
+            body->GetWorld()->DestroyBody(body);
+	}
 };

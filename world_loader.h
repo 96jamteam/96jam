@@ -15,6 +15,7 @@ class WorldLoader
 	int numOfPlayers;
 public:
 	bool loadFromFile(const std::string&);
+	std::string readSave(const std::string&,const std::string&);
 
 	void handle(const LoadWorld& lw);
 
@@ -25,6 +26,8 @@ public:
     void loadPlayer(XML&, const int &);
     void loadWeapons(XML&, const int &);
     void loadBot(XML&, const int &);
+    void loadContactName(XML&, const int &);
+    void loadPuzzle(XML&, const int &);
 
 	WorldLoader(Game* _game):game(_game){ mChannel.add<LoadWorld>(*this); }
 
