@@ -6,7 +6,7 @@
 #include "views.h"
 #include"eventchannel.h"
 #include "views.h"
-#include "shaderManager.h"
+
 class Engine
 {
 private:
@@ -38,7 +38,7 @@ private:
                 for(auto sys: systems){
                     sys->update();
                 }
-                
+
 
 
                 /*window->clear();

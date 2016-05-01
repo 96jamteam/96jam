@@ -96,13 +96,13 @@ public:
 			float yb = km.isDown("down") - km.isDown("up");
 
 			physics = cc->getComponent<Physics>((*players)[i].entityID);
-            
+
 			if (physics != nullptr) {
 
 				if (xb > 0.1 || xb < -0.1 || yb > 0.1 || yb < -0.1) {
 					xb *= e.timestep;
 					yb *= e.timestep;
-					physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter(), true);
+					physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter());
 				}
 				game->views.addTarget(sf::Vector2f(physics->body->GetPosition().x*stuff::SCALE, physics->body->GetPosition().y*stuff::SCALE));
 
