@@ -207,14 +207,6 @@ public:
         views->gameTexture.display();
         views->guiTexture.display();
 
-        //Stanisz// 'liczenie koloru particla na podstawie jego predkosci'
-        for (int i=0; i<(ParticleSystem::particles).size(); i++)
-        {
-            ((*particles)[i].velocity.z)=p.lifespan*20.f;
-            p.sprite.setTextureRect(sf::IntRect());
-            p.sprite.setColor(sf::Color(p.velocity.x, p.velocity.y, p.velocity.z));
-            target->.draw(&pSprite);
-        }
     }
 
 	void handle(const BulletTime& btime){
