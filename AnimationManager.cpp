@@ -24,19 +24,20 @@ bool AnimationManager::addFromPath(const std::string& path, Manager<sf::Texture,
 
         Animation animation;
         animation.setSpriteSheet(*manager.Get(anim_xml->get<std::string>(":texture")));
+        P(anim_xml->get<std::string>(":texture"));
 
         if(strcmp((anim_xml->get<std::string>(":rows")).c_str(), "") == 0){ // eee #głupieC++
             for (auto & frame: anim_xml->iter("")){
                 animation.addFrame(sf::IntRect(frame->get<int>(":x"), frame->get<int>(":y"), frame->get<int>(":w"), frame->get<int>(":h")));
             }
         }else{
-            for(int y = 0; y < anim_xml->get<int>("rows"); y++){
-                for(int x = 0; x < anim_xml->get<int>("cols"); x++){
-                    animation.addFrame(sf::IntRect(anim_xml->get<int>(":width")*x+anim_xml->get<int>(":offsetX"), anim_xml->get<int>(":height")*y+anim_xml->get<int>(":offsetY"), anim_xml->get<int>(":width"), anim_xml->get<int>(":height")));
-                    /*P("x: " << anim_xml.attribute("width").as_int()*x+anim_xml.attribute("offsetX").as_int());
-                    P("y: " << anim_xml.attribute("height").as_int()*y+anim_xml.attribute("offsetY").as_int());
-                    P("w: " << anim_xml.attribute("width").as_int());
-                    P("h: " << anim_xml.attribute("height").as_int());*/
+            for(int y = 0; y < anim_xml->get<int>(":rows"); y++){
+                for(int x = 0; x < anim_xml->get<int>(":cols"); x++){
+                    animation.addFrame(sf::IntRect(anim_xml->get<int>(":width")*(x-1)+anim_xml->get<int>(":offsetX"), anim_xml->get<int>(":height")*(y-1)+anim_xml->get<int>(":offsetY"), anim_xml->get<int>(":width"), anim_xml->get<int>(":height")));
+                    P("x: " << anim_xml->get<int>(":width")*x+anim_xml->get<int>(":offsetX"));
+                      P("y: " << anim_xml->get<int>(":height")*y+anim_xml->get<int>(":offsetY"));
+                      P("w: " <<  anim_xml->get<int>(":width"));
+                      P("h: " <<anim_xml->get<int>(":height"));
                 }
             }
         }
