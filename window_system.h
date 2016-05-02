@@ -38,7 +38,11 @@ public:
 			else if (event.type == sf::Event::KeyReleased) {
 				mChannel.broadcast(KeyEvent(event.key.code, false));
                 if(event.key.code == sf::Keyboard::Escape){
-                    mChannel.broadcast(Engine::StopEvent());
+                    SceneManager::modState("game",SceneManager::destroy);
+                    SceneManager::set(SceneManager::active,SceneManager::sleep);
+                    SceneManager::modState("menu",SceneManager::active);
+                    //mChannel.broadcast(LoadWorld("next", SceneManager::addScene("game", SceneManager::State::active)));
+                    mChannel.broadcast(SceneUpdate());
                 }
 			}
 			else if (event.type == sf::Event::MouseButtonPressed) {

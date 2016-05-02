@@ -1,4 +1,1 @@
-<key name="left" keycode="71"></key>
-<key name="right" keycode="72"></key>
-<key name="up" keycode="73"></key>
-<key name="down" keycode="74"></key>
+ <key name="left" keycode="0"></key><key name="right" keycode="3"></key><key name="up" keycode="22"></key><key name="down" keycode="18"></key> 

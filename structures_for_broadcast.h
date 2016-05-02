@@ -129,3 +129,8 @@ struct KillPlayer {
 	KillPlayer(int id): entityid(id){}
 	int entityid;
 };
+
+struct ControlsUpdate {
+	ControlsUpdate(){}
+};
+

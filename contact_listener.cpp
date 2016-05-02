@@ -44,12 +44,12 @@ void ContactListener::BeginContact(b2Contact* contact)
         else{
             callback(entityIDa,"_begin");
         }
-        
-        if(contactNameA->name == "bullet"){
+
+        if(contactNameA->name == "bullet" && contactNameB->name != "bullet" && contactNameB->name != "player"){
             EventChannel chan;
             chan.broadcast(DeleteThisShit(entityIDa));
         }
-        if(contactNameB->name == "bullet"){
+        if(contactNameB->name == "bullet" && contactNameA->name != "bullet" && contactNameA->name != "player"){
             EventChannel chan;
             chan.broadcast(DeleteThisShit(entityIDb));
         }

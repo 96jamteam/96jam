@@ -6,6 +6,7 @@ void KeyboardManager::load (std::string s)
 {
     XML plik;
     plik.load(s);
+    keys.clear();
     for(auto& xml : plik.iter(""))
     {
         keys[xml->get<std::string>(":name")] = (xml->get<int>(":keycode"));
@@ -14,6 +15,5 @@ void KeyboardManager::load (std::string s)
 
 bool KeyboardManager::isDown(std::string s)
 {
-    //P(keys[s]);
     return sf::Keyboard::isKeyPressed((sf::Keyboard::Key)keys[s]);
 }
