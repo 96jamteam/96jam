@@ -155,10 +155,12 @@ void WorldLoader::loadPlayer(XML& xml, const int & entity)
            // EventChannel chan;
             //chan.broadcast(Engine::StopEvent());
             });
-    game->container.getComponent<CallbackCmp>(entity)->callbacks["bot_begin"]=([](){
+    game->container.getComponent<CallbackCmp>(entity)->callbacks["bot_begin"]=([this](){
         // EventChannel chan;
         //chan.broadcast(Engine::StopEvent());
         P("cyka");
+        SceneManager::modState("game_over",SceneManager::active);
+        mChannel.broadcast(SceneUpdate());
     });
 
 	game->container.createComponent<Player>(entity);
@@ -176,7 +178,7 @@ void WorldLoader::loadBot(XML& xml, const int & entity)
     game->container.getComponent<Bot>(entity)->heSees = 2147483647;
     game->container.getComponent<Bot>(entity)->target.x = -69.6969696969f;
     game->container.getComponent<Bot>(entity)->freeWalkingAngle = float(rand()%10000)/10000.f*2*stuff::PI;
-    
+
     game->container.createComponent<CallbackCmp>(entity);
     game->container.getComponent<CallbackCmp>(entity)->callbacks["bullet_begin"]=([this, entity](){
          EventChannel chan;

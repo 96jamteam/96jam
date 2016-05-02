@@ -170,7 +170,7 @@ void Game::createMenus() {
 		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
 		MenuFactory::get().addGui(*
                             container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1.5), sf::Vector2f(xsize, 64), 4, false, *gui,
-		{ std::make_pair("You died","die_msg"), std::make_pair("Restart", "restart_msg"), std::make_pair("Quit", "quit_msg") });
+		{ std::make_pair("You  Died","die_msg"), std::make_pair("Restart", "restart_msg"), std::make_pair("Quit", "quit_msg") });
 		/*MenuFactory::get().addGui(*
                             container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
 		{ std::make_pair("Back", "back_msg") });*/
@@ -187,7 +187,7 @@ void Game::createMenus() {
 		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "restart_msg",
 			[this]() {
 			//mChannel.broadcast(PlaySound("electro.wav"));
-
+            SceneManager::modState("game",SceneManager::destroy);
 			SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
 			mChannel.broadcast(LoadWorld("normal", SceneManager::addScene("game", SceneManager::State::active)));
 		});
