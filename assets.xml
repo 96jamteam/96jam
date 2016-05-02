@@ -5,7 +5,6 @@
   <texture name="square" path="square.png"></texture>
   <texture name="square2" path="square2.png"></texture>
   <texture name="background" path="assets/textures/background.png"></texture>
-  <texture name="bullet" path="assets/textures/bullet.png"></texture>
   <stylesheet name="text" path="style.xml"></stylesheet>
   <stylesheet name="no_highlight" path="text_style.xml"></stylesheet>
   <music path="assets/music/blues_slide_riff.ogg"></music>
@@ -13,5 +12,6 @@
   <texture name="nordicwalking" path="nordicwalking.png"></texture>
   <texture name="piupiu" path="piupiu.png"></texture>
   <texture name="chodzenie" path="chodzenie.png"></texture>
+  <texture name="bullet" path="bullet.png"></texture>
   <animation path="anim.xml"></animation>
 </assets>

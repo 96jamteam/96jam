@@ -33,6 +33,7 @@ public:
     void createWindowAndStuff();
     void createGameOverScreen();
     void createWinScreen();
+    void handle(const PlayerShooting& s);
 
     sf::RenderWindow window;
     Engine engine;

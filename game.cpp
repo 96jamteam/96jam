@@ -63,6 +63,7 @@ createWindowAndStuff();
 
     chan.broadcast(SpriteAdded());
     chan.broadcast(SceneUpdate());
+    chan.add<PlayerShooting>(*this);
 
     engine.run();
 }
@@ -282,3 +283,11 @@ void Game::createMenus() {
         views.declareTextures(views.VIEW_WIDTH, views.VIEW_HEIGHT);
         engine.setVariables(&views, &window);
 	}
+
+void Game::handle(const PlayerShooting& s){
+    /*AnimatedSpriteC* p = container.getComponent<AnimatedSpriteC>(s.entityID);
+    if(p->sprites.size() > 0){
+    p->sprites[0].setLooped(false);
+    p->sprites[0].play(*Animations.getAnimation("playershooting"));
+    }*/
+}
