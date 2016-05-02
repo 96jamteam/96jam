@@ -11,6 +11,8 @@
 #include "transform_cmp.h"
 #include "sprite_cmp.h"
 #include "views.h"
+#include "particle_system.h"
+
 //#include <Vector2.hpp>
 
 struct z_struct{
@@ -204,6 +206,7 @@ public:
 
         views->gameTexture.display();
         views->guiTexture.display();
+
     }
 
 	void handle(const BulletTime& btime){

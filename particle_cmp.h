@@ -14,6 +14,7 @@ public:
     sf::Vector3f velocity;
     float lifespan;
     sf::Color color;
+    sf::Sprite sprite;
 };
 
 #endif /* particle_cmp_h */
