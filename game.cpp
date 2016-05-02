@@ -65,7 +65,7 @@ void Game::run()
 
     chan.broadcast(SpriteAdded());
     chan.broadcast(SceneUpdate());
-    chan.add<PlayerShooting>(*this);
+    //chan.add<PlayerShooting>(*this);
 
     engine.run();
 }
@@ -249,7 +249,7 @@ void Game::createWinScreen()
 
     MenuFactory::get().addGui(*
                               container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 500), sf::Vector2f(500, 256), 4, false, *gui2,
-    { std::make_pair("U  RECT DEM"," die_msg") });
+    { std::make_pair("U  REKT DEM"," die_msg") });
     /*MenuFactory::get().addGui(*
                         container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
     { std::make_pair("Back", "back_msg") });*/
