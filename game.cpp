@@ -52,6 +52,7 @@ void Game::run()
     engine.add(std::shared_ptr<System>(new SoundSystem()));
     engine.add(std::shared_ptr<System>(new BotSystem(&container,world)));
     engine.add(std::shared_ptr<System>(new ParticleSystem(&container)));
+
     engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
     engine.add(std::shared_ptr<System>(new RemoveSystem(&container)));
 
