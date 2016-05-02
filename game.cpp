@@ -58,7 +58,7 @@ void Game::run()
 
     EventChannel chan;
 
-    loadAssets("assets.xml");
+    loadAssets("assets//assets.xml");
     createMenus();
     createGameOverScreen();
     createWinScreen();
@@ -108,7 +108,7 @@ void Game::createMenus()
 
     int sceneID = SceneManager::addScene("menu", SceneManager::State::active);
     GuiStyle* gui;
-    gui = Stylesheets.Get("text");
+    gui = Stylesheets.Get("default");
     gui->font = fonts.Get(gui->fontName);
 
     GuiStyle* gui2;
@@ -218,7 +218,7 @@ void Game::createWinScreen()
 {
     int sceneID = SceneManager::addScene("win_scene", SceneManager::State::sleep);
     GuiStyle* gui;
-    gui = Stylesheets.Get("text");
+    gui = Stylesheets.Get("default");
     gui->font = fonts.Get(gui->fontName);
 
     GuiStyle* gui2;
@@ -247,7 +247,7 @@ void Game::createWinScreen()
     {  std::make_pair("Next level", "next_msg"), std::make_pair("Quit", "quit_msg") });
 
     MenuFactory::get().addGui(*
-                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 600), sf::Vector2f(500, 256), 4, false, *gui2,
+                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 500), sf::Vector2f(500, 256), 4, false, *gui2,
     { std::make_pair("U  RECT DEM"," die_msg") });
     /*MenuFactory::get().addGui(*
                         container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
@@ -280,7 +280,7 @@ void Game::createGameOverScreen()
 {
     int sceneID = SceneManager::addScene("game_over", SceneManager::State::sleep);
     GuiStyle* gui;
-    gui = Stylesheets.Get("text");
+    gui = Stylesheets.Get("default");
     gui->font = fonts.Get(gui->fontName);
 
     GuiStyle* gui2;
@@ -309,7 +309,7 @@ void Game::createGameOverScreen()
     { std::make_pair("Restart", "restart_msg"), std::make_pair("Quit", "quit_msg") });
 
     MenuFactory::get().addGui(*
-                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 600), sf::Vector2f(500, 256), 4, false, *gui2,
+                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 500), sf::Vector2f(500, 256), 4, false, *gui2,
     { std::make_pair("U DIED BRO"," kupa") });
     /*MenuFactory::get().addGui(*
                         container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
