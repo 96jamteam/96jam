@@ -1,5 +1,7 @@
 <assets>
   <font name="font" path="ARCADECLASSIC.TTF"></font>
+  
+  <font name="fontnice" path="Raleway-Regular.ttf"></font>
   <texture name="square" path="square.png"></texture>
   <texture name="square2" path="square2.png"></texture>
   <texture name="background" path="assets/textures/background.png"></texture>
@@ -9,5 +11,7 @@
   <music path="assets/music/blues_slide_riff.ogg"></music>
   <music path="assets/music/slide_guitar_blues_riff.ogg"></music>
   <texture name="nordicwalking" path="nordicwalking.png"></texture>
+  <texture name="piupiu" path="piupiu.png"></texture>
+  <texture name="chodzenie" path="chodzenie.png"></texture>
   <animation path="anim.xml"></animation>
 </assets>

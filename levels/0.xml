@@ -47,9 +47,9 @@
         
         <player speed="9000"></player>
         
-        <sprites>
-            <sprite texture="square2" z="100" origin_x="40" origin_y="40"></sprite>
-        </sprites>
+        <animations>
+            <sprite animation="playerwalking" z="100" origin_x="108" origin_y="120"></sprite>
+        </animations>
         
         <weapons>
             

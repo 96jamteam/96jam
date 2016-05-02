@@ -1,4 +1,8 @@
 <animations>
 <animation name="zombie" texture="nordicwalking" rows="1" cols="21" width="216" height="216">
 </animation>
+<animation name="playerwalking" texture="chodzenie" rows="1" cols="8" width="216" height="267">
+</animation>
+<animation name="playershooting" texture="piupiu" rows="1" cols="8" width="216" height="267">
+</animation>
 </animations>
