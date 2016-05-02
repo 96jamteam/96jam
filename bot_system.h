@@ -149,7 +149,7 @@ public:
 
 
             if (physics != nullptr) {
-
+physics->body->SetTransform( physics->body->GetPosition(), lookingAngle);
                 if (xb > 0.1 || xb < -0.1 || yb > 0.1 || yb < -0.1) {
                     xb *= e.timestep;
                     yb *= e.timestep;
