@@ -1,5 +1,4 @@
-#ifndef STUFF_H_INCLUDED
-#define STUFF_H_INCLUDED
+#pragma once
 
 #include<SFML/Graphics.hpp>
 #include <Box2d/Box2d.h>
@@ -17,7 +16,6 @@
 
 namespace stuff
 {
-
 	static const int MAX_TEXTURES = 100;
 	static const int MAX_STYLESHEETS = 10;
 	static const int MAX_FONTS = 10;

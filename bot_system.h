@@ -186,7 +186,7 @@ public:
             input.p2 =pos2;
             input.maxFraction = 1;
 
-            if ( f->RayCast( &output, input ,0) )
+            if ( f->RayCast( &output, input) )
             {
                 hit=true;
             }
@@ -201,7 +201,7 @@ public:
                 input.p2 =two;
                 input.maxFraction = 1;
 
-                if ( f->RayCast( &output, input ,0) )
+                if ( f->RayCast( &output, input) )
                 {
                     hit=true;
                 }
@@ -212,7 +212,7 @@ public:
                 input.p2 =two;
                 input.maxFraction = 1;
 
-                if ( f->RayCast( &output, input,0 ) )
+                if ( f->RayCast( &output, input ) )
                 {
                     hit=true;
                 }
