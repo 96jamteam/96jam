@@ -65,6 +65,7 @@ void Game::run()
 
     chan.broadcast(SpriteAdded());
     chan.broadcast(SceneUpdate());
+    chan.add<PlayerShooting>(*this);
 
     engine.run();
 }

@@ -20,7 +20,8 @@ class PlayerSystem : public System {
     ComponentContainer* cc;
 	componentContainer::container<Player>* players;
 	Physics* physics;
-	Transform* transform;
+    Transform* transform;
+    AnimatedSpriteC* anim;
 	WeaponC* weapon;
     sf::Clock clock;
     KeyboardManager km;
@@ -113,6 +114,7 @@ public:
 
             physics = cc->getComponent<Physics>((*players)[i].entityID);
             transform = cc->getComponent<Transform>((*players)[i].entityID);
+            anim = cc->getComponent<AnimatedSpriteC>((*players)[i].entityID);
 
 			if (physics != nullptr) {
             physics->body->SetTransform(b2Vec2(p_x/stuff::SCALE, p_y/stuff::SCALE), lookingAngle);
@@ -128,9 +130,18 @@ public:
                     #else
                     physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter());
                     #endif
-
-
-				}
+                    /*if(!anim->sprites[0].isPlaying()){
+                        if(anim->sprites[0].m_animation == game->Animations.getAnimation("playershooting")){
+                            anim->sprites[0].play(*game->Animations.getAnimation("playerwalking"));
+                            anim->sprites[0].setLooped(true);
+                        }
+                    }*/
+                    if(!anim->sprites[0].isPlaying()){
+                        anim->sprites[0].play();
+                    }
+                }else{
+                    anim->sprites[0].pause();
+                }
 				game->views.addTarget(sf::Vector2f(physics->body->GetPosition().x*stuff::SCALE, physics->body->GetPosition().y*stuff::SCALE));
 
 			}

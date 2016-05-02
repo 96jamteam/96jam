@@ -95,6 +95,12 @@ struct SceneUpdate {
 	SceneUpdate(){}
 };
 
+struct PlayerShooting {
+    PlayerShooting(int e):entityID(e){}
+    int entityID;
+};
+
+
 struct AddParticle {
     AddParticle(float _x, float _y) : x(_x), y(_y){
     }
