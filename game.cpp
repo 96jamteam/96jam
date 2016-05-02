@@ -156,8 +156,8 @@ void Game::createMenus()
     MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "quit_msg",
                                  [this]()
     {
-        mChannel.broadcast(PlaySound("click.wav"));
-        mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
+        mChannel.broadcast(PlaySound("assets/music/click.wav"));
+       // mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
         mChannel.broadcast(Engine::StopEvent());
     });
 
@@ -193,7 +193,7 @@ void Game::createMenus()
     MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "start",
                                  [this]()
     {
-        mChannel.broadcast(PlaySound("electro.wav"));
+        mChannel.broadcast(PlaySound("assets/music/electro.wav"));
 
         //SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
         SceneManager::modState("menu", SceneManager::State::sleep);
@@ -203,13 +203,13 @@ void Game::createMenus()
     MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "options_msg",
                                  [this]()
     {
-        mChannel.broadcast(PlaySound("click.wav"));
+        mChannel.broadcast(PlaySound("assets/music/click.wav"));
     });
 
     MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "back_msg",
                                  [this]()
     {
-        mChannel.broadcast(PlaySound("click.wav"));
+        mChannel.broadcast(PlaySound("assets/music/click.wav"));
     });
 
     MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
