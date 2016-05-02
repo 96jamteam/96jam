@@ -12,12 +12,14 @@
 #include "system.h"
 #include "particle_cmp.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
+#include <SFML/System/Time.hpp>
 
 class ParticleSystem : public System{
     ComponentContainer* cc;
-    componentContainer::container<Particle>* particles;
     sf::Clock clock;
-    
+    componentContainer::container<Particle>* particles;
+
 public:
     ParticleSystem(ComponentContainer* _cc):cc(_cc){
         particles = cc->getComponentStorage<Particle>();
@@ -25,27 +27,30 @@ public:
             particles = cc->addComponentStorage<Particle>();
         mChannel.add<AddParticle>(*this);
     }
-    
-    void update(){
+
+    void update()
+    {
         float dt = clock.restart().asSeconds();
-        
-        
-        for(Particle p : *particles){
+
+
+        for(Particle p : *particles)
+        {
             p.lifespan -= dt;
-            if (p.lifespan < 0){
+            if (p.lifespan < 0)
+            {
                 cc->deleteComponent<Particle>(p.entityID);
             }
+
         }
     }
-    
+
     void handle(const AddParticle& e) {
         int entity = cc->getUniqueID();
-        
-        cc->createComponent<Scene>(entity);
+
+        cc->createComponent<Scene>(entity); //Stanisz// 'chyba rozumiem ten syf':>
         cc->getComponent<Scene>(entity)->sceneID = SceneManager::getState("game");
         cc->createComponent<ContactName>(entity);
         cc->getComponent<ContactName>(entity)->name = "particle";
-        
         cc->createComponent<Transform>(entity);
         cc->getComponent<Transform>(entity)->x = e.x;
         cc->getComponent<Transform>(entity)->y = e.y;
