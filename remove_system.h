@@ -20,6 +20,7 @@ public:
     void update(){
         bool cyka=0;
         for(int i : ids){
+            P("DZIABA");
             cc->deleteComponents(i);
             cyka=1;
         }

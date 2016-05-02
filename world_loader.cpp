@@ -117,7 +117,7 @@ void WorldLoader::loadPlayer(XML& xml, const int & entity)
     game->container.getComponent<CallbackCmp>(entity)->callbacks["bullet_begin"]=([](){
             EventChannel chan;
             P("cyka");
-            chan.broadcast(Engine::StopEvent());
+            //chan.broadcast(Engine::StopEvent());
             });
 
 	game->container.createComponent<Player>(entity);
