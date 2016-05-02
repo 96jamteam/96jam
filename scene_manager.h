@@ -44,11 +44,11 @@ public:
 
 		if (state == State::destroy) {
 			data.erase(sceneID);
-			/*for (auto& trans : translation) {
+			for (auto& trans : translation) {
                 if (trans.second == sceneID) {
 					translation.erase(trans.first);
 				}
-			}*/
+			}
 		}
 		else {
 			data[sceneID] = state;

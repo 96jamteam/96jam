@@ -31,6 +31,7 @@ void Game::run()
     world->SetContactListener(&contactlistener);
 createWindowAndStuff();
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
+    engine.add(std::shared_ptr<System>(new PuzzleSystem(container)));
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));
     engine.add(std::shared_ptr<System>(new TestSystem(window, this)));
     engine.add(std::shared_ptr<System>(new MenuSystem(&window, &container)));
@@ -41,7 +42,7 @@ createWindowAndStuff();
     engine.add(std::shared_ptr<System>(new ZSystem(&window, &container, &views)));
     engine.add(std::shared_ptr<System>(new SoundSystem()));
     engine.add(std::shared_ptr<System>(new BotSystem(&container)));
-    engine.add(std::shared_ptr<System>(new PuzzleSystem(container)));
+
 
     engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
 

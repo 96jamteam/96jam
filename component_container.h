@@ -45,7 +45,8 @@ public:
 
 		int index = IDtable[entityID];
 		if (index != storage.size() - 1) {
-			storage[index] = std::move(storage.back());
+			//storage[index] = std::move(storage.back());
+			std::swap(storage[index], storage.back());
 			IDtable[storage[index].entityID] = index;
 		}
 

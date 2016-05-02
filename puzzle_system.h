@@ -40,9 +40,10 @@ nextload=0;
 		}
         if(done==max && max){
             SceneManager::modState("game", SceneManager::State::destroy);
+            SceneManager::modState("menu", SceneManager::State::active);
             mChannel.broadcast(SceneUpdate());
 
-            mChannel.broadcast(LoadWorld( "ll",SceneManager::addScene("game", SceneManager::State::active) ));
+            //mChannel.broadcast(LoadWorld( "next",SceneManager::addScene("game", SceneManager::State::active) ));
 
         }
 		/*Transform* transform;

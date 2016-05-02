@@ -66,7 +66,7 @@ void WorldLoader::handle(const LoadWorld & LWE)
 {
 	sceneID = LWE.id;
 
-	loadFromFile(readSave("levels\\save.xml",LWE.type));
+	loadFromFile(readSave("levels//save.xml",LWE.type));
 }
 
 std::string WorldLoader::readSave(const std::string& file, const std::string& type){
@@ -78,7 +78,7 @@ std::string WorldLoader::readSave(const std::string& file, const std::string& ty
 
     std::stringstream ss;
     ss << level;
-    return std::string("levels\\")+ss.str()+std::string(".xml");
+    return std::string("levels//")+ss.str()+std::string(".xml");
 }
 
 void WorldLoader::loadContactName(XML& xml, const int & entity){
