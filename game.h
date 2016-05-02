@@ -31,6 +31,7 @@ public:
     void createMenus();
     void loadAssets(const std::string& path);
     void createWindowAndStuff();
+    void createGameOverScreen();
 
     sf::RenderWindow window;
     Engine engine;

@@ -26,8 +26,9 @@ public:
 		for (int j = 0; j < components->size(); j++) {
 
 			if (SceneManager::getState((*components)[j].sceneID) == SceneManager::State::destroy) {
-				cc->deleteComponents((*components)[j].entityID);
-				j--;
+				//cc->deleteComponents((*components)[j].entityID);
+				mChannel.broadcast(DeleteThisShit((*components)[j].entityID));
+				//j--;
 			}
 			else if (SceneManager::getState((*components)[j].sceneID) == SceneManager::State::sleep) {
 				cc->activateComponents(false, (*components)[j].entityID);

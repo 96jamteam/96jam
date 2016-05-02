@@ -70,8 +70,6 @@ public:
             }
 
 
-
-
         (*bots)[i].isLooking = false;
         if (chceckVis(b2Vec2(p_x/stuff::SCALE,p_y/stuff::SCALE), b2Vec2(b_x/stuff::SCALE,b_y/stuff::SCALE),world,true))
         {
@@ -171,6 +169,8 @@ public:
     for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
         for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
         {
+            if(f->IsSensor())
+                continue;
             if(b->GetType()==b2_dynamicBody && !dynamic)
                 break;
             if(cc->getComponent<Bot>((intptr_t)b->GetUserData())!=nullptr)

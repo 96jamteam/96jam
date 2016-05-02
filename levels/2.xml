@@ -106,7 +106,7 @@
   <entity name="bot">
       <transform x="1000" y="200" angle="0"></transform>
 
-      <bot speed="5000"></bot>
+      <bot speed="5"></bot>
 
       <sprites>
           <sprite texture="square2" z="100" origin_x="40" origin_y="40"></sprite>
