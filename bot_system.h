@@ -136,6 +136,9 @@ public:
                 vel.y *= 40;
             }
 
+            float lookingAngle = atan(vel.y/vel.x)-stuff::PI/2 - (vel.x > 0.f ? stuff::PI : 0.f);
+
+
             float xb = vel.x * (*bots)[i].speed;
             float yb = vel.y * (*bots)[i].speed;
 
@@ -150,6 +153,8 @@ public:
                 if (xb > 0.1 || xb < -0.1 || yb > 0.1 || yb < -0.1) {
                     xb *= e.timestep;
                     yb *= e.timestep;
+
+                    physics->body->SetTransform( physics->body->GetPosition(), lookingAngle);
 
                     #ifdef __APPLE__
                     physics->body->ApplyForce(b2Vec2(xb*(*bots)[i].speed*physics->body->GetMass(), yb*(*bots)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter(), 1);
@@ -231,18 +236,18 @@ public:
                 input.p1=one;
                 input.p2 =two;
                 input.maxFraction = 1;
-                
+
                 if ( f->RayCast( &output, input) )
                 {
                     hit=true;
                 }
-                
+
                 one=b2Vec2(pos1.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos1.y + (wide/SCALE)*sin(ang1+degtorad(90)));
                 two=b2Vec2(pos2.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos2.y + (wide/SCALE)*sin(ang1+degtorad(90)));
                 input.p1=one;
                 input.p2 =two;
                 input.maxFraction = 1;
-                
+
                 if ( f->RayCast( &output, input ) )
                 {
                     hit=true;
