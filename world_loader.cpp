@@ -13,7 +13,6 @@
 
 bool WorldLoader::loadFromFile(const std::string& path)
 {
-    P(path<<" "<<sceneID);
 	numOfPlayers = 0;
     XML xml;
     xml.load(path);
@@ -94,7 +93,6 @@ void WorldLoader::loadPuzzle(XML&xml, const int &entity){
     game->container.createComponent<CallbackCmp>(entity);
     game->container.getComponent<CallbackCmp>(entity)->callbacks[xml.get<std::string>(":activator")]=([this,entity](){
            game->container.getComponent<Puzzle>(entity)->done=1;
-           P("leeel");
             });
 }
 
@@ -155,9 +153,13 @@ void WorldLoader::loadPlayer(XML& xml, const int & entity)
     game->container.createComponent<CallbackCmp>(entity);
     game->container.getComponent<CallbackCmp>(entity)->callbacks["pudlo_begin"]=([](){
            // EventChannel chan;
-            P("cyka");
             //chan.broadcast(Engine::StopEvent());
             });
+    game->container.getComponent<CallbackCmp>(entity)->callbacks["bot_begin"]=([](){
+        // EventChannel chan;
+        //chan.broadcast(Engine::StopEvent());
+        P("cyka");
+    });
 
 	game->container.createComponent<Player>(entity);
 	game->container.getComponent<Player>(entity)->speed = xml.get<float>(":speed");
@@ -174,6 +176,12 @@ void WorldLoader::loadBot(XML& xml, const int & entity)
     game->container.getComponent<Bot>(entity)->heSees = 2147483647;
     game->container.getComponent<Bot>(entity)->target.x = -69.6969696969f;
     game->container.getComponent<Bot>(entity)->freeWalkingAngle = float(rand()%10000)/10000.f*2*stuff::PI;
+    
+    game->container.createComponent<CallbackCmp>(entity);
+    game->container.getComponent<CallbackCmp>(entity)->callbacks["bullet_begin"]=([this, entity](){
+         EventChannel chan;
+        chan.broadcast(DeleteThisShit(entity));
+    });
 }
 
 void WorldLoader::loadWeapons(XML& xml, const int & entity) {

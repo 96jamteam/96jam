@@ -71,7 +71,6 @@ public:
 
 
 
-        P(chceckVis(b2Vec2(p_x/stuff::SCALE,p_y/stuff::SCALE), b2Vec2(b_x/stuff::SCALE,b_y/stuff::SCALE),world,true));
 
         (*bots)[i].isLooking = false;
         if (chceckVis(b2Vec2(p_x/stuff::SCALE,p_y/stuff::SCALE), b2Vec2(b_x/stuff::SCALE,b_y/stuff::SCALE),world,true))
@@ -185,8 +184,8 @@ public:
             input.p1=pos1;
             input.p2 =pos2;
             input.maxFraction = 1;
-
-            if ( f->RayCast( &output, input) )
+#ifdef __APPLE__
+            if ( f->RayCast( &output, input,0) )
             {
                 hit=true;
             }
@@ -201,7 +200,7 @@ public:
                 input.p2 =two;
                 input.maxFraction = 1;
 
-                if ( f->RayCast( &output, input) )
+                if ( f->RayCast( &output, input,0) )
                 {
                     hit=true;
                 }
@@ -212,11 +211,44 @@ public:
                 input.p2 =two;
                 input.maxFraction = 1;
 
+                if ( f->RayCast( &output, input ,0) )
+                {
+                    hit=true;
+                }
+            }
+#else
+            if ( f->RayCast( &output, input) )
+            {
+                hit=true;
+            }
+            if(threeWay)
+            {
+                float wide=25.f;
+                double ang1=atan2(pos2.y -pos1.y, pos2.x-pos1.x);
+                b2Vec2 one,two;
+                one=b2Vec2(pos1.x + (wide/SCALE)*cos(ang1-degtorad(90)), pos1.y + (wide/SCALE)*sin(ang1-degtorad(90)));
+                two=b2Vec2(pos2.x + (wide/SCALE)*cos(ang1-degtorad(90)), pos2.y + (wide/SCALE)*sin(ang1-degtorad(90)));
+                input.p1=one;
+                input.p2 =two;
+                input.maxFraction = 1;
+                
+                if ( f->RayCast( &output, input) )
+                {
+                    hit=true;
+                }
+                
+                one=b2Vec2(pos1.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos1.y + (wide/SCALE)*sin(ang1+degtorad(90)));
+                two=b2Vec2(pos2.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos2.y + (wide/SCALE)*sin(ang1+degtorad(90)));
+                input.p1=one;
+                input.p2 =two;
+                input.maxFraction = 1;
+                
                 if ( f->RayCast( &output, input ) )
                 {
                     hit=true;
                 }
             }
+#endif
         }
     return !hit;
     }

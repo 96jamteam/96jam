@@ -17,6 +17,7 @@
 #include "game.h"
 #include "scene_manager.h"
 #include "contact_name_cmp.h"
+#include "callback_cmp.h"
 
 class WeaponSystem : public System {
 
@@ -80,6 +81,14 @@ public:
 
 			cc->getComponent<Physics>(entityID)->body = world->CreateBody(&sb.weapon->bulletBodyDef);
 			cc->getComponent<Physics>(entityID)->body->CreateFixture(&sb.weapon->bulletFixDef);
+            
+            cc->createComponent<CallbackCmp>(entityID);
+            cc->getComponent<CallbackCmp>(entityID)->callbacks["bullet_begin"]=([this, entityID](){
+                EventChannel chan;
+                chan.broadcast(DeleteThisShit(entityID));
+            });
+            
+
 
 			if (sb.weapon->bulletGraphics.graphicsType) {
 				cc->createComponent<SpriteC>(entityID);
