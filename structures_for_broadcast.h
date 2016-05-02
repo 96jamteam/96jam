@@ -114,3 +114,12 @@ struct DeleteThisShit {
 	DeleteThisShit(int id) : entityid(id){}
 	int entityid;
 };
+
+struct SaveLvl {
+	SaveLvl(){}
+};
+
+struct KillPlayer {
+	KillPlayer(int id): entityid(id){}
+	int entityid;
+};

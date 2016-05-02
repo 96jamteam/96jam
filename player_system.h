@@ -33,6 +33,7 @@ public:
         if (players == nullptr)
             players = cc->addComponentStorage<Player>();
         mChannel.add<PhysicsUpdate>(*this);
+        mChannel.add<KillPlayer>(*this);
         km.load("controls.txt");
     }
 
@@ -44,7 +45,7 @@ public:
     virtual void update() {
 
 		for (int i = 0; i < players->size(); i++) {
-			if (!(*players)[i].active)
+			if (!(*players)[i].active || !(*players)[i].alive)
 				continue;
 
 			transform = cc->getComponent<Transform>((*players)[i].entityID);
@@ -71,11 +72,15 @@ public:
 		}
     }
 
+    void handle(const KillPlayer& e) {
+        cc->getComponent<Player>(e.entityid)->alive=0;
+    }
+
 	void handle(const PhysicsUpdate& e) {
 		game->views.clearTargets();
 		for (int i = 0; i < players->size(); i++) {
 
-			if (!(*players)[i].active)
+			if (!(*players)[i].active || !(*players)[i].alive)
 				continue;
 
 			float pnm100 = 100 * ((*players)[i].number);
@@ -92,9 +97,9 @@ public:
 				if (xb > 0.1 || xb < -0.1 || yb > 0.1 || yb < -0.1) {
 					xb *= e.timestep;
 					yb *= e.timestep;
-                    
+
                     mChannel.broadcast(new AddParticle(transform->x, transform->y));
-                    
+
                     #ifdef __APPLE__
 					physics->body->ApplyForce(b2Vec2(xb*(*players)[i].speed*physics->body->GetMass(), yb*(*players)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter(), 1);
                     #else

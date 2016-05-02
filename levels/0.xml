@@ -52,6 +52,14 @@
       <fixture density="201" friction="1" restitution="0.5" isSensor="1" filter="0" shape="box" width="50" height="50"></fixture>
     </body>
   </entity>
+  
+  <entity name="rescue">
+    <transform x="700" y="570" angle="0"></transform>
+    <puzzle  name="rescue" activator="player_begin"></puzzle>
+    <body type="dynamic" angularDamping="5" linearDamping="5" bullet="0">
+      <fixture density="201" friction="1" restitution="0.5" isSensor="1" filter="0" shape="box" width="50" height="50"></fixture>
+    </body>
+  </entity>
 
   <entity name="player">
     <transform x="200" y="200" angle="0"></transform>

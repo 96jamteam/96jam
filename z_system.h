@@ -66,7 +66,7 @@ public:
         spotImage.create(views->VIEW_WIDTH, views->VIEW_HEIGHT);
 
         float rad = 400.0f;
-        float gradientSize = 80.f;
+        float gradientSize = 180.f;
 
         float light_constant = 2.0f;
         float light_linear=0.009;
@@ -80,7 +80,7 @@ public:
 
                 float dst = stuff::distance(i,j,views->VIEW_WIDTH/2.f,views->VIEW_HEIGHT/2.f);
 
-                if (dst >= rad + gradientSize-1)
+                if (dst >= rad + gradientSize-2)
                 {
                     spotImage.setPixel(i,j,sf::Color(0,0,0));
                 }

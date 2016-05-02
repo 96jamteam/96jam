@@ -27,20 +27,42 @@ nextload=0;
 
 	}
 
+    bool allDone(){
+        int d=0,m=0;
+        for (int j = 0; j < puzzles->size(); j++) {
+			if (!(*puzzles)[j].active)
+                continue;
+            if ((*puzzles)[j].done || (*puzzles)[j].name=="rescue"){
+                    d++;
+            }
+            m++;
+		}
+		if(d>=m)return true;
+		else return false;
 
+    }
 
 	virtual void update() {
 	    int done=0,max=0;
 	    for (int j = 0; j < puzzles->size(); j++) {
 			if (!(*puzzles)[j].active)
                 continue;
-            if ((*puzzles)[j].done)
-                done++;
+            if ((*puzzles)[j].done){
+                if((*puzzles)[j].name=="rescue"){
+                    if(allDone())
+                        done++;
+                    else
+                        (*puzzles)[j].done=0;
+                }
+                else done++;
+            }
             max++;
 		}
         if(done==max && max){
-            SceneManager::modState("game", SceneManager::State::destroy);
-            SceneManager::modState("menu", SceneManager::State::active);
+            //SceneManager::modState("game", SceneManager::State::destroy);
+            SceneManager::modState("win_scene", SceneManager::State::active);
+
+            mChannel.broadcast(SaveLvl());
             mChannel.broadcast(SceneUpdate());
 
             //mChannel.broadcast(LoadWorld( "next",SceneManager::addScene("game", SceneManager::State::active) ));

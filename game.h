@@ -32,6 +32,7 @@ public:
     void loadAssets(const std::string& path);
     void createWindowAndStuff();
     void createGameOverScreen();
+    void createWinScreen();
 
     sf::RenderWindow window;
     Engine engine;

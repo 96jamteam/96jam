@@ -10,6 +10,8 @@
 #include "bot_cmp.h"
 #include "puzzle_cmp.h"
 #include<sstream>
+#include <fstream>
+
 
 bool WorldLoader::loadFromFile(const std::string& path)
 {
@@ -68,13 +70,24 @@ void WorldLoader::handle(const LoadWorld & LWE)
 	loadFromFile(readSave("levels//save.xml",LWE.type));
 }
 
+void WorldLoader::handle(const SaveLvl& lw){
+    XML xml;
+    xml.load("levels//save.xml");
+    int level = xml.get<int>("save:level");
+    if(level<=lastOpenedLvl){
+        std::ofstream outfile;
+        outfile.open("levels//save.xml");
+        outfile << std::string(" <save level=\"") <<lastOpenedLvl+1<<std::string("\"></save> ") << std::endl;
+        outfile.close();
+    }
+}
+
 std::string WorldLoader::readSave(const std::string& file, const std::string& type){
     XML xml;
     xml.load(file);
     int level = xml.get<int>("save:level");
-    if(type=="next")
-        level++;
 
+    lastOpenedLvl=level;
     std::stringstream ss;
     ss << level;
     return std::string("levels//")+ss.str()+std::string(".xml");
@@ -92,6 +105,7 @@ void WorldLoader::loadPuzzle(XML&xml, const int &entity){
 
     game->container.createComponent<CallbackCmp>(entity);
     game->container.getComponent<CallbackCmp>(entity)->callbacks[xml.get<std::string>(":activator")]=([this,entity](){
+            P("active: "<<game->container.getComponent<Puzzle>(entity)->name);
            game->container.getComponent<Puzzle>(entity)->done=1;
             });
 }
@@ -155,10 +169,9 @@ void WorldLoader::loadPlayer(XML& xml, const int & entity)
            // EventChannel chan;
             //chan.broadcast(Engine::StopEvent());
             });
-    game->container.getComponent<CallbackCmp>(entity)->callbacks["bot_begin"]=([this](){
+    game->container.getComponent<CallbackCmp>(entity)->callbacks["bot_begin"]=([this,entity](){
         // EventChannel chan;
-        //chan.broadcast(Engine::StopEvent());
-        P("cyka");
+        mChannel.broadcast(KillPlayer(entity));
         SceneManager::modState("game_over",SceneManager::active);
         mChannel.broadcast(SceneUpdate());
     });

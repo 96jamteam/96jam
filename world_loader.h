@@ -13,11 +13,13 @@ class WorldLoader
 	Game* game;
 	int sceneID;
 	int numOfPlayers;
+	int lastOpenedLvl;
 public:
 	bool loadFromFile(const std::string&);
 	std::string readSave(const std::string&,const std::string&);
 
 	void handle(const LoadWorld& lw);
+	void handle(const SaveLvl& lw);
 
     void loadSprite(XML&, const int &);
     void loadAnimatedSprite(XML&, const int &);
@@ -29,7 +31,7 @@ public:
     void loadContactName(XML&, const int &);
     void loadPuzzle(XML&, const int &);
 
-	WorldLoader(Game* _game):game(_game){ mChannel.add<LoadWorld>(*this); }
+	WorldLoader(Game* _game):game(_game){ mChannel.add<LoadWorld>(*this); mChannel.add<SaveLvl>(*this);}
 
 	EventChannel mChannel;
 };
