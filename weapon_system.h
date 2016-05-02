@@ -18,6 +18,7 @@
 #include "scene_manager.h"
 #include "contact_name_cmp.h"
 #include "callback_cmp.h"
+#include "bot_cmp.h"
 
 class WeaponSystem : public System {
 
@@ -56,6 +57,11 @@ public:
 	}
 	void handle(const ShootBullet& sb) {
 		if (sb.weapon->cooldown <= 0) {
+                if(!chceckVis( b2Vec2(sb.x / stuff::SCALE, sb.y / stuff::SCALE),
+                             rotatePoint(sb.x / stuff::SCALE, sb.y / stuff::SCALE, atan2(sb.norm_vec.y , sb.norm_vec.x),
+                                          b2Vec2((sb.x + sb.weapon->spawnPoint.x) / stuff::SCALE, (sb.y+ sb.weapon->spawnPoint.y) / stuff::SCALE) ),world,true )){
+                    return;
+                }
 			sb.weapon->cooldown = sb.weapon->maxCooldown;
 			int entityID = cc->getUniqueID();
 			cc->createComponent<Physics>(entityID);
@@ -82,12 +88,13 @@ public:
 			cc->getComponent<Physics>(entityID)->body = world->CreateBody(&sb.weapon->bulletBodyDef);
 			cc->getComponent<Physics>(entityID)->body->CreateFixture(&sb.weapon->bulletFixDef);
             
-            cc->createComponent<CallbackCmp>(entityID);
+            /*cc->createComponent<CallbackCmp>(entityID);
             cc->getComponent<CallbackCmp>(entityID)->callbacks["bullet_begin"]=([this, entityID](){
                 EventChannel chan;
                 chan.broadcast(DeleteThisShit(entityID));
-            });
+            });*/
             
+
 
 
 			if (sb.weapon->bulletGraphics.graphicsType) {
@@ -124,4 +131,95 @@ public:
 		p.y = ynew + cy;
 		return p;
 	}
+
+	bool chceckVis(const b2Vec2& pos1, const b2Vec2& pos2, b2World* world, bool dynamic, bool threeWay=0)
+    {
+    using namespace stuff;
+    bool hit(0);
+    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+        for (b2Fixture* f = b->GetFixtureList(); f; f = f->GetNext())
+        {
+            if(f->IsSensor())
+                continue;
+            if(b->GetType()==b2_dynamicBody && !dynamic)
+                break;
+            if(cc->getComponent<Bot>((intptr_t)b->GetUserData())!=nullptr)
+                break;
+
+            if(cc->getComponent<Player>((intptr_t)b->GetUserData())!=nullptr)
+                break;
+
+            b2RayCastOutput output;
+            b2RayCastInput input;
+            input.p1=pos1;
+            input.p2 =pos2;
+            input.maxFraction = 1;
+#ifdef __APPLE__
+            if ( f->RayCast( &output, input,0) )
+            {
+                hit=true;
+            }
+            if(threeWay)
+            {
+                float wide=25.f;
+                double ang1=atan2(pos2.y -pos1.y, pos2.x-pos1.x);
+                b2Vec2 one,two;
+                one=b2Vec2(pos1.x + (wide/SCALE)*cos(ang1-degtorad(90)), pos1.y + (wide/SCALE)*sin(ang1-degtorad(90)));
+                two=b2Vec2(pos2.x + (wide/SCALE)*cos(ang1-degtorad(90)), pos2.y + (wide/SCALE)*sin(ang1-degtorad(90)));
+                input.p1=one;
+                input.p2 =two;
+                input.maxFraction = 1;
+
+                if ( f->RayCast( &output, input,0) )
+                {
+                    hit=true;
+                }
+
+                one=b2Vec2(pos1.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos1.y + (wide/SCALE)*sin(ang1+degtorad(90)));
+                two=b2Vec2(pos2.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos2.y + (wide/SCALE)*sin(ang1+degtorad(90)));
+                input.p1=one;
+                input.p2 =two;
+                input.maxFraction = 1;
+
+                if ( f->RayCast( &output, input ,0) )
+                {
+                    hit=true;
+                }
+            }
+#else
+            if ( f->RayCast( &output, input) )
+            {
+                hit=true;
+            }
+            if(threeWay)
+            {
+                float wide=25.f;
+                double ang1=atan2(pos2.y -pos1.y, pos2.x-pos1.x);
+                b2Vec2 one,two;
+                one=b2Vec2(pos1.x + (wide/SCALE)*cos(ang1-degtorad(90)), pos1.y + (wide/SCALE)*sin(ang1-degtorad(90)));
+                two=b2Vec2(pos2.x + (wide/SCALE)*cos(ang1-degtorad(90)), pos2.y + (wide/SCALE)*sin(ang1-degtorad(90)));
+                input.p1=one;
+                input.p2 =two;
+                input.maxFraction = 1;
+
+                if ( f->RayCast( &output, input) )
+                {
+                    hit=true;
+                }
+
+                one=b2Vec2(pos1.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos1.y + (wide/SCALE)*sin(ang1+degtorad(90)));
+                two=b2Vec2(pos2.x + (wide/SCALE)*cos(ang1+degtorad(90)), pos2.y + (wide/SCALE)*sin(ang1+degtorad(90)));
+                input.p1=one;
+                input.p2 =two;
+                input.maxFraction = 1;
+
+                if ( f->RayCast( &output, input ) )
+                {
+                    hit=true;
+                }
+            }
+#endif
+        }
+    return !hit;
+    }
 };

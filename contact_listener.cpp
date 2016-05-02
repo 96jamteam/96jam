@@ -3,7 +3,7 @@
 //  heist
 //
 //  Created by Janek on 06/04/16.
-//  Copyright Â© 2016 Janek. All rights reserved.
+//  Copyright © 2016 Janek. All rights reserved.
 //
 
 #include "contact_listener.h"
@@ -12,6 +12,8 @@
 #include "callback_cmp.h"
 #include "physics_cmp.h"
 #include <cstdint>
+#include "eventchannel.h"
+#include "structures_for_broadcast.h"
 
 ContactListener::ContactListener(ComponentContainer* _cc) : cc(_cc){}
 
@@ -42,6 +44,15 @@ void ContactListener::BeginContact(b2Contact* contact)
         else{
             callback(entityIDa,"_begin");
         }
+        
+        if(contactNameA->name == "bullet"){
+            EventChannel chan;
+            chan.broadcast(DeleteThisShit(entityIDa));
+        }
+        if(contactNameB->name == "bullet"){
+            EventChannel chan;
+            chan.broadcast(DeleteThisShit(entityIDb));
+        }
     }
 
 }
@@ -55,7 +66,7 @@ void ContactListener::callback(int id, std::string s){
 }
 
 void ContactListener::EndContact(b2Contact* contact)
-{
+{/*
     b2Fixture* fixtureA = contact->GetFixtureA();
     b2Body* bodyA = fixtureA->GetBody();
     intptr_t entityIDa = (intptr_t)bodyA->GetUserData();
@@ -80,5 +91,5 @@ void ContactListener::EndContact(b2Contact* contact)
         else{
             callback(entityIDa,"_end");
         }
-    }
+    }*/
 }

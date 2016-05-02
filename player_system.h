@@ -24,6 +24,7 @@ class PlayerSystem : public System {
 	WeaponC* weapon;
     sf::Clock clock;
     KeyboardManager km;
+    bool shot;
 public:
 
 
@@ -35,6 +36,7 @@ public:
         mChannel.add<PhysicsUpdate>(*this);
         mChannel.add<KillPlayer>(*this);
         km.load("controls.txt");
+        shot=0;
     }
 
     virtual ~PlayerSystem()
@@ -51,9 +53,12 @@ public:
 			transform = cc->getComponent<Transform>((*players)[i].entityID);
 
 			if (transform != nullptr) {
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) ){
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && !shot ){
 					shoot(i);
+					shot=1;
 				}
+				if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+                    shot=0;
 
 			}
 		}

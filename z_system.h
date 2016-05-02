@@ -145,7 +145,8 @@ public:
                 for (int i = 0; i < (*menus)[j].screens.at((*menus)[j].actualScreen).guiSystem.size(); i++) {
 					transform = cc->getComponent<Transform>((*menus)[j].entityID);
                     if (transform != nullptr) {
-                        (*menus)[j].screens.at((*menus)[j].actualScreen).guiSystem[i].setPosition(sf::Vector2f(transform->x- (*menus)[j].screens.at((*menus)[j].actualScreen).origin.x, transform->y - (*menus)[j].screens.at((*menus)[j].actualScreen).origin.y));
+                        (*menus)[j].screens.at((*menus)[j].actualScreen).guiSystem[i].setPosition(sf::Vector2f(transform->x- (*menus)[j].screens.at((*menus)[j].actualScreen).guiSystem[i].origin.x,
+                                                                                                                transform->y - (*menus)[j].screens.at((*menus)[j].actualScreen).guiSystem[i].origin.y));
                         (*menus)[j].screens.at((*menus)[j].actualScreen).guiSystem[i].show();
                     }
                 }
