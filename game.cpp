@@ -113,21 +113,22 @@ void Game::createMenus() {
 
 		container.getComponent<Transform>(ID)->x = 100;
 		container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
-		int xsize = 300;
+		int xsize = 500;
+		int dim_y = 128;
 		container.getComponent<Menu>(ID)->name = "main";
 		container.getComponent<Menu>(ID)->z = 10000;
 
 		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
 		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "options");
 		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1.5), sf::Vector2f(xsize, 64), 4, false, *gui,
+                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, dim_y * 1.5), sf::Vector2f(xsize, dim_y), 4, false, *gui,
 		{ std::make_pair("Play", "start"), std::make_pair("Options", "options_msg"), std::make_pair("Quit", "quit_msg") });
 		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 1), sf::Vector2f(xsize, 64), 4, false, *gui,
+                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, dim_y * 1), sf::Vector2f(1070, dim_y), 4, false, *gui,
 		{ std::make_pair("Reset Game Saves", "reset_msg"),std::make_pair("Back", "back_msg") });
 
 		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 512.0 * 1), sf::Vector2f(xsize, 64), 4, false, *gui2,
+                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 512.0 * 1), sf::Vector2f(xsize, dim_y/2.f), 4, false, *gui2,
 		{ std::make_pair("To change the volume edit the config file and restart the game", "ok") });
 
 
@@ -175,6 +176,10 @@ void Game::createMenus() {
 		gui = Stylesheets.Get("text");
 		gui->font = fonts.Get(gui->fontName);
 
+		GuiStyle* gui2;
+		gui2 = Stylesheets.Get("no_highlight");
+		gui2->font = fonts.Get(gui2->fontName);
+
 		int ID = container.getUniqueID();
 		container.createComponent<Transform>(ID);
 
@@ -196,7 +201,7 @@ void Game::createMenus() {
 		{  std::make_pair("Next level", "next_msg"), std::make_pair("Quit", "quit_msg") });
 
 		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 600), sf::Vector2f(500, 256), 4, false, *gui,
+                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 600), sf::Vector2f(500, 256), 4, false, *gui2,
 		{ std::make_pair("U  RECT DEM"," die_msg") });
 		/*MenuFactory::get().addGui(*
                             container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
@@ -228,6 +233,10 @@ void Game::createMenus() {
 		gui = Stylesheets.Get("text");
 		gui->font = fonts.Get(gui->fontName);
 
+		GuiStyle* gui2;
+		gui2 = Stylesheets.Get("no_highlight");
+		gui2->font = fonts.Get(gui2->fontName);
+
 		int ID = container.getUniqueID();
 		container.createComponent<Transform>(ID);
 
@@ -245,8 +254,12 @@ void Game::createMenus() {
 
 		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
 		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1.5), sf::Vector2f(xsize, 64), 4, false, *gui,
-		{ std::make_pair("You  Died","die_msg"), std::make_pair("Restart", "restart_msg"), std::make_pair("Quit", "quit_msg") });
+                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1), sf::Vector2f(xsize, 64), 4, false, *gui,
+		{ std::make_pair("Restart", "restart_msg"), std::make_pair("Quit", "quit_msg") });
+
+		MenuFactory::get().addGui(*
+                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 600), sf::Vector2f(500, 256), 4, false, *gui2,
+		{ std::make_pair("U DIED BRO"," kupa") });
 		/*MenuFactory::get().addGui(*
                             container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
 		{ std::make_pair("Back", "back_msg") });*/

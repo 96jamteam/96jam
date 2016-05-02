@@ -18,7 +18,7 @@ bool AnimationManager::addFromPath(const std::string& path, Manager<sf::Texture,
 
     XML doc;
     doc.load(path);
-    
+
 
     for (auto & anim_xml: doc.iter("animations")){
 
@@ -33,10 +33,10 @@ bool AnimationManager::addFromPath(const std::string& path, Manager<sf::Texture,
         }else{
             for(int y = 0; y < anim_xml->get<int>(":rows"); y++){
                 for(int x = 0; x < anim_xml->get<int>(":cols"); x++){
-                    animation.addFrame(sf::IntRect(anim_xml->get<int>(":width")*(x-1)+anim_xml->get<int>(":offsetX"), anim_xml->get<int>(":height")*(y-1)+anim_xml->get<int>(":offsetY"), anim_xml->get<int>(":width"), anim_xml->get<int>(":height")));
-                    P("x: " << anim_xml->get<int>(":width")*x+anim_xml->get<int>(":offsetX"));
-                      P("y: " << anim_xml->get<int>(":height")*y+anim_xml->get<int>(":offsetY"));
-                      P("w: " <<  anim_xml->get<int>(":width"));
+                    animation.addFrame(sf::IntRect(anim_xml->get<int>(":width")*(x), anim_xml->get<int>(":height")*(y), anim_xml->get<int>(":width"), anim_xml->get<int>(":height")));
+                    P("WWWW " << anim_xml->get<int>(":offsetX"));
+                    P("x: " << anim_xml->get<int>(":width")*(x));
+                      P("y: " << anim_xml->get<int>(":height")*(y));
                       P("h: " <<anim_xml->get<int>(":height"));
                 }
             }
