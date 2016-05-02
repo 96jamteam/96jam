@@ -22,16 +22,17 @@
         <transform x="500" y="500" angle="0"></transform>
         <contact_name name="pudlo"></contact_name>
         <body type="dynamic" angularDamping="5" linearDamping="5" bullet="0">
-            <fixture density="201" friction="1" restitution="0.5" isSensor="0" filter="0" shape="box" width="50" height="50"></fixture>
-  <entity name="rescue">
-    <puzzle  name="rescue" activator="player_begin"></puzzle>
-    <transform x="700" y="570" angle="0"></transform>
-    <body type="dynamic" angularDamping="5" linearDamping="5" bullet="0">
-    </body>
-      <fixture density="201" friction="1" restitution="0.5" isSensor="1" filter="0" shape="box" width="50" height="50"></fixture>
-  </entity>
+            <fixture density="201" friction="1" restitution="0.5" isSensor="0" filter="0" shape="box" width="50" height="50"></fixture>  
         </body>
     </entity>
+	
+	<entity name="rescue">
+		<puzzle  name="rescue" activator="player_begin"></puzzle>
+		<transform x="700" y="570" angle="0"></transform>
+		<body type="dynamic" angularDamping="5" linearDamping="5" bullet="0">    
+			<fixture density="201" friction="1" restitution="0.5" isSensor="1" filter="0" shape="box" width="50" height="50"></fixture>
+		</body>
+	</entity>
     
     <entity name="sensor">
         <transform x="500" y="570" angle="0"></transform>

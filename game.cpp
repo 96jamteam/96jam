@@ -29,7 +29,7 @@ void Game::run()
     #else
     world = new b2World(Gravity, 1);
     #endif
-
+SceneManager::init();
     world->SetContactListener(&contactlistener);
 createWindowAndStuff();
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
