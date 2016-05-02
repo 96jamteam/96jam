@@ -15,6 +15,8 @@
 #include "remove_system.h"
 #include "puzzle_system.h"
 
+#include <fstream>
+
 Game::Game() : contactlistener(ContactListener(&container))
 {
     worldLoader = std::make_shared<WorldLoader>( this );
@@ -116,8 +118,8 @@ void Game::createMenus() {
                             container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1.5), sf::Vector2f(xsize, 64), 4, false, *gui,
 		{ std::make_pair("Start", "start"), std::make_pair("Options", "options_msg"), std::make_pair("Quit", "quit_msg") });
 		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
-		{ std::make_pair("Back", "back_msg") });
+                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 1), sf::Vector2f(xsize, 64), 4, false, *gui,
+		{ std::make_pair("Reset Game Saves", "reset_msg"),std::make_pair("Back", "back_msg") });
 		MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "options_msg", "options");
 		MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "options", "back_msg", "main");
 		MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "start", "options");
@@ -127,6 +129,14 @@ void Game::createMenus() {
 			mChannel.broadcast(PlaySound("click.wav"));
 			mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
 			mChannel.broadcast(Engine::StopEvent()); });
+
+        MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "reset_msg",
+                                    [this]() {
+                                    std::ofstream outfile;
+                                    outfile.open("levels//save.xml");
+                                    outfile << std::string(" <save level=\"") <<0<<std::string("\"></save> ") << std::endl;
+                                    outfile.close();
+                                    });
 
 		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "start",
 			[this]() {
