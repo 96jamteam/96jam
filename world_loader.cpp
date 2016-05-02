@@ -171,6 +171,9 @@ void WorldLoader::loadBot(XML& xml, const int & entity)
 
     game->container.createComponent<Bot>(entity);
     game->container.getComponent<Bot>(entity)->speed = xml.get<float>(":speed");
+    game->container.getComponent<Bot>(entity)->heSees = 2147483647;
+    game->container.getComponent<Bot>(entity)->target.x = -69.6969696969f;
+    game->container.getComponent<Bot>(entity)->freeWalkingAngle = float(rand()%10000)/10000.f*2*stuff::PI;
 }
 
 void WorldLoader::loadWeapons(XML& xml, const int & entity) {

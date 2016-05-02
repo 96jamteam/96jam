@@ -11,6 +11,8 @@
 #include "debug_draw_system.h"
 #include "bullet_system.h"
 #include "bot_system.h"
+#include "particle_system.h"
+#include "remove_system.h"
 #include "puzzle_system.h"
 
 Game::Game() : contactlistener(ContactListener(&container))
@@ -41,10 +43,12 @@ createWindowAndStuff();
     engine.add(std::shared_ptr<System>(new PhysicsSystem(world,container)));
     engine.add(std::shared_ptr<System>(new ZSystem(&window, &container, &views)));
     engine.add(std::shared_ptr<System>(new SoundSystem()));
-    engine.add(std::shared_ptr<System>(new BotSystem(&container)));
+    engine.add(std::shared_ptr<System>(new BotSystem(&container,world)));
+    engine.add(std::shared_ptr<System>(new ParticleSystem(&container)));
 
+        engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
+    engine.add(std::shared_ptr<System>(new RemoveSystem(&container)));
 
-    engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
 
     EventChannel chan;
 

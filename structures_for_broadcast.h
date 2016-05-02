@@ -95,6 +95,12 @@ struct SceneUpdate {
 	SceneUpdate(){}
 };
 
+struct AddParticle {
+    AddParticle(float _x, float _y) : x(_x), y(_y){
+    }
+    float x, y;
+};
+
 struct ShootBullet {
 	ShootBullet(Weapon* _weapon, const float& _x, const float& _y, const sf::Vector2f& _norm_vec, const int& _sceneID) : sceneID(_sceneID), weapon(_weapon), x(_x), y(_y), norm_vec(_norm_vec) {}
 	Weapon* weapon;
@@ -103,3 +109,8 @@ struct ShootBullet {
 	sf::Vector2f norm_vec;
 };
 
+
+struct DeleteThisShit {
+	DeleteThisShit(int id) : entityid(id){}
+	int entityid;
+};

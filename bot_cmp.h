@@ -13,8 +13,13 @@
 
 class Bot : public Component{
 public:
-    sf::Vector2f vel;
+    sf::Vector2f pos;
+    bool isLooking;
     float speed;
+    unsigned int heSees;
+    sf::Vector2f target;
+
+    float freeWalkingAngle;
 };
 
 #endif /* bot_cmp_h */
