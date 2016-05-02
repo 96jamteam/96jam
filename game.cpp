@@ -55,6 +55,7 @@ createWindowAndStuff();
 
     loadAssets("assets.xml");
     createMenus();
+    createGameOverScreen();
 
     chan.broadcast(SpriteAdded());
     chan.broadcast(SceneUpdate());
@@ -143,6 +144,55 @@ void Game::createMenus() {
 
 		MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
 
+	}
+
+	void Game::createGameOverScreen(){
+        int sceneID = SceneManager::addScene("game_over", SceneManager::State::sleep);
+		GuiStyle* gui;
+		gui = Stylesheets.Get("text");
+		gui->font = fonts.Get(gui->fontName);
+
+		int ID = container.getUniqueID();
+		container.createComponent<Transform>(ID);
+
+		container.createComponent<Menu>(ID);
+
+		container.createComponent<Scene>(ID);
+
+		container.getComponent<Scene>(ID)->sceneID = sceneID;
+
+		container.getComponent<Transform>(ID)->x = 100;
+		container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
+		int xsize = 300;
+		container.getComponent<Menu>(ID)->name = "main";
+		container.getComponent<Menu>(ID)->z = 10000;
+
+		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
+		MenuFactory::get().addGui(*
+                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1.5), sf::Vector2f(xsize, 64), 4, false, *gui,
+		{ std::make_pair("You died","die_msg"), std::make_pair("Restart", "restart_msg"), std::make_pair("Quit", "quit_msg") });
+		/*MenuFactory::get().addGui(*
+                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
+		{ std::make_pair("Back", "back_msg") });*/
+		//MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "options_msg", "options");
+		//MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "options", "back_msg", "main");
+		//MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "start", "options");
+
+		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "quit_msg",
+			[this]() {
+			//mChannel.broadcast(PlaySound("click.wav"));
+			//mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
+			mChannel.broadcast(Engine::StopEvent()); });
+
+		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "restart_msg",
+			[this]() {
+			//mChannel.broadcast(PlaySound("electro.wav"));
+
+			SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
+			mChannel.broadcast(LoadWorld("normal", SceneManager::addScene("game", SceneManager::State::active)));
+		});
+
+		MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
 	}
 
 	void Game::createWindowAndStuff() {
