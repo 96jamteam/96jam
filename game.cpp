@@ -28,7 +28,7 @@ void Game::run()
 	world = new b2World(Gravity);
     world->SetAllowSleeping(false);
     #else
-    world = new b2World(Gravity, 1);
+    world = new b2World(Gravity, 0);
     #endif
 SceneManager::init();
     world->SetContactListener(&contactlistener);
@@ -166,13 +166,17 @@ void Game::createMenus() {
 		container.getComponent<Transform>(ID)->x = 100;
 		container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
 		int xsize = 300;
-		container.getComponent<Menu>(ID)->name = "main";
+		container.getComponent<Menu>(ID)->name = "win_menu";
 		container.getComponent<Menu>(ID)->z = 10000;
 
 		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
 		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1.5), sf::Vector2f(xsize, 64), 4, false, *gui,
-		{ std::make_pair("U RECT DEM"," die_msg"), std::make_pair("Next level", "next_msg"), std::make_pair("Quit", "quit_msg") });
+                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1), sf::Vector2f(xsize, 64), 4, false, *gui,
+		{  std::make_pair("Next level", "next_msg"), std::make_pair("Quit", "quit_msg") });
+
+		MenuFactory::get().addGui(*
+                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 600), sf::Vector2f(500, 256), 4, false, *gui,
+		{ std::make_pair("U  RECT DEM"," die_msg") });
 		/*MenuFactory::get().addGui(*
                             container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
 		{ std::make_pair("Back", "back_msg") });*/
@@ -189,7 +193,7 @@ void Game::createMenus() {
 		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "next_msg",
 			[this]() {
 			//mChannel.broadcast(PlaySound("electro.wav"));
-            SceneManager::modState("game",SceneManager::destroy);
+            //SceneManager::modState("game",SceneManager::destroy);
 			SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
 			mChannel.broadcast(LoadWorld("next", SceneManager::addScene("game", SceneManager::State::active)));
 		});

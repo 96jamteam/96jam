@@ -17,7 +17,6 @@ public:
 		//po nacisnieciu przycisku odbierana jest wiadomosc, do niej jest przypisana funkcja w mapie actions
 		std::map<std::string, std::function<void()> > actions;
 
-		sf::Vector2f origin;
 	};
 
 	//lista ekranow np. glowne menu, opcje, wybor gry itd
@@ -28,7 +27,7 @@ public:
 
 	//nazwa menu
 	std::string name;
-    
+
     float z;
 };
 
@@ -43,14 +42,15 @@ public:
 		GuiStyle& style, std::vector<std::pair<std::string, std::string>> entries){
 		menu.screens[screenName].guiSystem.push_back(Gui(dimensions, padding, horizontal, style, entries));
 		menu.screens[screenName].guiSystem[menu.screens[screenName].guiSystem.size() - 1].setPosition(origin);
-		menu.screens[screenName].origin = origin;
+		menu.screens[screenName].guiSystem[menu.screens[screenName].guiSystem.size() - 1].origin = origin;
 		menu.screens[screenName].guiSystem[menu.screens[screenName].guiSystem.size() - 1].show();
 	}
 
 	void addGui(Menu& menu, std::string screenName, sf::Vector2f origin, Gui gui){
 		menu.screens[screenName].guiSystem.push_back(gui);
 		menu.screens[screenName].guiSystem[menu.screens[screenName].guiSystem.size() - 1].setPosition(origin);
-		menu.screens[screenName].origin = origin;
+		//menu.screens[screenName].origin = origin;
+        menu.screens[screenName].guiSystem[menu.screens[screenName].guiSystem.size() - 1].origin = origin;
 		menu.screens[screenName].guiSystem[menu.screens[screenName].guiSystem.size() - 1].show();
 	}
 
