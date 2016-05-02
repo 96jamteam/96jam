@@ -31,12 +31,23 @@ public:
 	}
 
 	virtual ~SoundSystem() {
-		for (auto it = mPlaying.begin(); it != mPlaying.end(); mPlaying.erase(it++))
-			delete *it;
-		for (auto it = mMusic.begin(); it != mMusic.end(); mMusic.erase(it++))
-			delete it->second;
+        //for (auto it = mPlaying.begin(); it != mPlaying.end(); mPlaying.erase(it++))
+        //    (*it)->stop();
+		//for (auto it = mPlaying.begin(); it != mPlaying.end(); mPlaying.erase(it++))
+		//	delete *it;
+        
+		//for (auto it = mMusic.begin(); it != mMusic.end(); mMusic.erase(it++))
+		//	 it->second->stop();
+        //for (auto it = mMusic.begin(); it != mMusic.end(); mMusic.erase(it++))
+         //   delete it->second;
 
 	}
+    
+    void destroy(){
+        mPlaying.clear();
+        mMusic.clear();
+        mBuffers.clear();
+    }
 
 
 	virtual void update() {
@@ -54,7 +65,7 @@ public:
 			{
 				if ((*it)->getStatus() == sf::Sound::Stopped)
 				{
-					delete *it;
+					//delete *it;
 					mPlaying.erase(it++);
 				}
 				else
@@ -101,10 +112,10 @@ public:
 		if (name.empty())
 			name = hand.file;
 
-		mMusic[name] = new sf::Music();
-		sf::Music* m = mMusic[name];
+        mMusic[name] = std::make_shared<sf::Music>();
+		//sf::Music* m = mMusic[name];
 
-		if (!m->openFromFile(hand.file)){
+		if (!mMusic[name]->openFromFile(hand.file)){
 			mMusic.erase(name);
 			return;
 		}
@@ -154,8 +165,8 @@ private:
 	float mUpdated, musicVolume, soundVolume;
 	std::unordered_map<std::string, sf::SoundBuffer> mBuffers;
 	std::string mCurrentSong;
-	std::unordered_map<std::string, sf::Music*> mMusic;
-	std::list<sf::Sound*> mPlaying;
+    std::unordered_map<std::string, std::shared_ptr<sf::Music>> mMusic;
+	std::list<std::shared_ptr<sf::Sound>> mPlaying;
 	std::function<void(const std::string&)> mMusicCallback;
 	sf::Clock clock;
 };

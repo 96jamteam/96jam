@@ -13,5 +13,6 @@
   <texture name="piupiu" path="piupiu.png"></texture>
   <texture name="chodzenie" path="chodzenie.png"></texture>
   <texture name="bullet" path="bullet.png"></texture>
+  <texture name="howtoplay" path="assets/textures/howtoplay.png"></texture>
   <animation path="anim.xml"></animation>
 </assets>

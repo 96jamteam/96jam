@@ -38,7 +38,7 @@ void Game::run()
     world->SetContactListener(&contactlistener);
 
     createWindowAndStuff();
-
+    std::shared_ptr<SoundSystem> sound(new SoundSystem());
     engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
     engine.add(std::shared_ptr<System>(new PuzzleSystem(container)));
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));
@@ -49,11 +49,11 @@ void Game::run()
     engine.add(std::shared_ptr<System>(new BulletSystem(&container,world)));
     engine.add(std::shared_ptr<System>(new PhysicsSystem(world,container)));
     engine.add(std::shared_ptr<System>(new ZSystem(&window, &container, &views)));
-    engine.add(std::shared_ptr<System>(new SoundSystem()));
+    engine.add(sound);
     engine.add(std::shared_ptr<System>(new BotSystem(&container,world)));
     engine.add(std::shared_ptr<System>(new ParticleSystem(&container)));
 
-    engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
+    //engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
     engine.add(std::shared_ptr<System>(new RemoveSystem(&container)));
 
     EventChannel chan;
@@ -65,9 +65,10 @@ void Game::run()
 
     chan.broadcast(SpriteAdded());
     chan.broadcast(SceneUpdate());
-    chan.add<PlayerShooting>(*this);
+    //chan.add<PlayerShooting>(*this);
 
     engine.run();
+    sound->destroy();
 }
 
 void Game::loadAssets(const std::string& path)

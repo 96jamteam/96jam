@@ -1,0 +1,58 @@
+<entities>
+    
+    <entity name="background">
+        <transform x="0" y="0" angle="0"></transform>
+        <sprites>
+            <sprite texture="howtoplay" z="0" origin_x="0" origin_y="0" scale="1"></sprite>
+        </sprites>
+    </entity>
+
+<entity name="wall"><transform x="84.277824989517" y="720.48297489202" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="17" height="1244.2922185855"></fixture></body></entity><entity name="wall"><transform x="187.77782498952" y="1332.6290841847" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="222" height="22"></fixture></body></entity><entity name="wall"><transform x="525.77782498952" y="1332.6290841848" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="252" height="20"></fixture></body></entity><entity name="wall"><transform x="641.77782498952" y="828.76477147732" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="20" height="987.72862541492"></fixture></body></entity><entity name="wall"><transform x="450.27782498952" y="589.40045876988" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="379" height="5"></fixture></body></entity><entity name="wall"><transform x="518.27782498952" y="690.90045876987" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="195" height="162"></fixture></body></entity><entity name="wall"><transform x="560.77782498952" y="869.2955257865" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="116" height="125"></fixture></body></entity><entity name="wall"><transform x="517.27782498952" y="1053.9190539802" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="181" height="163"></fixture></body></entity><entity name="wall"><transform x="713.23677360359" y="496.71755656693" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="133" height="149"></fixture></body></entity><entity name="wall"><transform x="1036.8453296107" y="602.81491267029" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="778.21711201407" height="22.805287793278"></fixture></body></entity><entity name="wall"><transform x="1308.9538856177" y="354.37180907186" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="244" height="512.08091940358"></fixture></body></entity><entity name="wall"><transform x="514.62016321718" y="111.33134937007" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="856.66744480092" height="22"></fixture></body></entity><entity name="wall"><transform x="356.78644081671" y="247.33134937007" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="229" height="294"></fixture></body></entity><entity name="wall"><transform x="171.28644081671" y="180.33134937007" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="142" height="112"></fixture></body></entity><entity name="wall"><transform x="635.28644081671" y="168.33134937007" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="18" height="102"></fixture></body></entity><entity name="wall"><transform x="1620.405477054" y="601.26773140252" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="388.18369760031" height="23.437506270207"></fixture></body></entity><entity name="wall"><transform x="1813.7649037833" y="1189.3996799145" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="42.480480114751" height="1208.4904681454"></fixture></body></entity><entity name="wall"><transform x="951.36924396975" y="1765.0804532203" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="1767.2717997417" height="60.058609817406"></fixture></body></entity><entity name="wall"><transform x="85.311473801558" y="1535.0999229439" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="23.437506270207" height="399.90245073542"></fixture></body></entity><entity name="wall"><transform x="1115.7727063074" y="110.23585995428" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="142.12209948158" height="19.739180483552"></fixture></body></entity><entity name="wall"><transform x="994.57413813842" y="91.681030299733" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="103.43330573382" height="18.160046044868"></fixture></body></entity>
+
+
+<entity name="player">
+    <transform x="1200" y="1000" angle="0"></transform>
+    
+    <player speed="9000"></player>
+    
+    <animations>
+        <sprite animation="playerwalking" z="100" origin_x="108" origin_y="130"></sprite>
+    </animations>
+    
+    <weapons>
+        
+        <weapon cooldown="0.05" speed="5000" spawnBullets="1" spread="10" magazine="100" bulletDmg="10" origin_x="25" origin_y="25"
+            bulletAnimTexName="square" bulletOrigin_x="0" bulletOrigin_y="0" scale="2" bulletAnimation="" spawnPoint_x="80" spawnPoint_y="0">
+            <body type="dynamic" angularDamping="0" linearDamping="0" bullet="1">
+                <fixture density="201" friction="1" restitution="0.5" isSensor="0" filter="0" shape="polygon" radius="25" width="50" height="50" relative_pos_x="0" relative_pos_y="0">
+                    <vertex x="-10" y="20"></vertex>
+                    <vertex x="-10" y="0"></vertex>
+                    <vertex x="0" y="-30"></vertex>
+                    <vertex x="10" y="0"></vertex>
+                    <vertex x="10" y="10"></vertex>
+                </fixture>
+            </body>
+        </weapon>
+        <weapon cooldown="0.05" speed="5000" spawnBullets="1" spread="10" magazine="100" bulletDmg="10" origin_x="1000" origin_y="150"
+            bulletAnimTexName="bullet" bulletOrigin_x="0" bulletOrigin_y="0" scale="2" bulletAnimation="" spawnPoint_x="80" spawnPoint_y="0">
+            <body type="dynamic" angularDamping="0" linearDamping="0" bullet="1">
+                <fixture density="201" friction="1" restitution="0.5" isSensor="0" filter="0" shape="box" width="40" height="3" relative_pos_x="0" relative_pos_y="0">
+                </fixture>
+            </body>
+        </weapon>
+        <weapon cooldown="1" speed="5000" spawnBullets="1" spread="10" magazine="100" bulletDmg="10" origin_x="6" origin_y="6"
+            bulletAnimTexName="bullet" bulletOrigin_x="0" bulletOrigin_y="0" scale="2" bulletAnimation="" spawnPoint_x="80" spawnPoint_y="0">
+            <body type="dynamic" angularDamping="0" linearDamping="0" bullet="1">
+                <fixture density="201" friction="1" restitution="0.5" isSensor="0" filter="0" shape="circle" radius="6" relative_pos_x="0" relative_pos_y="0">
+                </fixture>
+            </body>
+        </weapon>
+        
+    </weapons>
+    <body type="dynamic" angularDamping="100" linearDamping="6" bullet="0" fixedRotation="1">
+        <fixture density="201" friction="1" restitution="0" isSensor="0" filter="0" shape="circle" radius="30" relative_pos_x="0" relative_pos_y="0"></fixture>
+    </body>
+</entity>
+</entities>
+
+
