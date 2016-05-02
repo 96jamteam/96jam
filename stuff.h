@@ -9,7 +9,7 @@
 #include <vector>
 #include <cstddef>
 
-//# define P(x) std::cout<<x<<std::endl ;
+# define P(x) std::cout<<x<<std::endl ;
 
 # define SNIEGY ;
 //https://github.com/SFML/SFML/wiki/Tutorial:-Object-Properties

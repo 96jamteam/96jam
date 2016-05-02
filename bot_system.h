@@ -124,19 +124,30 @@ public:
 
             vel = sf::Vector2f((*bots)[i].target.x-b_x,(*bots)[i].target.y-b_y);
             stuff::norm_vec(vel);
-
+             float lookingAngle;
             if((*bots)[i].target.x == -69.6969696969f)
             {
-                (*bots)[i].freeWalkingAngle += float(rand()%100-50)/100.f* 1.f;
-                //(*bots)[i].freeWalkingAngle += 1.0f;
+                //tutaj bot sobie chodzi wesolo dookola
+                (*bots)[i].freeWalkingAngle += float( (rand()%100))*(*bots)[i].minuss/100.f*2.f*e.timestep;
                 vel = sf::Vector2f((float)sin((*bots)[i].freeWalkingAngle), (float)cos((*bots)[i].freeWalkingAngle));
-                stuff::norm_vec(vel);
+                vel=stuff::norm_vec(vel);
+                if((vel.x+0.1>(*bots)[i].nvel.x && vel.x-0.1<(*bots)[i].nvel.x && vel.y+0.1>(*bots)[i].nvel.y && vel.y-0.1<(*bots)[i].nvel.y )||(*bots)[i].nvel.x==0 && (*bots)[i].nvel.y==0){
+                    float angle(((rand()%10000)-5000)/10000.f);
+                   (*bots)[i]. nvel = sf::Vector2f((float)sin(angle), (float)cos(angle));
+                    (*bots)[i].nvel = stuff::norm_vec((*bots)[i].nvel);
+                    (*bots)[i].minuss=(*bots)[i].minuss/abs((*bots)[i].minuss);
+                    (*bots)[i].minuss*=-1;
+                    (*bots)[i].minuss*=stuff::random(1.f,3.f);
+                    (*bots)[i].walk=1 - (rand()%2)*(rand()%2);
 
-                vel.x *= 40;
-                vel.y *= 40;
+                }
+                lookingAngle = atan(vel.y/vel.x)-stuff::PI/2 - (vel.x > 0.f ? stuff::PI : 0.f);
+                vel.x *= (40*((*bots)[i].walk));
+                vel.y *= (40*((*bots)[i].walk));
             }
+            else
+                lookingAngle = atan(vel.y/vel.x)-stuff::PI/2 - (vel.x > 0.f ? stuff::PI : 0.f);
 
-            float lookingAngle = atan(vel.y/vel.x)-stuff::PI/2 - (vel.x > 0.f ? stuff::PI : 0.f);
 
 
             float xb = vel.x * (*bots)[i].speed;
@@ -150,7 +161,7 @@ public:
 
             if (physics != nullptr) {
 physics->body->SetTransform( physics->body->GetPosition(), lookingAngle);
-                if (xb > 0.1 || xb < -0.1 || yb > 0.1 || yb < -0.1) {
+               // if (xb > 0.1 || xb < -0.1 || yb > 0.1 || yb < -0.1) {
                     xb *= e.timestep;
                     yb *= e.timestep;
 
@@ -161,7 +172,7 @@ physics->body->SetTransform( physics->body->GetPosition(), lookingAngle);
                     #else
                     physics->body->ApplyForce(b2Vec2(xb*(*bots)[i].speed*physics->body->GetMass(), yb*(*bots)[i].speed*physics->body->GetMass()), physics->body->GetWorldCenter());
                     #endif
-                }
+                //}
             }
 
         }

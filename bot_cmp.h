@@ -20,6 +20,9 @@ public:
     sf::Vector2f target;
 
     float freeWalkingAngle;
+    sf::Vector2f nvel;
+    int minuss=1;
+    float walk=1;
 };
 
 #endif /* bot_cmp_h */

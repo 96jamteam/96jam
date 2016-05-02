@@ -31,18 +31,9 @@ public:
 	}
 
 	virtual ~SoundSystem() {
-        //for (auto it = mPlaying.begin(); it != mPlaying.end(); mPlaying.erase(it++))
-        //    (*it)->stop();
-		//for (auto it = mPlaying.begin(); it != mPlaying.end(); mPlaying.erase(it++))
-		//	delete *it;
-        
-		//for (auto it = mMusic.begin(); it != mMusic.end(); mMusic.erase(it++))
-		//	 it->second->stop();
-        //for (auto it = mMusic.begin(); it != mMusic.end(); mMusic.erase(it++))
-         //   delete it->second;
-
+        destroy();
 	}
-    
+
     void destroy(){
         mPlaying.clear();
         mMusic.clear();
@@ -65,7 +56,6 @@ public:
 			{
 				if ((*it)->getStatus() == sf::Sound::Stopped)
 				{
-					//delete *it;
 					mPlaying.erase(it++);
 				}
 				else
@@ -113,7 +103,6 @@ public:
 			name = hand.file;
 
         mMusic[name] = std::make_shared<sf::Music>();
-		//sf::Music* m = mMusic[name];
 
 		if (!mMusic[name]->openFromFile(hand.file)){
 			mMusic.erase(name);
