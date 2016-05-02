@@ -236,13 +236,14 @@ void Game::createWinScreen()
 
     container.getComponent<Transform>(ID)->x = 100;
     container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
-    int xsize = 300;
+    int xsize = 570;
+    int dim_y = 128;
     container.getComponent<Menu>(ID)->name = "win_menu";
     container.getComponent<Menu>(ID)->z = 10000;
 
     MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
     MenuFactory::get().addGui(*
-                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1), sf::Vector2f(xsize, 64), 4, false, *gui,
+                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, dim_y * 1), sf::Vector2f(xsize, dim_y), 4, false, *gui,
     {  std::make_pair("Next level", "next_msg"), std::make_pair("Quit", "quit_msg") });
 
     MenuFactory::get().addGui(*
@@ -297,13 +298,14 @@ void Game::createGameOverScreen()
 
     container.getComponent<Transform>(ID)->x = 100;
     container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
-    int xsize = 300;
+    int xsize = 450;
+    int dim_y = 128;
     container.getComponent<Menu>(ID)->name = "main";
     container.getComponent<Menu>(ID)->z = 10000;
 
     MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
     MenuFactory::get().addGui(*
-                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1), sf::Vector2f(xsize, 64), 4, false, *gui,
+                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, dim_y * 1), sf::Vector2f(xsize, dim_y), 4, false, *gui,
     { std::make_pair("Restart", "restart_msg"), std::make_pair("Quit", "quit_msg") });
 
     MenuFactory::get().addGui(*
