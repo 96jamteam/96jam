@@ -113,8 +113,9 @@ private:
 
 	int padding;
 
-public:
 
+public:
+        sf::Vector2f origin;
 	std::vector<GuiEntry> entries;
 
 	bool visible;

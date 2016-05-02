@@ -59,7 +59,7 @@ nextload=0;
             max++;
 		}
         if(done==max && max){
-            //SceneManager::modState("game", SceneManager::State::destroy);
+            SceneManager::modState("game", SceneManager::State::destroy);
             SceneManager::modState("win_scene", SceneManager::State::active);
 
             mChannel.broadcast(SaveLvl());
