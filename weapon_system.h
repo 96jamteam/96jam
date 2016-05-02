@@ -87,13 +87,13 @@ public:
 
 			cc->getComponent<Physics>(entityID)->body = world->CreateBody(&sb.weapon->bulletBodyDef);
 			cc->getComponent<Physics>(entityID)->body->CreateFixture(&sb.weapon->bulletFixDef);
-            
+
             /*cc->createComponent<CallbackCmp>(entityID);
             cc->getComponent<CallbackCmp>(entityID)->callbacks["bullet_begin"]=([this, entityID](){
                 EventChannel chan;
                 chan.broadcast(DeleteThisShit(entityID));
             });*/
-            
+
 
 
 
@@ -141,8 +141,10 @@ public:
         {
             if(f->IsSensor())
                 continue;
+
             if(b->GetType()==b2_dynamicBody && !dynamic)
                 break;
+
             if(cc->getComponent<Bot>((intptr_t)b->GetUserData())!=nullptr)
                 break;
 

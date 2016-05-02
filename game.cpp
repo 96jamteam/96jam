@@ -26,12 +26,12 @@ void Game::run()
 {
     b2Vec2 Gravity(0.f, 0.f);
 
-    #ifdef __APPLE__
-	world = new b2World(Gravity);
+#ifdef __APPLE__
+    world = new b2World(Gravity);
     world->SetAllowSleeping(false);
-    #else
+#else
     world = new b2World(Gravity, 0);
-    #endif
+#endif
 
     SceneManager::init();
 
@@ -69,241 +69,293 @@ void Game::run()
     engine.run();
 }
 
- void Game::loadAssets(const std::string& path){
-        XML xml;
-        xml.load(path);
-        for(auto& asset_xml : xml.iter("assets")){
-            if (asset_xml->getName() == "font"){
-                fonts.addTranslation(asset_xml->get<std::string>(":name"), asset_xml->get<std::string>(":path"));
-				fonts.Get(asset_xml->get<std::string>(":name"));
-            }else if(asset_xml->getName() == "stylesheet"){
-				Stylesheets.addTranslation(asset_xml->get<std::string>(":name"), asset_xml->get<std::string>(":path"));
-				Stylesheets.Get(asset_xml->get<std::string>(":name"));
-            }else if(asset_xml->getName() == "texture"){
-				Textures.addTranslation(asset_xml->get<std::string>(":name"), asset_xml->get<std::string>(":path"));
-				Textures.Get(asset_xml->get<std::string>(":name"));
-            }else if(asset_xml->getName() == "animation"){
-                Animations.addFromPath(asset_xml->get<std::string>(":path"), Textures);
-            }else if (asset_xml->getName() == "music") {
-				mChannel.broadcast(AddMusic(asset_xml->get<std::string>(":path")));
-			}
+void Game::loadAssets(const std::string& path)
+{
+    XML xml;
+    xml.load(path);
+    for(auto& asset_xml : xml.iter("assets"))
+    {
+        if (asset_xml->getName() == "font")
+        {
+            fonts.addTranslation(asset_xml->get<std::string>(":name"), asset_xml->get<std::string>(":path"));
+            fonts.Get(asset_xml->get<std::string>(":name"));
         }
-
-
+        else if(asset_xml->getName() == "stylesheet")
+        {
+            Stylesheets.addTranslation(asset_xml->get<std::string>(":name"), asset_xml->get<std::string>(":path"));
+            Stylesheets.Get(asset_xml->get<std::string>(":name"));
+        }
+        else if(asset_xml->getName() == "texture")
+        {
+            Textures.addTranslation(asset_xml->get<std::string>(":name"), asset_xml->get<std::string>(":path"));
+            Textures.Get(asset_xml->get<std::string>(":name"));
+        }
+        else if(asset_xml->getName() == "animation")
+        {
+            Animations.addFromPath(asset_xml->get<std::string>(":path"), Textures);
+        }
+        else if (asset_xml->getName() == "music")
+        {
+            mChannel.broadcast(AddMusic(asset_xml->get<std::string>(":path")));
+        }
     }
 
-void Game::createMenus() {
 
-		int sceneID = SceneManager::addScene("menu", SceneManager::State::active);
-		GuiStyle* gui;
-		gui = Stylesheets.Get("text");
-		gui->font = fonts.Get(gui->fontName);
+}
 
-		GuiStyle* gui2;
-		gui2 = Stylesheets.Get("no_highlight");
-		gui2->font = fonts.Get(gui2->fontName);
+void Game::createMenus()
+{
 
-		int ID = container.getUniqueID();
-		container.createComponent<Transform>(ID);
+    int sceneID = SceneManager::addScene("menu", SceneManager::State::active);
+    GuiStyle* gui;
+    gui = Stylesheets.Get("text");
+    gui->font = fonts.Get(gui->fontName);
 
-		container.createComponent<Menu>(ID);
+    GuiStyle* gui2;
+    gui2 = Stylesheets.Get("no_highlight");
+    gui2->font = fonts.Get(gui2->fontName);
 
-		container.createComponent<Scene>(ID);
+    int ID = container.getUniqueID();
+    container.createComponent<Transform>(ID);
 
-		container.getComponent<Scene>(ID)->sceneID = sceneID;
+    container.createComponent<Menu>(ID);
 
-		container.getComponent<Transform>(ID)->x = 100;
-		container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
-		int xsize = 500;
-		int dim_y = 128;
-		container.getComponent<Menu>(ID)->name = "main";
-		container.getComponent<Menu>(ID)->z = 10000;
+    container.createComponent<Scene>(ID);
 
-		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
-		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "options");
-		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, dim_y * 1.5), sf::Vector2f(xsize, dim_y), 4, false, *gui,
-		{ std::make_pair("Play", "start"), std::make_pair("Options", "options_msg"), std::make_pair("Quit", "quit_msg") });
-		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, dim_y * 1), sf::Vector2f(1070, dim_y), 4, false, *gui,
-		{ std::make_pair("Reset Game Saves", "reset_msg"),std::make_pair("Back", "back_msg") });
+    container.getComponent<Scene>(ID)->sceneID = sceneID;
 
-		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 512.0 * 1), sf::Vector2f(xsize, dim_y/2.f), 4, false, *gui2,
-		{ std::make_pair("To change the volume edit the config file and restart the game", "ok") });
+    container.getComponent<Transform>(ID)->x = 100;
+    container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
+    int xsize = 500;
+    int dim_y = 128;
+    container.getComponent<Menu>(ID)->name = "main";
+    container.getComponent<Menu>(ID)->z = 10000;
+
+    MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
+    MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "options");
+
+    MenuFactory::get().addGui(*
+                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, dim_y * 1.5), sf::Vector2f(xsize, dim_y), 4, false, *gui,
+    { std::make_pair("Play", "start"), std::make_pair("Options", "options_msg"), std::make_pair("Quit", "quit_msg") });
+
+    MenuFactory::get().addGui(*
+                              container.getComponent<Menu>(ID), "options", sf::Vector2f(0, dim_y * 2), sf::Vector2f(1370, dim_y), 4, false, *gui,
+    { std::make_pair("Reset Game Saves", "reset_msg"),std::make_pair("Set Controls To: WSAD", "wsad_msg"),std::make_pair("Set Controls To: Arrows", "arrows_msg"),std::make_pair("Back", "back_msg") });
 
 
-		MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "options_msg", "options");
-		MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "options", "back_msg", "main");
-		MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "start", "options");
+    MenuFactory::get().addGui(*
+                              container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 512.0 * 1), sf::Vector2f(xsize, dim_y/2.f), 4, false, *gui2,
+    { std::make_pair("To change the volume edit the config file and restart the game", "ok") });
 
-		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "quit_msg",
-			[this]() {
-			mChannel.broadcast(PlaySound("click.wav"));
-			mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
-			mChannel.broadcast(Engine::StopEvent()); });
 
-        MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "reset_msg",
-                                    [this]() {
-                                    std::ofstream outfile;
-                                    outfile.open("levels//save.xml");
-                                    outfile << std::string(" <save level=\"") <<0<<std::string("\"></save> ") << std::endl;
-                                    outfile.close();
-                                    });
+    MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "options_msg", "options");
+    MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "options", "back_msg", "main");
 
-		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "start",
-			[this]() {
-			mChannel.broadcast(PlaySound("electro.wav"));
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "quit_msg",
+                                 [this]()
+    {
+        mChannel.broadcast(PlaySound("click.wav"));
+        mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
+        mChannel.broadcast(Engine::StopEvent());
+    });
 
-			SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
-			mChannel.broadcast(LoadWorld("normal", SceneManager::addScene("game", SceneManager::State::active)));
-		});
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "reset_msg",
+                                 [this]()
+    {
+        std::ofstream outfile;
+        outfile.open("levels//save.xml");
+        outfile << std::string(" <save level=\"") <<0<<std::string("\"></save> ") << std::endl;
+        outfile.close();
+    });
 
-		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "options_msg",
-			[this]() {
-			mChannel.broadcast(PlaySound("click.wav")); });
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "arrows_msg",
+                                 [this]()
+    {
+        std::ofstream outfile;
+        outfile.open("controls.txt");
+        outfile << std::string(" <key name=\"left\" keycode=\"71\"></key><key name=\"right\" keycode=\"72\"></key><key name=\"up\" keycode=\"73\"></key><key name=\"down\" keycode=\"74\"></key> ") << std::endl;
+        outfile.close();
+        mChannel.broadcast(ControlsUpdate());
+    });
 
-		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "back_msg",
-			[this]() {
-			mChannel.broadcast(PlaySound("click.wav")); });
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "wsad_msg",
+                                 [this]()
+    {
+        std::ofstream outfile;
+        outfile.open("controls.txt");
+        outfile << std::string(" <key name=\"left\" keycode=\"0\"></key><key name=\"right\" keycode=\"3\"></key><key name=\"up\" keycode=\"22\"></key><key name=\"down\" keycode=\"18\"></key> ") << std::endl;
+        outfile.close();
+        mChannel.broadcast(ControlsUpdate());
+    });
 
-		MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "start",
+                                 [this]()
+    {
+        mChannel.broadcast(PlaySound("electro.wav"));
 
-	}
+        //SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
+        SceneManager::modState("menu", SceneManager::State::sleep);
+        mChannel.broadcast(LoadWorld("normal", SceneManager::addScene("game", SceneManager::State::active)));
+    });
 
-    void Game::createWinScreen(){
-        int sceneID = SceneManager::addScene("win_scene", SceneManager::State::sleep);
-		GuiStyle* gui;
-		gui = Stylesheets.Get("text");
-		gui->font = fonts.Get(gui->fontName);
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "options_msg",
+                                 [this]()
+    {
+        mChannel.broadcast(PlaySound("click.wav"));
+    });
 
-		GuiStyle* gui2;
-		gui2 = Stylesheets.Get("no_highlight");
-		gui2->font = fonts.Get(gui2->fontName);
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "back_msg",
+                                 [this]()
+    {
+        mChannel.broadcast(PlaySound("click.wav"));
+    });
 
-		int ID = container.getUniqueID();
-		container.createComponent<Transform>(ID);
+    MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
 
-		container.createComponent<Menu>(ID);
+}
 
-		container.createComponent<Scene>(ID);
+void Game::createWinScreen()
+{
+    int sceneID = SceneManager::addScene("win_scene", SceneManager::State::sleep);
+    GuiStyle* gui;
+    gui = Stylesheets.Get("text");
+    gui->font = fonts.Get(gui->fontName);
 
-		container.getComponent<Scene>(ID)->sceneID = sceneID;
+    GuiStyle* gui2;
+    gui2 = Stylesheets.Get("no_highlight");
+    gui2->font = fonts.Get(gui2->fontName);
 
-		container.getComponent<Transform>(ID)->x = 100;
-		container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
-		int xsize = 300;
-		container.getComponent<Menu>(ID)->name = "win_menu";
-		container.getComponent<Menu>(ID)->z = 10000;
+    int ID = container.getUniqueID();
+    container.createComponent<Transform>(ID);
 
-		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
-		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1), sf::Vector2f(xsize, 64), 4, false, *gui,
-		{  std::make_pair("Next level", "next_msg"), std::make_pair("Quit", "quit_msg") });
+    container.createComponent<Menu>(ID);
 
-		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 600), sf::Vector2f(500, 256), 4, false, *gui2,
-		{ std::make_pair("U  RECT DEM"," die_msg") });
-		/*MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
-		{ std::make_pair("Back", "back_msg") });*/
-		//MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "options_msg", "options");
-		//MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "options", "back_msg", "main");
-		//MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "start", "options");
+    container.createComponent<Scene>(ID);
 
-		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "quit_msg",
-			[this]() {
-			//mChannel.broadcast(PlaySound("click.wav"));
-			//mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
-			mChannel.broadcast(Engine::StopEvent()); });
+    container.getComponent<Scene>(ID)->sceneID = sceneID;
 
-		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "next_msg",
-			[this]() {
-			//mChannel.broadcast(PlaySound("electro.wav"));
-            //SceneManager::modState("game",SceneManager::destroy);
-			SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
-			mChannel.broadcast(LoadWorld("next", SceneManager::addScene("game", SceneManager::State::active)));
-		});
+    container.getComponent<Transform>(ID)->x = 100;
+    container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
+    int xsize = 300;
+    container.getComponent<Menu>(ID)->name = "win_menu";
+    container.getComponent<Menu>(ID)->z = 10000;
 
-		MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
-    }
+    MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
+    MenuFactory::get().addGui(*
+                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1), sf::Vector2f(xsize, 64), 4, false, *gui,
+    {  std::make_pair("Next level", "next_msg"), std::make_pair("Quit", "quit_msg") });
 
-	void Game::createGameOverScreen(){
-        int sceneID = SceneManager::addScene("game_over", SceneManager::State::sleep);
-		GuiStyle* gui;
-		gui = Stylesheets.Get("text");
-		gui->font = fonts.Get(gui->fontName);
+    MenuFactory::get().addGui(*
+                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 600), sf::Vector2f(500, 256), 4, false, *gui2,
+    { std::make_pair("U  RECT DEM"," die_msg") });
+    /*MenuFactory::get().addGui(*
+                        container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
+    { std::make_pair("Back", "back_msg") });*/
+    //MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "options_msg", "options");
+    //MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "options", "back_msg", "main");
+    //MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "start", "options");
 
-		GuiStyle* gui2;
-		gui2 = Stylesheets.Get("no_highlight");
-		gui2->font = fonts.Get(gui2->fontName);
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "quit_msg",
+                                 [this]()
+    {
+        //mChannel.broadcast(PlaySound("click.wav"));
+        //mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
+        mChannel.broadcast(Engine::StopEvent());
+    });
 
-		int ID = container.getUniqueID();
-		container.createComponent<Transform>(ID);
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "next_msg",
+                                 [this]()
+    {
+        //mChannel.broadcast(PlaySound("electro.wav"));
+        //SceneManager::modState("game",SceneManager::destroy);
+        SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
+        mChannel.broadcast(LoadWorld("next", SceneManager::addScene("game", SceneManager::State::active)));
+    });
 
-		container.createComponent<Menu>(ID);
+    MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
+}
 
-		container.createComponent<Scene>(ID);
+void Game::createGameOverScreen()
+{
+    int sceneID = SceneManager::addScene("game_over", SceneManager::State::sleep);
+    GuiStyle* gui;
+    gui = Stylesheets.Get("text");
+    gui->font = fonts.Get(gui->fontName);
 
-		container.getComponent<Scene>(ID)->sceneID = sceneID;
+    GuiStyle* gui2;
+    gui2 = Stylesheets.Get("no_highlight");
+    gui2->font = fonts.Get(gui2->fontName);
 
-		container.getComponent<Transform>(ID)->x = 100;
-		container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
-		int xsize = 300;
-		container.getComponent<Menu>(ID)->name = "main";
-		container.getComponent<Menu>(ID)->z = 10000;
+    int ID = container.getUniqueID();
+    container.createComponent<Transform>(ID);
 
-		MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
-		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1), sf::Vector2f(xsize, 64), 4, false, *gui,
-		{ std::make_pair("Restart", "restart_msg"), std::make_pair("Quit", "quit_msg") });
+    container.createComponent<Menu>(ID);
 
-		MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 600), sf::Vector2f(500, 256), 4, false, *gui2,
-		{ std::make_pair("U DIED BRO"," kupa") });
-		/*MenuFactory::get().addGui(*
-                            container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
-		{ std::make_pair("Back", "back_msg") });*/
-		//MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "options_msg", "options");
-		//MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "options", "back_msg", "main");
-		//MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "start", "options");
+    container.createComponent<Scene>(ID);
 
-		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "quit_msg",
-			[this]() {
-			//mChannel.broadcast(PlaySound("click.wav"));
-			//mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
-			mChannel.broadcast(Engine::StopEvent()); });
+    container.getComponent<Scene>(ID)->sceneID = sceneID;
 
-		MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "restart_msg",
-			[this]() {
-			//mChannel.broadcast(PlaySound("electro.wav"));
-            SceneManager::modState("game",SceneManager::destroy);
-			SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
-			mChannel.broadcast(LoadWorld("normal", SceneManager::addScene("game", SceneManager::State::active)));
-		});
+    container.getComponent<Transform>(ID)->x = 100;
+    container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT / 2.f;
+    int xsize = 300;
+    container.getComponent<Menu>(ID)->name = "main";
+    container.getComponent<Menu>(ID)->z = 10000;
 
-		MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
-	}
+    MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
+    MenuFactory::get().addGui(*
+                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 64.0 * 1), sf::Vector2f(xsize, 64), 4, false, *gui,
+    { std::make_pair("Restart", "restart_msg"), std::make_pair("Quit", "quit_msg") });
 
-	void Game::createWindowAndStuff() {
-		XML xml;
-		xml.load("config.xml");
+    MenuFactory::get().addGui(*
+                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 600), sf::Vector2f(500, 256), 4, false, *gui2,
+    { std::make_pair("U DIED BRO"," kupa") });
+    /*MenuFactory::get().addGui(*
+                        container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
+    { std::make_pair("Back", "back_msg") });*/
+    //MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "options_msg", "options");
+    //MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "options", "back_msg", "main");
+    //MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "start", "options");
 
-		views.WINDOW_WIDTH = xml.get<int>("config.window:width");
-		views.WINDOW_HEIGHT = xml.get<int>("config.window:height");
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "quit_msg",
+                                 [this]()
+    {
+        //mChannel.broadcast(PlaySound("click.wav"));
+        //mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
+        mChannel.broadcast(Engine::StopEvent());
+    });
 
-		window.create(sf::VideoMode(views.WINDOW_WIDTH, views.WINDOW_HEIGHT), "7th96hJ");
-		sf::ContextSettings settings = window.getSettings();
-        std::cout << "OpenGl: "<<settings.majorVersion << "." << settings.minorVersion << std::endl;
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "restart_msg",
+                                 [this]()
+    {
+        //mChannel.broadcast(PlaySound("electro.wav"));
+        SceneManager::modState("game",SceneManager::destroy);
+        SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
+        mChannel.broadcast(LoadWorld("normal", SceneManager::addScene("game", SceneManager::State::active)));
+    });
 
-		views.VIEW_WIDTH = xml.get<int>("config.view:width");
-		views.VIEW_HEIGHT = xml.get<int>("config.view:height");
+    MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
+}
 
-		views.guiView.setSize(views.VIEW_WIDTH, views.VIEW_HEIGHT);
-		views.guiView.setCenter(views.guiView.getSize().x / 2.0, views.guiView.getSize().y / 2.0);
+void Game::createWindowAndStuff()
+{
+    XML xml;
+    xml.load("config.xml");
 
-		views.gameView = views.guiView = views.getLetterboxView(views.guiView, views.WINDOW_WIDTH, views.WINDOW_HEIGHT);
-		mChannel.broadcast(Volume(xml.get<float>("config.volume:music"), xml.get<float>("config.volume:sound")));
-        views.declareTextures(views.VIEW_WIDTH, views.VIEW_HEIGHT);
-        engine.setVariables(&views, &window);
-	}
+    views.WINDOW_WIDTH = xml.get<int>("config.window:width");
+    views.WINDOW_HEIGHT = xml.get<int>("config.window:height");
+
+    window.create(sf::VideoMode(views.WINDOW_WIDTH, views.WINDOW_HEIGHT), "7th96hJ");
+    sf::ContextSettings settings = window.getSettings();
+    std::cout << "OpenGl: "<<settings.majorVersion << "." << settings.minorVersion << std::endl;
+
+    views.VIEW_WIDTH = xml.get<int>("config.view:width");
+    views.VIEW_HEIGHT = xml.get<int>("config.view:height");
+
+    views.guiView.setSize(views.VIEW_WIDTH, views.VIEW_HEIGHT);
+    views.guiView.setCenter(views.guiView.getSize().x / 2.0, views.guiView.getSize().y / 2.0);
+
+    views.gameView = views.guiView = views.getLetterboxView(views.guiView, views.WINDOW_WIDTH, views.WINDOW_HEIGHT);
+    mChannel.broadcast(Volume(xml.get<float>("config.volume:music"), xml.get<float>("config.volume:sound")));
+    views.declareTextures(views.VIEW_WIDTH, views.VIEW_HEIGHT);
+    engine.setVariables(&views, &window);
+}

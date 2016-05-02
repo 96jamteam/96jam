@@ -35,6 +35,7 @@ public:
             players = cc->addComponentStorage<Player>();
         mChannel.add<PhysicsUpdate>(*this);
         mChannel.add<KillPlayer>(*this);
+        mChannel.add<ControlsUpdate>(*this);
         km.load("controls.txt");
         shot=0;
     }
@@ -80,6 +81,9 @@ public:
 
     void handle(const KillPlayer& e) {
         cc->getComponent<Player>(e.entityid)->alive=0;
+    }
+    void handle(const ControlsUpdate& e) {
+        km.load("controls.txt");
     }
 
 	void handle(const PhysicsUpdate& e) {

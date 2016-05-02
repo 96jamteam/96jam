@@ -24,7 +24,6 @@ bool AnimationManager::addFromPath(const std::string& path, Manager<sf::Texture,
 
         Animation animation;
         animation.setSpriteSheet(*manager.Get(anim_xml->get<std::string>(":texture")));
-        P(anim_xml->get<std::string>(":texture"));
 
         if(strcmp((anim_xml->get<std::string>(":rows")).c_str(), "") == 0){ // eee #głupieC++
             for (auto & frame: anim_xml->iter("")){
@@ -34,10 +33,6 @@ bool AnimationManager::addFromPath(const std::string& path, Manager<sf::Texture,
             for(int y = 0; y < anim_xml->get<int>(":rows"); y++){
                 for(int x = 0; x < anim_xml->get<int>(":cols"); x++){
                     animation.addFrame(sf::IntRect(anim_xml->get<int>(":width")*(x), anim_xml->get<int>(":height")*(y), anim_xml->get<int>(":width"), anim_xml->get<int>(":height")));
-                    P("WWWW " << anim_xml->get<int>(":offsetX"));
-                    P("x: " << anim_xml->get<int>(":width")*(x));
-                      P("y: " << anim_xml->get<int>(":height")*(y));
-                      P("h: " <<anim_xml->get<int>(":height"));
                 }
             }
         }
