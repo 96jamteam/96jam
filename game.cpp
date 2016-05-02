@@ -26,6 +26,7 @@ void Game::run()
 
     #ifdef __APPLE__
 	world = new b2World(Gravity);
+    world->SetAllowSleeping(false);
     #else
     world = new b2World(Gravity, 1);
     #endif

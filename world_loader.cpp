@@ -103,11 +103,13 @@ void WorldLoader::loadPuzzle(XML&xml, const int &entity){
     game->container.getComponent<Puzzle>(entity)->name = xml.get<std::string>(":name");
     game->container.getComponent<Puzzle>(entity)->done = 0;
 
+    P(xml.get<std::string>(":activator"));
     game->container.createComponent<CallbackCmp>(entity);
     game->container.getComponent<CallbackCmp>(entity)->callbacks[xml.get<std::string>(":activator")]=([this,entity](){
             P("active: "<<game->container.getComponent<Puzzle>(entity)->name);
            game->container.getComponent<Puzzle>(entity)->done=1;
             });
+    
 }
 
 void WorldLoader::loadSprite(XML& xml, const int & entity)

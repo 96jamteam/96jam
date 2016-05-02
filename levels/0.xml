@@ -92,31 +92,7 @@
         </body>
     </entity>
     
-    <entity name="bot">
-        <transform x="1000" y="200" angle="0"></transform>
-        
-        <bot speed="5"></bot>
-        
-        <animations>
-            <sprite animation="zombie" z="100" origin_x="108" origin_y="130" scale="0.7"></sprite>
-        </animations>
-        <body type="dynamic" angularDamping="100" linearDamping="6" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" height="80" width="80" relative_pos_x="0" relative_pos_y="0"></fixture>
-        </body>
-    </entity>
     
-    <entity name="bot">
-        <transform x="1000" y="500" angle="0"></transform>
-        
-        <bot speed="5"></bot>
-        
-        <animations>
-            <sprite animation="zombie" z="100" origin_x="108" origin_y="130" scale="0.9"></sprite>
-        </animations>
-        <body type="dynamic" angularDamping="100" linearDamping="6" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" height="120" width="120" relative_pos_x="0" relative_pos_y="0"></fixture>
-        </body>
-    </entity>
     
     
 </entities>

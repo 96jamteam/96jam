@@ -12,6 +12,8 @@
 #include "callback_cmp.h"
 #include "physics_cmp.h"
 #include <cstdint>
+#include "eventchannel.h"
+#include "structures_for_broadcast.h"
 
 ContactListener::ContactListener(ComponentContainer* _cc) : cc(_cc){}
 
@@ -41,6 +43,15 @@ void ContactListener::BeginContact(b2Contact* contact)
         }
         else{
             callback(entityIDa,"_begin");
+        }
+        
+        if(contactNameA->name == "bullet"){
+            EventChannel chan;
+            chan.broadcast(DeleteThisShit(entityIDa));
+        }
+        if(contactNameB->name == "bullet"){
+            EventChannel chan;
+            chan.broadcast(DeleteThisShit(entityIDb));
         }
     }
 
