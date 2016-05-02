@@ -54,7 +54,7 @@
         <weapons>
             
             <weapon cooldown="0.05" speed="5000" spawnBullets="1" spread="10" magazine="100" bulletDmg="10" origin_x="25" origin_y="25"
-                bulletAnimTexName="square" bulletOrigin_x="0" bulletOrigin_y="0" scale="2" bulletAnimation="" spawnPoint_x="80" spawnPoint_y="0">
+                bulletAnimTexName="bullet" bulletOrigin_x="0" bulletOrigin_y="0" scale="2" bulletAnimation="" spawnPoint_x="80" spawnPoint_y="0">
                 <body type="dynamic" angularDamping="0" linearDamping="0" bullet="1">
                     <fixture density="201" friction="1" restitution="0.5" isSensor="0" filter="0" shape="polygon" radius="25" width="50" height="50" relative_pos_x="0" relative_pos_y="0">
                         <vertex x="-10" y="20"></vertex>

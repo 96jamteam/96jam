@@ -1,9 +1,5 @@
 <assets>
-  <font name="font" path="ARCADECLASSIC.TTF"></font>
-  
   <font name="fontnice" path="Raleway-Regular.ttf"></font>
-  <texture name="square" path="square.png"></texture>
-  <texture name="square2" path="square2.png"></texture>
   <texture name="background" path="assets/textures/background.png"></texture>
   <stylesheet name="text" path="style.xml"></stylesheet>
   <stylesheet name="no_highlight" path="no_highlight_style.xml"></stylesheet>
