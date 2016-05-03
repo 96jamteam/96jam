@@ -60,6 +60,13 @@
         </body>
     </entity>
 
+    <entity name="wall">
+        <transform x="840" y="1711" angle="32"></transform>
+        <body type="static" angularDamping="0" linearDamping="0" bullet="0">
+            <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="90" height="216"></fixture>
+        </body>
+    </entity>
+
 
 
     <entity name="box">
