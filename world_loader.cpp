@@ -93,7 +93,7 @@ std::string WorldLoader::readSave(const std::string& file, const std::string& ty
     xml.load(file);
     int level = xml.get<int>("save:level");
 
-    if(level==2){
+    if(level>=2){
         //SceneManager::modState("game",SceneManager::destroy);
         SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
         SceneManager::modState("credits",SceneManager::active);

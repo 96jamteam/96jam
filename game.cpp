@@ -418,16 +418,16 @@ void Game::createCreditsScreen(){
     container.getComponent<Scene>(ID)->sceneID = sceneID;
 int xsize = 450;
     int dim_y = 64;
-    container.getComponent<Transform>(ID)->x = 10;
-    container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT  - dim_y;
+    container.getComponent<Transform>(ID)->x = 1340;
+    container.getComponent<Transform>(ID)->y = 840;
 
     container.getComponent<Menu>(ID)->name = "main";
     container.getComponent<Menu>(ID)->z = 10000;
 
     MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
     MenuFactory::get().addGui(*
-                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, dim_y * 1), sf::Vector2f(xsize, dim_y), 4, true, *gui,
-    { std::make_pair("tutorial", "0"), std::make_pair("first", "1"), std::make_pair("second", "2") });
+                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 0), sf::Vector2f(xsize, dim_y), 4, false, *gui,
+    { std::make_pair("tutorial", "0"), std::make_pair("1st level", "1"), std::make_pair("2st level", "2") });
 
     //MenuFactory::get().addGui(*
      //                         container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 500), sf::Vector2f(500, 256), 4, false, *gui2,
@@ -476,9 +476,9 @@ void Game::createWindowAndStuff()
     views.WINDOW_WIDTH = xml.get<int>("config.window:width");
     views.WINDOW_HEIGHT = xml.get<int>("config.window:height");
 
-    window.create(sf::VideoMode(views.WINDOW_WIDTH, views.WINDOW_HEIGHT), "7th96hJ");
-    sf::ContextSettings settings = window.getSettings();
-    std::cout << "OpenGl: "<<settings.majorVersion << "." << settings.minorVersion << std::endl;
+    window.create(sf::VideoMode(views.WINDOW_WIDTH, views.WINDOW_HEIGHT), "Puzzle Rescue");
+    //sf::ContextSettings settings = window.getSettings();
+    //std::cout << "OpenGl: "<<settings.majorVersion << "." << settings.minorVersion << std::endl;
 
     views.VIEW_WIDTH = xml.get<int>("config.view:width");
     views.VIEW_HEIGHT = xml.get<int>("config.view:height");
