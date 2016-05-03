@@ -117,6 +117,7 @@
 </entity>
 
 <entity name="roslinka">
+   <puzzle  name="cyka" activator="bullet_begin"></puzzle>
     <transform x="170" y="215" angle="0"></transform>
     <sprites>
         <sprite texture="roslinka1-1-1" z="0" origin_x="170" origin_y="215" scale="1"></sprite>
@@ -124,6 +125,7 @@
     <roslinka></roslinka>
     <body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="150" height="227"></fixture></body>
 </entity>
+
 </entities>
 
 
