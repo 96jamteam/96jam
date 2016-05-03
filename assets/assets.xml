@@ -2,8 +2,6 @@
 
   <font name="fontnice" path="assets/fonts/Raleway-Regular.ttf"></font>
 
-  <texture name="background" path="assets/textures/background.png"></texture>
-
   <stylesheet name="default" path="assets/styles/default_style.xml"></stylesheet>
   <stylesheet name="no_highlight" path="assets/styles/no_highlight_style.xml"></stylesheet>
 
@@ -16,7 +14,6 @@
   <texture name="chodzenie" path="assets/textures/chodzenie.png"></texture>
   <texture name="bullet" path="assets/textures/bullet.png"></texture>
   <texture name="howtoplay" path="assets/textures/howtoplay.png"></texture>
-  <texture name="firstfloor" path="assets/textures/1stflooor.png"></texture>
 
   <animation path="assets/animations/anim.xml"></animation>
 
@@ -30,4 +27,5 @@
   <texture name="roslinka1" path="assets/textures/roslinka1.png"></texture>
   <texture name="roslinka2" path="assets/textures/roslinka2.png"></texture>
   <texture name="firstfloor" path="assets/textures/1stflooor.png"></texture>
+  <texture name="secondfloor" path="assets/textures/2ndflooor.png"></texture>
 </assets>

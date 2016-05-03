@@ -54,7 +54,7 @@ void Game::run()
     engine.add(std::shared_ptr<System>(new BotSystem(&container,world)));
     engine.add(std::shared_ptr<System>(new ParticleSystem(&container)));
 
-    engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
+    //engine.add(std::shared_ptr<System>(new DebugDrawSystem(world, &window, &views)));
     engine.add(std::shared_ptr<System>(new RemoveSystem(&container)));
 
     EventChannel chan;
@@ -419,7 +419,7 @@ void Game::createCreditsScreen(){
 int xsize = 450;
     int dim_y = 64;
     container.getComponent<Transform>(ID)->x = 1340;
-    container.getComponent<Transform>(ID)->y = 840;
+    container.getComponent<Transform>(ID)->y = 820;
 
     container.getComponent<Menu>(ID)->name = "main";
     container.getComponent<Menu>(ID)->z = 10000;
@@ -427,7 +427,7 @@ int xsize = 450;
     MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
     MenuFactory::get().addGui(*
                               container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 0), sf::Vector2f(xsize, dim_y), 4, false, *gui,
-    { std::make_pair("tutorial", "0"), std::make_pair("1st level", "1"), std::make_pair("2st level", "2") });
+    { std::make_pair("tutorial", "0"), std::make_pair("1st level", "1"), std::make_pair("2nd level", "2"), std::make_pair("3rd level", "2") });
 
     //MenuFactory::get().addGui(*
      //                         container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 500), sf::Vector2f(500, 256), 4, false, *gui2,
@@ -461,6 +461,14 @@ int xsize = 450;
         SceneManager::modState("game",SceneManager::destroy);
         SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
         mChannel.broadcast(LoadWorld("2", SceneManager::addScene("game", SceneManager::State::active)));
+    });
+
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "3",
+                                 [this]()
+    {
+        SceneManager::modState("game",SceneManager::destroy);
+        SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
+        mChannel.broadcast(LoadWorld("3", SceneManager::addScene("game", SceneManager::State::active)));
     });
 
     MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");

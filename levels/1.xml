@@ -3,74 +3,8 @@
 <entities>
 
 
-    <entity name="wall"><transform x="660.04436002213" y="222.81300505752" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="110.18592312955" height="283.07928218647"></fixture></body></entity>
-    <entity name="wall"><transform x="140.91637259472" y="145.32453066154" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="132.58143596075" height="131.68561544751"></fixture></body></entity>
-    <entity name="wall"><transform x="296.78914189993" y="336.13429998343" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="155.87276930521" height="140.64382057999"></fixture></body></entity>
-    <entity name="wall"><transform x="385.65361016081" y="447.54140888926" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="8.9582051324834" height="469.40994894213"></fixture></body></entity>
-    <entity name="wall"><transform x="552.72413588163" y="678.66310130733" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="343.09925657411" height="7.1665641059866"></fixture></body></entity>
-    <entity name="wall"><transform x="724.27376416868" y="300.06060086802" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="8.9582051324834" height="445.45946226819"></fixture></body></entity>
-    <entity name="wall"><transform x="891.79220014612" y="209.01648518144" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="12.541487185477" height="266.954512948"></fixture></body></entity>
-    <entity name="wall"><transform x="891.05417874694" y="574.29348629615" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="7.1665641059867" height="215.89274369285"></fixture></body></entity>
-    <entity name="wall"><transform x="1128.8945250144" y="678.20866583295" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="482.84725664085" height="8.0623846192351"></fixture></body></entity>
-    <entity name="wall"><transform x="1301.7878840713" y="607.43884528633" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="138.85217955349" height="124.51905134152"></fixture></body></entity>
-    <entity name="wall"><transform x="1131.5819865541" y="309.38299987657" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="405.8066925015" height="121.83158980177"></fixture></body></entity>
-    <entity name="wall"><transform x="1131.8748901572" y="159.37175320453" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="470.84063690445" height="166.69513232021"></fixture></body></entity>
-    <entity name="wall"><transform x="459.17824433302" y="607.36579944086" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="120.87834156553" height="111.13008821347"></fixture></body></entity>
-    <entity name="wall"><transform x="605.07963481221" y="966.83100059247" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="639.8209577392" height="340.90460404542"></fixture></body></entity>
-    <entity name="wall"><transform x="517.10425312307" y="1208.2634401144" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="129.96363204077" height="139.96083450545"></fixture></body></entity>
-    <entity name="wall"><transform x="293.70895316593" y="417.17561251047" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="179.94964436415" height="6.9980417252725"></fixture></body></entity>
-    <entity name="wall"><transform x="206.73329172326" y="548.13896479771" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="7.99776197174" height="268.92474629976"></fixture></body></entity>
-    <entity name="wall"><transform x="142.75119594934" y="681.60161770112" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="141.96027499838" height="11.99664295761"></fixture></body></entity>
-    <entity name="wall"><transform x="1051.4823934918" y="1473.3881546401" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="316.9113181302" height="292.91803221498"></fixture></body></entity>
-    <entity name="wall"><transform x="1048.4832327524" y="1889.0528092493" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="318.91075862313" height="309.91327640492"></fixture></body></entity>
-    <entity name="wall"><transform x="400.74878215998" y="1280.5535358407" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="651.81760069681" height="11.99664295761"></fixture></body></entity>
-    <entity name="wall"><transform x="721.6359500776" y="1904.9147062581" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="10.043264861559" height="1258.7195432996"></fixture></body></entity>
-    <entity name="wall"><transform x="397.70355902369" y="2699.7281786983" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="647.81871971094" height="10.996922711142"></fixture></body></entity>
-    <entity name="wall"><transform x="303.72985585575" y="2447.2988164653" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="403.88697957287" height="173.95132288534"></fixture></body></entity>
-    <entity name="wall"><transform x="321.72482029216" y="2044.4524992406" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="447.87467041744" height="140.96055475192"></fixture></body></entity>
-    <entity name="wall"><transform x="445.69013085413" y="1869.5014561087" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="117.96698908316" height="128.96391179431"></fixture></body></entity>
-    <entity name="wall"><transform x="312.22747795072" y="1953.477956812" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="478.86599805793" height="8.9974822182076"></fixture></body></entity>
-    <entity name="wall"><transform x="433.69348789652" y="1338.9484097399" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="95.97314366088" height="98.972304400282"></fixture></body></entity>
-    <entity name="wall"><transform x="234.74915884949" y="1488.4065865868" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="283.92054999677" height="407.88586055874"></fixture></body></entity>
-    <entity name="wall"><transform x="1154.8825261222" y="2740.9596559889" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="438.72506697837" height="146.96209140162"></fixture></body></entity>
-    <entity name="wall"><transform x="1259.1607748006" y="2582.6512266482" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="204.23408290372" height="128.59182997642"></fixture></body></entity>
-    <entity name="wall"><transform x="1262.4025856403" y="2267.11497158" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="186.94442509177" height="94.012514352507"></fixture></body></entity>
-    <entity name="wall"><transform x="1043.5803539577" y="2287.8716627357" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="181.54140702553" height="170.73537089306"></fixture></body></entity>
-    <entity name="wall"><transform x="938.76180347276" y="2623.3990846489" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="6.4836216794832" height="94.012514352507"></fixture></body></entity>
-    <entity name="wall"><transform x="939.30210527938" y="2338.1197307517" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="9.7254325192248" height="290.6823719635"></fixture></body></entity>
-    <entity name="wall"><transform x="1152.7213188957" y="2194.9397519964" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="438.72506697837" height="4.3224144529891"></fixture></body></entity>
-    <entity name="wall"><transform x="1395.8852047158" y="1448.687612635" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="46.196421868361" height="2816.9668758748"></fixture></body></entity>
-    <entity name="wall"><transform x="52.145848137966" y="1926.0102377359" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="43.355103293626" height="1871.2916470441"></fixture></body></entity>
-    <entity name="wall"><transform x="50.650844576117" y="439.88316977556" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="46.345110417324" height="819.9018192488"></fixture></body></entity>
-    <entity name="wall"><transform x="722.65494562732" y="51.609811797974" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="1390.3533125197" height="43.355103293626"></fixture></body></entity>
-    <entity name="wall"><transform x="374.78747196193" y="2835.260717968" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="695.17665625987" height="40.365096169928"></fixture></body></entity>
-    <entity name="wall"><transform x="146.79942877993" y="2757.5205327519" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="146.51034906122" height="106.14525289129"></fixture></body></entity>
-    <entity name="wall"><transform x="396.46502360875" y="1207.3298663779" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="116.61027782424" height="134.55032056643"></fixture></body></entity>
-    <entity name="wall"><transform x="294.05727962208" y="461.72657931637" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="174.91541673635" height="85.215203025403"></fixture></body></entity>
-    <entity name="wall"><transform x="809.83350846004" y="123.85577433846" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="153.98536687047" height="91.1952172728"></fixture></body></entity>
-    <entity name="wall"><transform x="51.119200821586" y="921.44017458499" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="41.860099731777" height="152.49036330862"></fixture></body></entity>
-    <entity name="wall"><transform x="1135.6523968856" y="2833.7136137129" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="489.13386734804" height="50.829924886253"></fixture></body></entity>
-    <entity name="wall"><transform x="814.84057588217" y="2836.2134460844" angle="0"></transform><body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="199.15331225925" height="45.830260143343"></fixture></body></entity>
-
-
-    <entity name="wall">
-        <transform x="1195" y="966" angle="0"></transform>
-        <body type="static" angularDamping="0" linearDamping="0" bullet="0">
-            <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="circle" radius="88"></fixture>
-        </body>
-    </entity>
-
-    <entity name="wall">
-        <transform x="840" y="1711" angle="32"></transform>
-        <body type="static" angularDamping="0" linearDamping="0" bullet="0">
-            <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="90" height="216"></fixture>
-        </body>
-    </entity>
-
-
-
     <entity name="box">
-        <transform x="1185" y="1210" angle="0"></transform>
+        <transform x="500" y="700" angle="90"></transform>
         <body type="dynamic" angularDamping="6" linearDamping="6" bullet="0" fixedRotation="1">
             <fixture density="100" friction="0.5" restitution="0" isSensor="0" filter="0" shape="box" width="183" height="113"></fixture>
         </body>
@@ -81,251 +15,62 @@
 
     <entity name="sensor">
         <puzzle  name="cyka" activator="box_begin"></puzzle>
-        <transform x="623" y="1173" angle="0"></transform>
+        <transform x="500" y="500" angle="0"></transform>
         <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka" activator="box_begin"></puzzle>
-        <transform x="755" y="1173" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka" activator="box_begin"></puzzle>
-        <transform x="757" y="1246" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka" activator="box_begin"></puzzle>
-        <transform x="624" y="1246" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
+            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="1" height="1"></fixture>
         </body>
     </entity>
 
 
 
+<entity name="wall"><transform x="500" y="15" angle="0"></transform>
+    <body type="static" angularDamping="0" linearDamping="0" bullet="0">
+        <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="1000" height="30"></fixture>
+    </body>
+</entity>
+
+<entity name="wall"><transform x="500" y="985" angle="0"></transform>
+    <body type="static" angularDamping="0" linearDamping="0" bullet="0">
+        <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="1000" height="30"></fixture>
+    </body>
+</entity>
+
+<entity name="wall"><transform x="15" y="500" angle="0"></transform>
+    <body type="static" angularDamping="0" linearDamping="0" bullet="0">
+        <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="30" height="1000"></fixture>
+    </body>
+</entity>
+
+<entity name="wall"><transform x="985" y="500" angle="0"></transform>
+    <body type="static" angularDamping="0" linearDamping="0" bullet="0">
+        <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="30" height="1000"></fixture>
+    </body>
+</entity>
 
 
-
-    <entity name="box2">
-        <transform x="1128" y="2443" angle="0"></transform>
-        <body type="dynamic" angularDamping="6" linearDamping="6" bullet="0" fixedRotation="1">
-            <fixture density="100" friction="0.5" restitution="0" isSensor="0" filter="0" shape="box" width="183" height="113"></fixture>
-        </body>
-        <sprites>
-            <sprite texture="pudlooff" z="2" origin_x="91.5" origin_y="56.5" scale="1"></sprite>
-        </sprites>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box2_begin"></puzzle>
-        <transform x="1185" y="2430" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box2_begin"></puzzle>
-        <transform x="1318" y="2430" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box2_begin"></puzzle>
-        <transform x="1318" y="2497" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box2_begin"></puzzle>
-        <transform x="1185" y="2497" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-
-
-
-
-    <entity name="box3">
-        <transform x="467" y="2153" angle="0"></transform>
-        <body type="dynamic" angularDamping="6" linearDamping="6" bullet="0" fixedRotation="1">
-            <fixture density="100" friction="0.5" restitution="0" isSensor="0" filter="0" shape="box" width="183" height="113"></fixture>
-        </body>
-        <sprites>
-            <sprite texture="pudlooff" z="2" origin_x="91.5" origin_y="56.5" scale="1"></sprite>
-        </sprites>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka25" activator="box3_begin"></puzzle>
-        <transform x="115" y="2227" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box3_begin"></puzzle>
-        <transform x="115" y="2153" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box3_begin"></puzzle>
-        <transform x="249" y="2227" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box3_begin"></puzzle>
-        <transform x="249" y="2153" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-
-
-    <entity name="box4">
-        <transform x="610" y="1873" angle="0"></transform>
-        <body type="dynamic" angularDamping="6" linearDamping="6" bullet="0" fixedRotation="1">
-            <fixture density="100" friction="0.5" restitution="0" isSensor="0" filter="0" shape="box" width="183" height="113"></fixture>
-        </body>
-        <sprites>
-            <sprite texture="pudlooff" z="2" origin_x="91.5" origin_y="56.5" scale="1"></sprite>
-        </sprites>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka25" activator="box4_begin"></puzzle>
-        <transform x="547" y="1322" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box4_begin"></puzzle>
-        <transform x="547" y="1390" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box4_begin"></puzzle>
-        <transform x="674" y="1322" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box4_begin"></puzzle>
-        <transform x="674" y="1390" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-
-
-
-    <entity name="box5">
-        <transform x="1111" y="522" angle="0"></transform>
-        <body type="dynamic" angularDamping="6" linearDamping="6" bullet="0" fixedRotation="1">
-            <fixture density="100" friction="0.5" restitution="0" isSensor="0" filter="0" shape="box" width="183" height="113"></fixture>
-        </body>
-        <sprites>
-            <sprite texture="pudlooff" z="2" origin_x="91.5" origin_y="56.5" scale="1"></sprite>
-        </sprites>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka25" activator="box5_begin"></puzzle>
-        <transform x="936" y="573" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box5_begin"></puzzle>
-        <transform x="936" y="640" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box5_begin"></puzzle>
-        <transform x="1059" y="573" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-    <entity name="sensor">
-        <puzzle  name="cyka2" activator="box5_begin"></puzzle>
-        <transform x="1059" y="640" angle="0"></transform>
-        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
-        </body>
-    </entity>
-
-
-    <entity name="box6">
-        <transform x="139" y="567" angle="90"></transform>
-        <body type="dynamic" angularDamping="6" linearDamping="6" bullet="0" fixedRotation="1">
-            <fixture density="100" friction="0.5" restitution="0" isSensor="0" filter="0" shape="box" width="183" height="113"></fixture>
-        </body>
-        <sprites>
-            <sprite texture="pudlooff" z="2" origin_x="91.5" origin_y="56.5" scale="1"></sprite>
-        </sprites>
-    </entity>
 
 
 
 
     <entity name="background">
-        <transform x="-70" y="-90" angle="0"></transform>
+        <transform x="0" y="0" angle="0"></transform>
         <sprites>
-            <sprite texture="firstfloor" z="0" origin_x="0" origin_y="0" scale="1"></sprite>
+            <sprite texture="secondfloor" z="0" origin_x="0" origin_y="0" scale="1"></sprite>
         </sprites>
     </entity>
 
 	<entity name="rescue">
 		<puzzle  name="rescue" activator="player_begin"></puzzle>
-		<transform x="54.5" y="926" angle="0"></transform>
+		<transform x="500" y="28.5" angle="0"></transform>
 		<body type="dynamic" angularDamping="5" linearDamping="5" bullet="0">
-			<fixture density="201" friction="1" restitution="0.5" isSensor="1" filter="0" shape="box" width="60" height="125"></fixture>
+			<fixture density="201" friction="1" restitution="0.5" isSensor="1" filter="0" shape="box" width="128" height="57"></fixture>
 		</body>
 	</entity>
 
 
 
     <entity name="player">
-        <transform x="815" y="2763" angle="0"></transform>
+        <transform x="500" y="900" angle="0"></transform>
 
         <player speed="9000"></player>
 
@@ -349,58 +94,10 @@
             <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="circle" radius="30" relative_pos_x="0" relative_pos_y="0"></fixture>
         </body>
     </entity>
-    <entity name="roslinka">
-        <transform x="130" y="2766" angle="-90"></transform>
-        <sprites>
-            <sprite texture="roslinka1" z="50" origin_x="176" origin_y="100" scale="0.3"></sprite>
-        </sprites>
-        <roslinka2></roslinka2>
-        <body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="150" height="227"></fixture></body>
-    </entity>
 
-    <entity name="roslinka">
-        <transform x="288" y="458" angle="0"></transform>
-        <sprites>
-            <sprite texture="roslinka1" z="50" origin_x="176" origin_y="100" scale="0.3"></sprite>
-        </sprites>
-        <roslinka2></roslinka2>
-        <body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="150" height="140"></fixture></body>
-    </entity>
-    <entity name="roslinka">
-        <transform x="801" y="124" angle="0"></transform>
-        <sprites>
-            <sprite texture="roslinka1" z="50" origin_x="176" origin_y="100" scale="0.3"></sprite>
-        </sprites>
-        <roslinka2></roslinka2>
-        <body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="150" height="140"></fixture></body>
-    </entity>
-
-    <entity name="roslinka">
-        <transform x="413" y="1213" angle="90"></transform>
-        <sprites>
-            <sprite texture="roslinka1" z="50" origin_x="176" origin_y="100" scale="0.3"></sprite>
-        </sprites>
-        <roslinka2></roslinka2>
-        <body type="static" angularDamping="0" linearDamping="0" bullet="0"><fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="150" height="227"></fixture></body>
-    </entity>
-
-
-
-    <entity name="bot">
-        <transform x="518" y="1532" angle="0"></transform>
-
-        <bot speed="5"></bot>
-
-        <animations>
-            <sprite animation="zombie" z="100" origin_x="108" origin_y="130" scale="0.7"></sprite>
-        </animations>
-        <body type="dynamic" angularDamping="100" linearDamping="6" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="circle" radius="40" height="80" width="80" relative_pos_x="0" relative_pos_y="0"></fixture>
-        </body>
- </entity>
 
   <entity name="bot">
-        <transform x="812" y="1478" angle="0"></transform>
+        <transform x="50" y="50" angle="0"></transform>
 
         <bot speed="5"></bot>
 
@@ -414,7 +111,7 @@
 
 
  <entity name="bot">
-        <transform x="480" y="417" angle="0"></transform>
+        <transform x="950" y="50" angle="0"></transform>
 
         <bot speed="5"></bot>
 
@@ -427,7 +124,7 @@
  </entity>
 
  <entity name="bot">
-        <transform x="200" y="940" angle="0"></transform>
+        <transform x="50" y="950" angle="0"></transform>
 
         <bot speed="5"></bot>
 
@@ -441,7 +138,7 @@
 
 
  <entity name="bot">
-        <transform x="1001" y="1679" angle="0"></transform>
+        <transform x="950" y="950" angle="0"></transform>
 
         <bot speed="5"></bot>
 
@@ -453,30 +150,6 @@
         </body>
  </entity>
 
- <entity name="bot">
-        <transform x="1289" y="1424" angle="0"></transform>
 
-        <bot speed="5"></bot>
-
-        <animations>
-            <sprite animation="zombie" z="100" origin_x="108" origin_y="130" scale="0.7"></sprite>
-        </animations>
-        <body type="dynamic" angularDamping="100" linearDamping="6" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="circle" radius="40" height="80" width="80" relative_pos_x="0" relative_pos_y="0"></fixture>
-        </body>
- </entity>
-
- <entity name="bot">
-        <transform x="1290" y="1930" angle="0"></transform>
-
-        <bot speed="5"></bot>
-
-        <animations>
-            <sprite animation="zombie" z="100" origin_x="108" origin_y="130" scale="0.7"></sprite>
-        </animations>
-        <body type="dynamic" angularDamping="100" linearDamping="6" bullet="0" fixedRotation="1">
-            <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="circle" radius="40" height="80" width="80" relative_pos_x="0" relative_pos_y="0"></fixture>
-        </body>
- </entity>
 
 </entities>
