@@ -8,9 +8,9 @@
 
   <stylesheet name="no_highlight" path="assets/styles/no_highlight_style.xml"></stylesheet>
 
-  <music playlist="menu" path="assets/music/snowy.ogg"></music>
-  <music playlist="game" path="assets/music/once_janko_all.ogg"></music>
-  <music playlist="game" path="assets/music/janko_hard.ogg"></music>
+  <music path="assets/music/blues_slide_riff.ogg"></music>
+
+  <music path="assets/music/slide_guitar_blues_riff.ogg"></music>
 
   <texture name="nordicwalking" path="assets/textures/nordicwalking.png"></texture>
 
@@ -23,10 +23,8 @@
   <texture name="howtoplay" path="assets/textures/howtoplay.png"></texture>
 
   <animation path="assets/animations/anim.xml"></animation>
-
+  
   <texture name="pixel" path="assets/textures/pixel.png"></texture>
-
+  
   <texture name="arrow" path="assets/textures/arrow.png"></texture>
-
-  <texture name="particle0" path="assets/textures/particle0.png"></texture>
 </assets>
