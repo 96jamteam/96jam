@@ -26,4 +26,5 @@
   <texture name="credits" path="assets/textures/credits.dat"></texture>
   <texture name="roslinka1-1-1" path="assets/textures/roslinka1-1-1.png"></texture>
   <texture name="roslinka1-1-2" path="assets/textures/roslinka1-1-2.png"></texture>
+  <texture name="firstfloor" path="assets/textures/1stflooor.png"></texture>
 </assets>
