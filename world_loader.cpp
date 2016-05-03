@@ -136,7 +136,7 @@ void WorldLoader::loadAnimatedSprite(XML& xml, const int & entity)
     for(auto& tmp_xml : xml.iter("")){
         AnimatedSprite sprite;
         sprite.setAnimation(*game->Animations.getAnimation(tmp_xml->get<std::string>(":animation")));
-    
+
         sprite.setFrameTime(sf::seconds(1/12.f));
         sprite.play();
 
@@ -286,7 +286,7 @@ void WorldLoader::loadWeapons(XML& xml, const int & entity) {
 		}
 
 
-		game->container.getComponent<WeaponC>(entity)->active_weapon = 1;
+		game->container.getComponent<WeaponC>(entity)->active_weapon = 0;
 	}
 
 }

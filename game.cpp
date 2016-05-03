@@ -14,6 +14,7 @@
 #include "particle_system.h"
 #include "remove_system.h"
 #include "puzzle_system.h"
+#include "particle_creator.h"
 
 #include <fstream>
 
@@ -62,6 +63,7 @@ void Game::run()
     createMenus();
     createGameOverScreen();
     createWinScreen();
+    createParticleFormula();
 
     chan.broadcast(SpriteAdded());
     chan.broadcast(SceneUpdate());
@@ -104,6 +106,33 @@ void Game::loadAssets(const std::string& path)
 
 
 }
+
+
+void Game::createParticleFormula(){
+    ParticleCreator::addFormula(0,[this]()->int {
+
+        int entityID = container.getUniqueID();
+			container.createComponent<Transform>(entityID);
+            container.createComponent<Scene>(entityID);
+            container.createComponent<Particle>(entityID);
+            container.getComponent<Scene>(entityID)->sceneID = SceneManager::getID("game");
+            container.getComponent<Particle>(entityID)->lifespan = 0.05;
+            container.createComponent<SpriteC>(entityID);
+            container.getComponent<SpriteC>(entityID)->sprites.push_back(sf::Sprite(*Textures.Get("particle0")));
+            container.getComponent<SpriteC>(entityID)->sprites[0].setOrigin(sf::Vector2f((*Textures.Get("particle0")).getSize().x/2.f,(*Textures.Get("particle0")).getSize().y/2.f));
+            //container.getComponent<SpriteC>(entityID)->sprites[0].setScale(0.02f, 0.02f);
+            container.getComponent<SpriteC>(entityID)->z.push_back(15);
+            mChannel.broadcast(SpriteAdded());
+        return entityID; });
+
+    /*[this]()
+    {
+        mChannel.broadcast(PlaySound("assets/music/click.wav"));
+       // mChannel.broadcast(MenuEvent("0", MenuEvent::hide));
+        mChannel.broadcast(Engine::StopEvent());
+    }*/
+}
+
 
 void Game::createMenus()
 {

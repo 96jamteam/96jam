@@ -9,12 +9,18 @@
 #ifndef particle_cmp_h
 #define particle_cmp_h
 
-class Particle : public Component{
+class ParticleEmitter : public Component{
 public:
     sf::Vector3f velocity;
+    float timetoemit;
+    float emitspan;
+
+    int formula;
+};
+
+class Particle : public Component{
+public:
     float lifespan;
-    sf::Color color;
-    sf::Sprite sprite;
 };
 
 #endif /* particle_cmp_h */

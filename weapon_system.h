@@ -19,6 +19,8 @@
 #include "contact_name_cmp.h"
 #include "callback_cmp.h"
 #include "bot_cmp.h"
+#include "particle_cmp.h"
+#include "particle_creator.h"
 
 class WeaponSystem : public System {
 
@@ -68,6 +70,12 @@ public:
 			cc->createComponent<Transform>(entityID);
 			cc->createComponent<Bullet>(entityID);
             cc->createComponent<Scene>(entityID);
+
+            cc->createComponent<ParticleEmitter>(entityID);
+            cc->getComponent<ParticleEmitter>(entityID)->timetoemit=0.015;
+            cc->getComponent<ParticleEmitter>(entityID)->emitspan=0.015;
+            cc->getComponent<ParticleEmitter>(entityID)->formula=0;
+
             cc->createComponent<ContactName>(entityID);
             cc->getComponent<ContactName>(entityID)->name = "bullet";
 
@@ -75,8 +83,8 @@ public:
 
 			//cc->getComponent<Bullet>(entityID)->lifetime = ((rand() % 1000) + 100) / 700.f; 6-7k
 			cc->getComponent<Bullet>(entityID)->lifetime = 2;
-            
-            
+
+
 			sb.weapon->bulletBodyDef.position = rotatePoint(sb.x / stuff::SCALE, sb.y / stuff::SCALE, atan2(sb.norm_vec.y , sb.norm_vec.x), b2Vec2((sb.x + sb.weapon->spawnPoint.x) / stuff::SCALE, (sb.y+ sb.weapon->spawnPoint.y) / stuff::SCALE) );
 
 			float aimAngle = atan2(sb.norm_vec.y , sb.norm_vec.x ) + stuff::degtorad(stuff::random(-sb.weapon->spread, sb.weapon->spread));

@@ -27,4 +27,6 @@
   <texture name="pixel" path="assets/textures/pixel.png"></texture>
   
   <texture name="arrow" path="assets/textures/arrow.png"></texture>
+
+  <texture name="particle0" path="assets/textures/particle0.png"></texture>
 </assets>
