@@ -1,5 +1,5 @@
 <entities>
-    
+
     <entity name="background">
         <transform x="0" y="0" angle="0"></transform>
         <sprites>
@@ -24,23 +24,65 @@
 <entity name="rescue">
 	<puzzle  name="rescue" activator="player_begin"></puzzle>
 	<transform x="994.57413813842" y="91.681030299733" angle="0"></transform>
-	<body type="static" angularDamping="0" linearDamping="0" bullet="0">
+	<body type="static" angularDamping="0" linearDamping="0" bullet="0" >
 		<fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="box" width="103.43330573382" height="18.160046044868"></fixture>
 	</body>
 </entity>
 
-<entity name="bot">  
-        <transform x="1000" y="300" angle="0"></transform>  
-          
-        <bot speed="5"></bot>  
-          
-        <animations>  
-            <sprite animation="zombie" z="100" origin_x="108" origin_y="130" scale="0.7"></sprite>  
-        </animations>  
-        <body type="dynamic" angularDamping="100" linearDamping="6" bullet="0" fixedRotation="1">  
-            <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="circle" radius="40" height="80" width="80" relative_pos_x="0" relative_pos_y="0"></fixture>  
-        </body>  
- </entity>  
+    <entity name="box">
+        <transform x="646" y="278" angle="0"></transform>
+        <body type="dynamic" angularDamping="6" linearDamping="6" bullet="0" fixedRotation="1">
+            <fixture density="100" friction="0.5" restitution="0" isSensor="0" filter="0" shape="box" width="183" height="113"></fixture>
+        </body>
+        <sprites>
+            <sprite texture="pudlooff" z="2" origin_x="91.5" origin_y="56.5" scale="1"></sprite>
+        </sprites>
+    </entity>
+
+    <entity name="sensor">
+        <puzzle  name="cyka" activator="box_begin"></puzzle>
+        <transform x="988" y="465" angle="0"></transform>
+        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
+            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
+        </body>
+    </entity>
+
+    <entity name="sensor">
+        <puzzle  name="cyka" activator="box_begin"></puzzle>
+        <transform x="1143" y="465" angle="0"></transform>
+        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
+            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
+        </body>
+    </entity>
+
+    <entity name="sensor">
+        <puzzle  name="cyka" activator="box_begin"></puzzle>
+        <transform x="988" y="543" angle="0"></transform>
+        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
+            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
+        </body>
+    </entity>
+
+    <entity name="sensor">
+        <puzzle  name="cyka" activator="box_begin"></puzzle>
+        <transform x="1143" y="543" angle="0"></transform>
+        <body type="dynamic" angularDamping="10" linearDamping="10" bullet="0" fixedRotation="1">
+            <fixture density="201" friction="0" restitution="0" isSensor="1" filter="0" shape="box" width="40" height="40"></fixture>
+        </body>
+    </entity>
+
+<entity name="bot">
+        <transform x="1000" y="300" angle="0"></transform>
+
+        <bot speed="5"></bot>
+
+        <animations>
+            <sprite animation="zombie" z="100" origin_x="108" origin_y="130" scale="0.7"></sprite>
+        </animations>
+        <body type="dynamic" angularDamping="100" linearDamping="6" bullet="0" fixedRotation="1">
+            <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="circle" radius="40" height="80" width="80" relative_pos_x="0" relative_pos_y="0"></fixture>
+        </body>
+ </entity>
 
 
 
@@ -50,27 +92,15 @@
 
 <entity name="player">
     <transform x="1200" y="1000" angle="0"></transform>
-    
+
     <player speed="9000"></player>
-    
+
     <animations>
         <sprite animation="playerwalking" z="100" origin_x="108" origin_y="130"></sprite>
     </animations>
-    
+
     <weapons>
-        
-        <weapon cooldown="0.05" speed="5000" spawnBullets="1" spread="10" magazine="100" bulletDmg="10" origin_x="25" origin_y="25"
-            bulletAnimTexName="bullet" bulletOrigin_x="0" bulletOrigin_y="0" scale="2" bulletAnimation="" spawnPoint_x="80" spawnPoint_y="0">
-            <body type="dynamic" angularDamping="0" linearDamping="0" bullet="1">
-                <fixture density="201" friction="1" restitution="0.5" isSensor="0" filter="0" shape="polygon" radius="25" width="50" height="50" relative_pos_x="0" relative_pos_y="0">
-                    <vertex x="-10" y="20"></vertex>
-                    <vertex x="-10" y="0"></vertex>
-                    <vertex x="0" y="-30"></vertex>
-                    <vertex x="10" y="0"></vertex>
-                    <vertex x="10" y="10"></vertex>
-                </fixture>
-            </body>
-        </weapon>
+
         <weapon cooldown="0.05" speed="5000" spawnBullets="1" spread="10" magazine="100" bulletDmg="10" origin_x="1000" origin_y="150"
             bulletAnimTexName="bullet" bulletOrigin_x="0" bulletOrigin_y="0" scale="2" bulletAnimation="" spawnPoint_x="80" spawnPoint_y="0">
             <body type="dynamic" angularDamping="0" linearDamping="0" bullet="1">
@@ -78,19 +108,14 @@
                 </fixture>
             </body>
         </weapon>
-        <weapon cooldown="1" speed="5000" spawnBullets="1" spread="10" magazine="100" bulletDmg="10" origin_x="6" origin_y="6"
-            bulletAnimTexName="bullet" bulletOrigin_x="0" bulletOrigin_y="0" scale="2" bulletAnimation="" spawnPoint_x="80" spawnPoint_y="0">
-            <body type="dynamic" angularDamping="0" linearDamping="0" bullet="1">
-                <fixture density="201" friction="1" restitution="0.5" isSensor="0" filter="0" shape="circle" radius="6" relative_pos_x="0" relative_pos_y="0">
-                </fixture>
-            </body>
-        </weapon>
-        
+
+
     </weapons>
     <body type="dynamic" angularDamping="100" linearDamping="6" bullet="0" fixedRotation="1">
         <fixture density="201" friction="0" restitution="0" isSensor="0" filter="0" shape="circle" radius="30" relative_pos_x="0" relative_pos_y="0"></fixture>
     </body>
 </entity>
+
 </entities>
 
 

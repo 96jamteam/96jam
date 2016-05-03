@@ -28,5 +28,7 @@
 
   <texture name="arrow" path="assets/textures/arrow.png"></texture>
 
+  <texture name="pudlooff" path="assets/textures/pudlooff.png"></texture>
+
   <texture name="particle0" path="assets/textures/particle0.png"></texture>
 </assets>
