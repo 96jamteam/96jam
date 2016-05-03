@@ -58,7 +58,10 @@ bool WorldLoader::loadFromFile(const std::string& path)
                 loadPuzzle(*cmp_xml, entity);
             }
             if (cmp_xml->getName() == "roslinka"){
-                loadRoslinka(*cmp_xml, entity);
+                loadRoslinka(*cmp_xml, entity, true);
+            }
+            if (cmp_xml->getName() == "roslinka2"){
+                loadRoslinka(*cmp_xml, entity, false);
             }
         }
     }
@@ -215,15 +218,26 @@ void WorldLoader::loadBot(XML& xml, const int & entity)
     });
 }
 
-void WorldLoader::loadRoslinka(XML& xml, const int& entity){
-    game->container.createComponent<CallbackCmp>(entity);
-    game->container.createComponent<Puzzle>(entity);
-    game->container.getComponent<Puzzle>(entity)->name = xml.get<std::string>(":name");
-    game->container.getComponent<Puzzle>(entity)->done = 0;
-    game->container.getComponent<CallbackCmp>(entity)->callbacks["bullet_begin"]=([this, entity](){
-        game->container.getComponent<SpriteC>(entity)->sprites[0].setTexture(*(game->Textures.Get("roslinka1-1-2")));
-        game->container.getComponent<Puzzle>(entity)->done=1;
-    });
+void WorldLoader::loadRoslinka(XML& xml, const int& entity, bool isTutorial){
+    if(isTutorial){
+        game->container.createComponent<CallbackCmp>(entity);
+        game->container.createComponent<Puzzle>(entity);
+        game->container.getComponent<Puzzle>(entity)->name = xml.get<std::string>(":name");
+        game->container.getComponent<Puzzle>(entity)->done = 0;
+        game->container.getComponent<CallbackCmp>(entity)->callbacks["bullet_begin"]=([this, entity](){
+            game->container.getComponent<SpriteC>(entity)->sprites[0].setTexture(*(game->Textures.Get("roslinka1-1-2")));
+            game->container.getComponent<Puzzle>(entity)->done=1;
+        });
+    }else{
+        game->container.createComponent<CallbackCmp>(entity);
+        game->container.createComponent<Puzzle>(entity);
+        game->container.getComponent<Puzzle>(entity)->name = xml.get<std::string>(":name");
+        game->container.getComponent<Puzzle>(entity)->done = 0;
+        game->container.getComponent<CallbackCmp>(entity)->callbacks["bullet_begin"]=([this, entity](){
+            game->container.getComponent<SpriteC>(entity)->sprites[0].setTexture(*(game->Textures.Get("roslinka2")));
+            game->container.getComponent<Puzzle>(entity)->done=1;
+        });
+    }
 }
 
 void WorldLoader::loadWeapons(XML& xml, const int & entity) {
