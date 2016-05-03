@@ -59,6 +59,7 @@ bool WorldLoader::loadFromFile(const std::string& path)
             }
         }
     }
+	//mChannel.broadcast(StartMusic());
 	mChannel.broadcast(SceneUpdate());
 	return false;
 }

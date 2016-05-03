@@ -7,15 +7,18 @@
 #include"structures_for_broadcast.h"
 #include"scene_manager.h"
 #include "stuff.h"
+#include "playlist.h"
 
 class WindowSystem : public System{
     sf::RenderWindow* win;
     Views* views;
+    std::map<std::string,Playlist>*playlists;
     sf::Event event;
 public:
-    WindowSystem(sf::RenderWindow& _win,Views& _views):System(){
+    WindowSystem(sf::RenderWindow& _win,Views& _views,std::map<std::string,Playlist>&_playlists):System(){
         win=&_win;
         views=&_views;
+        playlists=&_playlists;
     }
 
     void update(){
@@ -34,6 +37,8 @@ public:
 			}
 			else if (event.type == sf::Event::KeyPressed){
 				mChannel.broadcast(KeyEvent(event.key.code,true));
+				//if(event.key.code == sf::Keyboard::Q)
+                    //mChannel.broadcast(BulletTime(0.05f));
 			}
 			else if (event.type == sf::Event::KeyReleased) {
 				mChannel.broadcast(KeyEvent(event.key.code, false));
@@ -41,9 +46,15 @@ public:
                     SceneManager::modState("game",SceneManager::destroy);
                     SceneManager::set(SceneManager::active,SceneManager::sleep);
                     SceneManager::modState("menu",SceneManager::active);
+
+                    mChannel.broadcast(StopMusic());
+                    (*playlists)["menu"].set();
+                    mChannel.broadcast(StartMusic());
                     //mChannel.broadcast(LoadWorld("next", SceneManager::addScene("game", SceneManager::State::active)));
                     mChannel.broadcast(SceneUpdate());
                 }
+                //if(event.key.code == sf::Keyboard::Q)
+                    //mChannel.broadcast(BulletTime(1.0f));
 			}
 			else if (event.type == sf::Event::MouseButtonPressed) {
 				mChannel.broadcast(MouseButtonEvent(event.mouseButton.button, true));

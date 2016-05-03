@@ -12,6 +12,7 @@
 #include "structures_for_broadcast.h"
 #include "stuff.h"
 #include "eventchannel.h"
+#include "pugi_wrapper.h"
 
 namespace sf { class Sound; class Music; }
 
@@ -19,8 +20,6 @@ class SoundSystem : public System {
 private:
 public:
     SoundSystem(): System(){
-        musicVolume=0;
-        soundVolume=0;
         mChannel.add<SetListener>(*this);
         mChannel.add<PlaySound>(*this);
         mChannel.add<AddMusic>(*this);
@@ -28,6 +27,10 @@ public:
         mChannel.add<StartMusic>(*this);
         mChannel.add<StopMusic>(*this);
         mChannel.add<Volume>(*this);
+        mChannel.add<ClearMusic>(*this);
+        XML xml;
+        xml.load("config.xml");
+        mChannel.broadcast(Volume(xml.get<float>("config.volume:music"), xml.get<float>("config.volume:sound")));
 	}
 
 	virtual ~SoundSystem() {
@@ -62,6 +65,11 @@ public:
 					++it;
 			}
 		}
+	}
+
+    void handle(const ClearMusic& hand) {
+		mMusic.clear();
+		mCurrentSong.clear();
 	}
 
 	void handle(const Volume& hand) {
@@ -127,6 +135,22 @@ private:
 	void startMusic(){
 		if (!mCurrentSong.empty() && mMusic[mCurrentSong]->getStatus() != sf::Music::Stopped)
 			mMusic[mCurrentSong]->stop();
+
+        if(mCurrentSong.find("once")!=std::string::npos)
+            mMusic.erase(mCurrentSong);
+        else{
+            for(auto it = mMusic.begin(); it != mMusic.end(); ++it)
+            {
+                if(it->first.find("once")!=std::string::npos){
+                    mCurrentSong = it->first;
+                    it->second->play();
+                    it->second->setVolume(musicVolume);
+                    if (mMusicCallback)
+                        mMusicCallback(mCurrentSong);
+                    return;
+                }
+            }
+        }
 
 		auto it = mMusic.begin();
 

@@ -73,6 +73,10 @@ struct AddMusic {
 	std::string n, file;
 };
 
+struct ClearMusic{
+    ClearMusic(){}
+};
+
 struct RegisterMusicCallback {
 	RegisterMusicCallback(const std::function<void(const std::string&)>& _callback) :callback(_callback) {}
 	std::function<void(const std::string&)> callback;

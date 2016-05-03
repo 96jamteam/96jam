@@ -2,5 +2,5 @@
 <config>
   <view width="1920" height="1080"></view>
   <window width="800" height="600" ></window>
-  <volume sound="30" music="60" ></volume>  
+  <volume sound="100" music="10" ></volume>  
 </config>

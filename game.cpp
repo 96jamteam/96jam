@@ -40,7 +40,7 @@ void Game::run()
 
     createWindowAndStuff();
     std::shared_ptr<SoundSystem> sound(new SoundSystem());
-    engine.add(std::shared_ptr<System>(new WindowSystem(window,views)));
+    engine.add(std::shared_ptr<System>(new WindowSystem(window,views,playlists)));
     engine.add(std::shared_ptr<System>(new PuzzleSystem(container)));
     engine.add(std::shared_ptr<System>(new SceneSystem(container)));
     engine.add(std::shared_ptr<System>(new TestSystem(window, this)));
@@ -68,6 +68,9 @@ void Game::run()
     chan.broadcast(SpriteAdded());
     chan.broadcast(SceneUpdate());
     //chan.add<PlayerShooting>(*this);
+    //mChannel.broadcast(StopMusic());
+    playlists["menu"].set();
+    mChannel.broadcast(StartMusic());
 
     engine.run();
     sound->destroy();
@@ -100,7 +103,9 @@ void Game::loadAssets(const std::string& path)
         }
         else if (asset_xml->getName() == "music")
         {
-            mChannel.broadcast(AddMusic(asset_xml->get<std::string>(":path")));
+            if(playlists.find(asset_xml->get<std::string>(":playlist"))==playlists.end())
+                playlists[asset_xml->get<std::string>(":playlist")]=Playlist();
+            playlists[asset_xml->get<std::string>(":playlist")].tracks.push_back(asset_xml->get<std::string>(":path"));
         }
     }
 
@@ -116,7 +121,7 @@ void Game::createParticleFormula(){
             container.createComponent<Scene>(entityID);
             container.createComponent<Particle>(entityID);
             container.getComponent<Scene>(entityID)->sceneID = SceneManager::getID("game");
-            container.getComponent<Particle>(entityID)->lifespan = 0.05;
+            container.getComponent<Particle>(entityID)->lifespan = 0.08;
             container.createComponent<SpriteC>(entityID);
             container.getComponent<SpriteC>(entityID)->sprites.push_back(sf::Sprite(*Textures.Get("particle0")));
             container.getComponent<SpriteC>(entityID)->sprites[0].setOrigin(sf::Vector2f((*Textures.Get("particle0")).getSize().x/2.f,(*Textures.Get("particle0")).getSize().y/2.f));
@@ -193,6 +198,7 @@ void Game::createMenus()
     MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "reset_msg",
                                  [this]()
     {
+        mChannel.broadcast(PlaySound("assets/music/click.wav"));
         std::ofstream outfile;
         outfile.open("levels//save.xml");
         outfile << std::string(" <save level=\"") <<0<<std::string("\"></save> ") << std::endl;
@@ -202,6 +208,7 @@ void Game::createMenus()
     MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "arrows_msg",
                                  [this]()
     {
+        mChannel.broadcast(PlaySound("assets/music/click.wav"));
         std::ofstream outfile;
         outfile.open("controls.txt");
         outfile << std::string(" <key name=\"left\" keycode=\"71\"></key><key name=\"right\" keycode=\"72\"></key><key name=\"up\" keycode=\"73\"></key><key name=\"down\" keycode=\"74\"></key> ") << std::endl;
@@ -212,6 +219,7 @@ void Game::createMenus()
     MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "options", "wsad_msg",
                                  [this]()
     {
+        mChannel.broadcast(PlaySound("assets/music/click.wav"));
         std::ofstream outfile;
         outfile.open("controls.txt");
         outfile << std::string(" <key name=\"left\" keycode=\"0\"></key><key name=\"right\" keycode=\"3\"></key><key name=\"up\" keycode=\"22\"></key><key name=\"down\" keycode=\"18\"></key> ") << std::endl;
@@ -222,11 +230,15 @@ void Game::createMenus()
     MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "start",
                                  [this]()
     {
-        mChannel.broadcast(PlaySound("assets/music/electro.wav"));
+        mChannel.broadcast(PlaySound("assets/music/click.wav"));
+        //mChannel.broadcast(PlaySound("assets/music/electro.wav"));
 
         //SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
         SceneManager::modState("menu", SceneManager::State::sleep);
         mChannel.broadcast(LoadWorld("normal", SceneManager::addScene("game", SceneManager::State::active)));
+        mChannel.broadcast(StopMusic());
+        playlists["game"].set();
+        mChannel.broadcast(StartMusic());
     });
 
     MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "options_msg",
@@ -388,7 +400,7 @@ void Game::createWindowAndStuff()
     views.guiView.setCenter(views.guiView.getSize().x / 2.0, views.guiView.getSize().y / 2.0);
 
     views.gameView = views.guiView = views.getLetterboxView(views.guiView, views.WINDOW_WIDTH, views.WINDOW_HEIGHT);
-    mChannel.broadcast(Volume(xml.get<float>("config.volume:music"), xml.get<float>("config.volume:sound")));
+
     views.declareTextures(views.VIEW_WIDTH, views.VIEW_HEIGHT);
     engine.setVariables(&views, &window);
 }

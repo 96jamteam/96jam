@@ -17,6 +17,7 @@
 #include "AnimationManager.h"
 #include "world_loader.h"
 #include "contact_listener.h"
+#include "playlist.h"
 
 class TestSystem;
 class PlayerSystem;
@@ -44,6 +45,7 @@ public:
     Manager<sf::Font, stuff::MAX_FONTS> fonts;
 	Manager<GuiStyle, stuff::MAX_STYLESHEETS> Stylesheets;
 	Manager<sf::Texture, stuff::MAX_TEXTURES> Textures;
+	std::map<std::string,Playlist>playlists;
 	AnimationManager Animations;
     Views views;
     std::shared_ptr<WorldLoader> worldLoader;

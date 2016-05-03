@@ -64,6 +64,7 @@ public:
                                           b2Vec2((sb.x + sb.weapon->spawnPoint.x) / stuff::SCALE, (sb.y+ sb.weapon->spawnPoint.y) / stuff::SCALE) ),world,true )){
                     return;
                 }
+
 			sb.weapon->cooldown = sb.weapon->maxCooldown;
 			int entityID = cc->getUniqueID();
 			cc->createComponent<Physics>(entityID);
@@ -111,6 +112,7 @@ public:
 				cc->getComponent<SpriteC>(entityID)->sprites.push_back(sb.weapon->bulletGraphics.sprite);
 				cc->getComponent<SpriteC>(entityID)->z.push_back(20);
                 cc->getComponent<SpriteC>(entityID)->sprites[0].setScale(0.02f, 0.02f);
+                cc->getComponent<SpriteC>(entityID)->sprites[0].setOrigin(sf::Vector2f((sb.weapon->bulletGraphics.sprite.getTexture())->getSize().x/2.f,(sb.weapon->bulletGraphics.sprite.getTexture())->getSize().y/2.f));
 				mChannel.broadcast(SpriteAdded());
 			}
 			else {
@@ -121,6 +123,7 @@ public:
 
 			}
             mChannel.broadcast(PlayerShooting(entityID));
+            mChannel.broadcast(PlaySound("assets/music/gunP.wav"));
 		}
 	}
 
