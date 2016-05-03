@@ -30,6 +30,7 @@ public:
     void loadBot(XML&, const int &);
     void loadContactName(XML&, const int &);
     void loadPuzzle(XML&, const int &);
+    void loadRoslinka(XML&, const int &);
 
 	WorldLoader(Game* _game):game(_game){ mChannel.add<LoadWorld>(*this); mChannel.add<SaveLvl>(*this);}
 

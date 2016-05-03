@@ -3,7 +3,7 @@
 //  heist
 //
 //  Created by Janek on 06/04/16.
-//  Copyright © 2016 Janek. All rights reserved.
+//  Copyright ï¿½ 2016 Janek. All rights reserved.
 //
 
 #include "contact_listener.h"

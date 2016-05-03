@@ -57,6 +57,9 @@ bool WorldLoader::loadFromFile(const std::string& path)
             if (cmp_xml->getName() == "puzzle") {
                 loadPuzzle(*cmp_xml, entity);
             }
+            if (cmp_xml->getName() == "roslinka"){
+                loadRoslinka(*cmp_xml, entity);
+            }
         }
     }
 	//mChannel.broadcast(StartMusic());
@@ -207,6 +210,13 @@ void WorldLoader::loadBot(XML& xml, const int & entity)
     game->container.getComponent<CallbackCmp>(entity)->callbacks["bullet_begin"]=([this, entity](){
          EventChannel chan;
         chan.broadcast(DeleteThisShit(entity));
+    });
+}
+
+void WorldLoader::loadRoslinka(XML& xml, const int& entity){
+    game->container.createComponent<CallbackCmp>(entity);
+    game->container.getComponent<CallbackCmp>(entity)->callbacks["bullet_begin"]=([this, entity](){
+        game->container.getComponent<SpriteC>(entity)->sprites[0].setTexture(*(game->Textures.Get("roslinka1-1-2")));
     });
 }
 
