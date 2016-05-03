@@ -117,7 +117,6 @@
 </entity>
 
 <entity name="roslinka">
-   <puzzle  name="cyka" activator="bullet_begin"></puzzle>
     <transform x="170" y="215" angle="0"></transform>
     <sprites>
         <sprite texture="roslinka1-1-1" z="0" origin_x="170" origin_y="215" scale="1"></sprite>

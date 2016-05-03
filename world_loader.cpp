@@ -215,8 +215,12 @@ void WorldLoader::loadBot(XML& xml, const int & entity)
 
 void WorldLoader::loadRoslinka(XML& xml, const int& entity){
     game->container.createComponent<CallbackCmp>(entity);
+    game->container.createComponent<Puzzle>(entity);
+    game->container.getComponent<Puzzle>(entity)->name = xml.get<std::string>(":name");
+    game->container.getComponent<Puzzle>(entity)->done = 0;
     game->container.getComponent<CallbackCmp>(entity)->callbacks["bullet_begin"]=([this, entity](){
         game->container.getComponent<SpriteC>(entity)->sprites[0].setTexture(*(game->Textures.Get("roslinka1-1-2")));
+        game->container.getComponent<Puzzle>(entity)->done=1;
     });
 }
 
