@@ -70,8 +70,10 @@ bool WorldLoader::loadFromFile(const std::string& path)
 void WorldLoader::handle(const LoadWorld & LWE)
 {
 	sceneID = LWE.id;
-
-	loadFromFile(readSave("levels//save.xml",LWE.type));
+    if(LWE.type=="normal")
+        loadFromFile(readSave("levels//save.xml",LWE.type));
+    else
+        loadFromFile(std::string("levels//")+LWE.type+std::string(".xml"));
 }
 
 void WorldLoader::handle(const SaveLvl& lw){
@@ -91,7 +93,7 @@ std::string WorldLoader::readSave(const std::string& file, const std::string& ty
     xml.load(file);
     int level = xml.get<int>("save:level");
 
-    if(level==1){
+    if(level==2){
         //SceneManager::modState("game",SceneManager::destroy);
         SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
         SceneManager::modState("credits",SceneManager::active);
