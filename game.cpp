@@ -64,6 +64,7 @@ void Game::run()
     createGameOverScreen();
     createWinScreen();
     createParticleFormula();
+    createCreditsScreen();
 
     chan.broadcast(SpriteAdded());
     chan.broadcast(SceneUpdate());
@@ -379,6 +380,25 @@ void Game::createGameOverScreen()
     });
 
     MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
+}
+
+void Game::createCreditsScreen(){
+    int sceneID = SceneManager::addScene("credits", SceneManager::State::sleep);
+    int entityID = container.getUniqueID();
+
+    container.createComponent<Transform>(entityID);
+    container.createComponent<Scene>(entityID);
+    container.createComponent<SpriteC>(entityID);
+
+    container.getComponent<Scene>(entityID)->sceneID = sceneID;
+
+    container.getComponent<Transform>(entityID)->x = 0;
+    container.getComponent<Transform>(entityID)->y = 0;
+
+    container.getComponent<SpriteC>(entityID)->sprites.push_back(sf::Sprite(*Textures.Get("credits")));
+    container.getComponent<SpriteC>(entityID)->z.push_back(10000);
+
+    mChannel.broadcast(SpriteAdded());
 }
 
 void Game::createWindowAndStuff()

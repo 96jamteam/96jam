@@ -88,6 +88,14 @@ std::string WorldLoader::readSave(const std::string& file, const std::string& ty
     xml.load(file);
     int level = xml.get<int>("save:level");
 
+    if(level==1){
+        //SceneManager::modState("game",SceneManager::destroy);
+        SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
+        SceneManager::modState("credits",SceneManager::active);
+        mChannel.broadcast(SceneUpdate());
+    }
+
+
     lastOpenedLvl=level;
     std::stringstream ss;
     ss << level;

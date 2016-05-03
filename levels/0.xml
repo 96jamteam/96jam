@@ -30,7 +30,7 @@
 </entity>
 
     <entity name="box">
-        <transform x="646" y="278" angle="0"></transform>
+        <transform x="666" y="278" angle="0"></transform>
         <body type="dynamic" angularDamping="6" linearDamping="6" bullet="0" fixedRotation="1">
             <fixture density="100" friction="0.5" restitution="0" isSensor="0" filter="0" shape="box" width="183" height="113"></fixture>
         </body>
@@ -101,7 +101,7 @@
 
     <weapons>
 
-        <weapon cooldown="0.05" speed="5000" spawnBullets="1" spread="10" magazine="100" bulletDmg="10" origin_x="1000" origin_y="150"
+        <weapon cooldown="0.05" speed="5000" spawnBullets="1" spread="3.1" magazine="100" bulletDmg="10" origin_x="1000" origin_y="150"
             bulletAnimTexName="bullet" bulletOrigin_x="0" bulletOrigin_y="0" scale="2" bulletAnimation="" spawnPoint_x="80" spawnPoint_y="0">
             <body type="dynamic" angularDamping="0" linearDamping="0" bullet="1">
                 <fixture density="201" friction="1" restitution="0.5" isSensor="0" filter="0" shape="box" width="40" height="3" relative_pos_x="0" relative_pos_y="0">

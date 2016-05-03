@@ -34,6 +34,7 @@ public:
     void createWindowAndStuff();
     void createGameOverScreen();
     void createWinScreen();
+    void createCreditsScreen();
     void createParticleFormula();
     void handle(const PlayerShooting& s);
 

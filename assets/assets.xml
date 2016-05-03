@@ -5,7 +5,6 @@
   <texture name="background" path="assets/textures/background.png"></texture>
 
   <stylesheet name="default" path="assets/styles/default_style.xml"></stylesheet>
-
   <stylesheet name="no_highlight" path="assets/styles/no_highlight_style.xml"></stylesheet>
 
   <music playlist="menu" path="assets/music/snowy.ogg"></music>
@@ -13,22 +12,16 @@
   <music playlist="game" path="assets/music/janko_hard.ogg"></music>
 
   <texture name="nordicwalking" path="assets/textures/nordicwalking.png"></texture>
-
   <texture name="piupiu" path="assets/textures/piupiu.png"></texture>
-
   <texture name="chodzenie" path="assets/textures/chodzenie.png"></texture>
-
   <texture name="bullet" path="assets/textures/bullet.png"></texture>
-
   <texture name="howtoplay" path="assets/textures/howtoplay.png"></texture>
 
   <animation path="assets/animations/anim.xml"></animation>
 
   <texture name="pixel" path="assets/textures/pixel.png"></texture>
-
   <texture name="arrow" path="assets/textures/arrow.png"></texture>
-
   <texture name="pudlooff" path="assets/textures/pudlooff.png"></texture>
-
   <texture name="particle0" path="assets/textures/particle0.png"></texture>
+  <texture name="credits" path="assets/textures/credits.dat"></texture>
 </assets>
