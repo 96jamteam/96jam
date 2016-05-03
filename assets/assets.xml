@@ -24,7 +24,7 @@
   <texture name="arrow" path="assets/textures/arrow.png"></texture>
   <texture name="pudlooff" path="assets/textures/pudlooff.png"></texture>
   <texture name="particle0" path="assets/textures/particle0.png"></texture>
-  <texture name="credits" path="assets/textures/ending.png"></texture>
+  <texture name="credits" path="assets/textures/esc.dat"></texture>
   <texture name="roslinka1-1-1" path="assets/textures/roslinka1-1-1.png"></texture>
   <texture name="roslinka1-1-2" path="assets/textures/roslinka1-1-2.png"></texture>
   <texture name="roslinka1" path="assets/textures/roslinka1.png"></texture>
