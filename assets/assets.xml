@@ -16,6 +16,7 @@
   <texture name="chodzenie" path="assets/textures/chodzenie.png"></texture>
   <texture name="bullet" path="assets/textures/bullet.png"></texture>
   <texture name="howtoplay" path="assets/textures/howtoplay.png"></texture>
+  <texture name="firstfloor" path="assets/textures/1stflooor.png"></texture>
 
   <animation path="assets/animations/anim.xml"></animation>
 
@@ -26,4 +27,6 @@
   <texture name="credits" path="assets/textures/credits.dat"></texture>
   <texture name="roslinka1-1-1" path="assets/textures/roslinka1-1-1.png"></texture>
   <texture name="roslinka1-1-2" path="assets/textures/roslinka1-1-2.png"></texture>
+  <texture name="roslinka1" path="assets/textures/roslinka1.png"></texture>
+  <texture name="roslinka2" path="assets/textures/roslinka2.png"></texture>
 </assets>
