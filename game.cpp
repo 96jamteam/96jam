@@ -314,7 +314,7 @@ void Game::createWinScreen()
         //mChannel.broadcast(PlaySound("electro.wav"));
         //SceneManager::modState("game",SceneManager::destroy);
         SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
-        mChannel.broadcast(LoadWorld("next", SceneManager::addScene("game", SceneManager::State::active)));
+        mChannel.broadcast(LoadWorld("normal", SceneManager::addScene("game", SceneManager::State::active)));
     });
 
     MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
@@ -397,6 +397,73 @@ void Game::createCreditsScreen(){
 
     container.getComponent<SpriteC>(entityID)->sprites.push_back(sf::Sprite(*Textures.Get("credits")));
     container.getComponent<SpriteC>(entityID)->z.push_back(10000);
+
+
+
+    GuiStyle* gui;
+    gui = Stylesheets.Get("default");
+    gui->font = fonts.Get(gui->fontName);
+
+    GuiStyle* gui2;
+    gui2 = Stylesheets.Get("no_highlight");
+    gui2->font = fonts.Get(gui2->fontName);
+
+    int ID = container.getUniqueID();
+    container.createComponent<Transform>(ID);
+
+    container.createComponent<Menu>(ID);
+
+    container.createComponent<Scene>(ID);
+
+    container.getComponent<Scene>(ID)->sceneID = sceneID;
+int xsize = 450;
+    int dim_y = 64;
+    container.getComponent<Transform>(ID)->x = 10;
+    container.getComponent<Transform>(ID)->y = views.VIEW_HEIGHT  - dim_y;
+
+    container.getComponent<Menu>(ID)->name = "main";
+    container.getComponent<Menu>(ID)->z = 10000;
+
+    MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
+    MenuFactory::get().addGui(*
+                              container.getComponent<Menu>(ID), "main", sf::Vector2f(0, dim_y * 1), sf::Vector2f(xsize, dim_y), 4, true, *gui,
+    { std::make_pair("tutorial", "0"), std::make_pair("first", "1"), std::make_pair("second", "2") });
+
+    //MenuFactory::get().addGui(*
+     //                         container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 500), sf::Vector2f(500, 256), 4, false, *gui2,
+    //{ std::make_pair("U DIED BRO"," kupa") });
+    /*MenuFactory::get().addGui(*
+                        container.getComponent<Menu>(ID), "options", sf::Vector2f(0, 64.0 * 0.5), sf::Vector2f(xsize, 64), 4, false, *gui,
+    { std::make_pair("Back", "back_msg") });*/
+    //MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "options_msg", "options");
+    //MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "options", "back_msg", "main");
+    //MenuFactory::get().addConnection(*container.getComponent<Menu>(ID), "main", "start", "options");
+
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "0",
+                                 [this]()
+    {
+        SceneManager::modState("game",SceneManager::destroy);
+        SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
+        mChannel.broadcast(LoadWorld("0", SceneManager::addScene("game", SceneManager::State::active)));
+    });
+
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "1",
+                                 [this]()
+    {
+        SceneManager::modState("game",SceneManager::destroy);
+        SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
+        mChannel.broadcast(LoadWorld("1", SceneManager::addScene("game", SceneManager::State::active)));
+    });
+
+    MenuFactory::get().addAction(*container.getComponent<Menu>(ID), "main", "2",
+                                 [this]()
+    {
+        SceneManager::modState("game",SceneManager::destroy);
+        SceneManager::set(SceneManager::State::active, SceneManager::State::sleep);
+        mChannel.broadcast(LoadWorld("2", SceneManager::addScene("game", SceneManager::State::active)));
+    });
+
+    MenuFactory::get().setActualScreen(*container.getComponent<Menu>(ID), "main");
 
     mChannel.broadcast(SpriteAdded());
 }

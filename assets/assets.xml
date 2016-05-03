@@ -29,4 +29,5 @@
   <texture name="roslinka1-1-2" path="assets/textures/roslinka1-1-2.png"></texture>
   <texture name="roslinka1" path="assets/textures/roslinka1.png"></texture>
   <texture name="roslinka2" path="assets/textures/roslinka2.png"></texture>
+  <texture name="firstfloor" path="assets/textures/1stflooor.png"></texture>
 </assets>
