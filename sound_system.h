@@ -91,7 +91,9 @@ public:
 				return;
 			}
 
-		sf::Sound* snd = new sf::Sound();
+        mPlaying.emplace_back(std::make_shared<sf::Sound>());
+
+		sf::Sound* snd = &(*mPlaying.back());
 		snd->setBuffer(buf);
 
 		if (hand.pos != sf::Vector2f())

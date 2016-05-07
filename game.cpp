@@ -427,7 +427,7 @@ int xsize = 450;
     MenuFactory::get().addScreen(*container.getComponent<Menu>(ID), "main");
     MenuFactory::get().addGui(*
                               container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 0), sf::Vector2f(xsize, dim_y), 4, false, *gui,
-    { std::make_pair("tutorial", "0"), std::make_pair("1st level", "1"), std::make_pair("2nd level", "2"), std::make_pair("3rd level", "2") });
+    { std::make_pair("tutorial", "0"), std::make_pair("1st level", "1"), std::make_pair("2nd level", "2"), std::make_pair("3rd level", "3") });
 
     //MenuFactory::get().addGui(*
      //                         container.getComponent<Menu>(ID), "main", sf::Vector2f(0, 500), sf::Vector2f(500, 256), 4, false, *gui2,
